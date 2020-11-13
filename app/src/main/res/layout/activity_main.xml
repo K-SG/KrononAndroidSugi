@@ -4,15 +4,57 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="@drawable/background"
+    tools:context=".MainActivity" >
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/character_name"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World DeveloperSecond!"
+        android:gravity="center"
+        android:text="@string/character_name"
+        android:textColor="@color/k_white"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toTopOf="@+id/top_kronon" />
+
+    <TextView
+        android:id="@+id/system_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:text="@string/system_name"
+        android:textColor="@color/k_white"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@+id/character_name"
+        tools:text="@string/system_name" />
+
+    <ImageView
+        android:id="@+id/top_kronon"
+        android:layout_width="229dp"
+        android:layout_height="237dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.636"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.512"
+        app:srcCompat="@drawable/top_kronon" />
+
+    <ImageView
+        android:id="@+id/start_button"
+        android:layout_width="165dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/top_kronon"
+        app:srcCompat="@drawable/start_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
