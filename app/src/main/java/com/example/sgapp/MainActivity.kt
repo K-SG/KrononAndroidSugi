@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         var start_button = findViewById<ImageView>(R.id.start_button)
         start_button.setOnClickListener{
-            val  intent = Intent(this,LoginActivity::class.java)
+            val intent = Intent(this,LoginActivity::class.java)
             startActivity(intent)
         }
     }
