@@ -5,7 +5,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/k_green"
+    android:background="@color/kronon_green"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -13,10 +13,11 @@
     tools:context=".ui.login.LoginActivity">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/fivestar"
         android:layout_width="189dp"
         android:layout_height="194dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@string/fivestar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -31,21 +32,24 @@
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/fivestar" />
 
     <EditText
-        android:id="@+id/username"
+        android:id="@+id/user_name"
         android:layout_width="300dp"
         android:layout_height="48dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
+        android:autofillHints=""
         android:background="@drawable/mail_edittext"
         android:hint="@string/prompt_email"
         android:inputType="textEmailAddress"
         android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         android:selectAllOnFocus="true"
         android:textColorHint="@color/loginwhite"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/system_name" />
@@ -57,23 +61,29 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
+        android:autofillHints=""
         android:background="@drawable/mail_edittext"
         android:hint="@string/prompt_password"
         android:imeActionLabel="@string/action_sign_in_short"
         android:imeOptions="actionDone"
         android:inputType="textPassword"
         android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         android:selectAllOnFocus="true"
         android:textColorHint="@color/loginwhite"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username" />
+        app:layout_constraintTop_toBottomOf="@+id/user_name" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/login"
         android:layout_width="300dp"
         android:layout_height="48dp"
         android:layout_marginTop="16dp"
+        android:background="?attr/selectableItemBackground"
+        android:contentDescription="@string/login_button"
+        android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password"
@@ -96,30 +106,29 @@
         app:layout_constraintVertical_bias="0.3" />
 
     <TextView
-        android:id="@+id/newUser"
+        android:id="@+id/new_user"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="64dp"
-        android:layout_marginRight="64dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
         android:text="@string/new_user"
         android:textColor="@color/loginwhite"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/notaccount_text"
         app:layout_constraintTop_toBottomOf="@+id/login" />
 
     <TextView
-        android:id="@+id/notaccount"
+        android:id="@+id/notaccount_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginLeft="40dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:text="@string/not_account"
         android:textColor="@color/white"
-        android:textSize="8sp"
-        app:layout_constraintEnd_toStartOf="@+id/newUser"
-        app:layout_constraintHorizontal_bias="0.687"
+        android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login" />
 </androidx.constraintlayout.widget.ConstraintLayout>

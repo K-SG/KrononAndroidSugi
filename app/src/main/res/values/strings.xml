@@ -14,6 +14,8 @@
     <string name="login_failed">"Login failed"</string>
     <string name="not_account">アカウントをお持ちでない場合</string>
     <string name="new_user"><u>新規登録</u></string>
+    <string name="fivestar">星が５つ</string>
+    <string name="login_button">ログインボタン</string>
 
 
 </resources>
