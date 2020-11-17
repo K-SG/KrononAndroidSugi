@@ -12,6 +12,7 @@
     <string name="prompt_password">パスワード</string>
     <string name="prompt_password_confirm">パスワードの確認</string>
     <string name="newAccount_button">新規登録</string>
+    <string name="back_button">戻る</string>
     <string name="login"><u>ログイン</u></string>
     <string name="not_account_text">ログインアカウントがある？</string>
 </resources>
