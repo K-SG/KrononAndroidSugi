@@ -25,7 +25,7 @@ class LoginActivity : AppCompatActivity() {
 
         val username = findViewById<EditText>(R.id.user_name)
         val password = findViewById<EditText>(R.id.password)
-        val login = findViewById<ImageView>(R.id.login)
+        val login = findViewById<Button>(R.id.login)
         val loading = findViewById<ProgressBar>(R.id.loading)
 
         loginViewModel = ViewModelProvider(this, LoginViewModelFactory())

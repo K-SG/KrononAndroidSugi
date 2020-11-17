@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="loginwhite">#FEFEFE</color>
     <color name="kronon_green">#365A0C</color>
+    <color name="common_text">#5C5A5A</color>
 </resources>

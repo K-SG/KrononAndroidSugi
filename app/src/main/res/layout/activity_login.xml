@@ -76,14 +76,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/user_name" />
 
-    <ImageButton
+    <Button
         android:id="@+id/login"
         android:layout_width="300dp"
         android:layout_height="48dp"
         android:layout_marginTop="16dp"
-        android:background="?attr/selectableItemBackground"
-        android:contentDescription="@string/login_button"
+        android:background="@drawable/login_button"
         android:scaleType="fitCenter"
+        android:text="@string/login_text"
+        android:textColor="@color/common_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password"
