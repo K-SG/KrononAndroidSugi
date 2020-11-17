@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">SgApp</string>
+    <string name="newAcount_title">アカウント作成</string>
+    <string name="newAcount_description">
+        表示名は日本語で15文字以内\n
+        パスワードは半角英数字で8~20文字\n
+        大文字•小文字•数字は必ず使用して\n
+        設定してね。
+    </string>
+    <string name="prompt_name">表示名</string>
+    <string name="prompt_email">メールアドレス</string>
+    <string name="prompt_password">パスワード</string>
+    <string name="prompt_password_confirm">パスワードの確認</string>
+    <string name="newAccount_button">新規登録</string>
+    <string name="login"><u>ログイン</u></string>
+    <string name="not_account_text">ログインアカウントがある？</string>
 </resources>
