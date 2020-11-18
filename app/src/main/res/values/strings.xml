@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">SgApp</string>
+    <string name="newSchedule_title">予定登録</string>
+    <string name="back_button">戻る</string>
+    <string name="content_text">内容</string>
+    <string name="date_text">日付</string>
+    <string name="starttime_text">開始時間</string>
+    <string name="endtime_text">終了時間</string>
+    <string name="ok_text">OK</string>
 </resources>
