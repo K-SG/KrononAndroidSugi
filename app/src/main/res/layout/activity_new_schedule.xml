@@ -54,6 +54,8 @@
         android:inputType="textPersonName"
         android:paddingLeft="4dp"
         android:paddingRight="4dp"
+        android:textColor="@color/common_text"
+        android:textColorHint="@color/common_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/newSchedule_title" />
@@ -70,7 +72,9 @@
         android:ems="10"
         android:inputType="date"
         android:paddingLeft="200dp"
+        android:textColor="@color/common_text"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_edittext" />
 
@@ -86,6 +90,7 @@
         android:ems="10"
         android:inputType="time"
         android:paddingLeft="200dp"
+        android:textColor="@color/common_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/date" />
@@ -103,6 +108,7 @@
         android:inputType="time"
         android:paddingLeft="200dp"
         android:paddingRight="10dp"
+        android:textColor="@color/common_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/starttime" />
@@ -115,34 +121,37 @@
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:text="@string/date_text"
+        android:textColor="@color/common_text"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/date"
         app:layout_constraintStart_toStartOf="@+id/date"
         app:layout_constraintTop_toTopOf="@+id/date" />
 
     <TextView
-    android:id="@+id/starttime_text"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="8dp"
-    android:layout_marginLeft="8dp"
-    android:text="@string/starttime_text"
-    android:textSize="18sp"
-    app:layout_constraintBottom_toBottomOf="@+id/starttime"
-    app:layout_constraintStart_toStartOf="@+id/starttime"
-    app:layout_constraintTop_toTopOf="@+id/starttime" />
+        android:id="@+id/starttime_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:text="@string/starttime_text"
+        android:textColor="@color/common_text"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/starttime"
+        app:layout_constraintStart_toStartOf="@+id/starttime"
+        app:layout_constraintTop_toTopOf="@+id/starttime" />
 
     <TextView
-    android:id="@+id/endtime_text"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="8dp"
-    android:layout_marginLeft="8dp"
-    android:text="@string/endtime_text"
-    android:textSize="18sp"
-    app:layout_constraintBottom_toBottomOf="@+id/endtime"
-    app:layout_constraintStart_toStartOf="@+id/endtime"
-    app:layout_constraintTop_toTopOf="@+id/endtime" />
+        android:id="@+id/endtime_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:text="@string/endtime_text"
+        android:textColor="@color/common_text"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/endtime"
+        app:layout_constraintStart_toStartOf="@+id/endtime"
+        app:layout_constraintTop_toTopOf="@+id/endtime" />
 
     <TextView
         android:id="@+id/content_text"
@@ -166,13 +175,14 @@
         android:layout_marginTop="44dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
+        android:autofillHints=""
         android:background="@drawable/partdesign"
         android:ems="10"
         android:gravity="top"
         android:inputType="textMultiLine"
-        android:autofillHints=""
         android:lines="6"
         android:padding="10dp"
+        android:textColor="@color/common_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -181,13 +191,15 @@
 
     <Button
         android:id="@+id/ok_button"
-        android:layout_width="300dp"
-        android:layout_height="48dp"
+        android:layout_width="144dp"
+        android:layout_height="60dp"
         android:layout_marginTop="32dp"
         android:background="@drawable/ok_button"
         android:contentDescription=""
-        android:scaleType="fitCenter"
+        android:paddingBottom="10dp"
+        android:scaleType="center"
         android:text="@string/ok_text"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
