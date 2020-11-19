@@ -9,4 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="common_background">#FDF7F0</color>
     <color name="common_text">#5C5A5A</color>
+    <color name="common_solid">#D8D5D5</color>
+    <color name="black_board">#467021</color>
+
 </resources>

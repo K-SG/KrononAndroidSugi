@@ -50,7 +50,8 @@
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:layout_marginBottom="96dp"
-        android:background="@drawable/blackboard"
+        android:background="@drawable/blackboard_x"
+        android:contentDescription=""
         android:orientation="vertical"
         android:padding="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -67,34 +68,54 @@
                 android:id="@+id/name_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="-0.5dp"
+                android:layout_marginRight="-0.5dp"
                 android:layout_weight="1"
-                android:text="TextView" />
+                android:background="@drawable/partdesign"
+                android:padding="5dp"
+                android:text=""
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/place"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="-0.5dp"
+                android:layout_marginLeft="-0.5dp"
                 android:layout_weight="1"
-                android:text="TextView" />
+                android:background="@drawable/partdesign"
+                android:gravity="center"
+                android:padding="5dp"
+                android:textSize="18sp" />
         </LinearLayout>
 
         <TextView
             android:id="@+id/datetime_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:layout_marginTop="-1dp"
+            android:background="@drawable/partdesign"
+            android:padding="5dp"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/title_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:layout_marginTop="-1dp"
+            android:background="@drawable/partdesign"
+            android:padding="5dp"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/content_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="TextView" />
+            android:layout_marginTop="-1dp"
+            android:background="@drawable/partdesign"
+            android:padding="5dp"
+            android:textSize="14sp" />
+
     </LinearLayout>
 
     <ImageButton
@@ -104,6 +125,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="16dp"
+        android:contentDescription="@string/update"
         android:background="?attr/selectableItemBackground"
         android:scaleType="fitCenter"
         android:src="@drawable/update_button"
@@ -112,12 +134,13 @@
 
     <ImageButton
         android:id="@+id/delete_button"
-        android:layout_width="180dp"
-        android:layout_height="66dp"
+        android:layout_width="175dp"
+        android:layout_height="60dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:background="?attr/selectableItemBackground"
+        android:contentDescription="@string/delete"
         android:scaleType="fitCenter"
         android:src="@drawable/delete_button"
         app:layout_constraintEnd_toEndOf="parent"

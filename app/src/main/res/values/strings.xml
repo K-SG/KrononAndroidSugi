@@ -2,4 +2,6 @@
     <string name="app_name">SgApp</string>
     <string name="detail_schedule_title">予定詳細</string>
     <string name="back_button">戻る</string>
+    <string name="update">修正</string>
+    <string name="delete">削除</string>
 </resources>
