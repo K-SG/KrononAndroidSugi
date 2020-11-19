@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">SgApp</string>
     <string name="detail_schedule_title">予定詳細</string>
+    <string name="back_button">戻る</string>
 </resources>
