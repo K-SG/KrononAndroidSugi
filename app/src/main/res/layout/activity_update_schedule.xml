@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/common_background"
-    tools:context=".CreateScheduleActivity">
+    tools:context=".UpdateScheduleActivity">
 
     <TextView
         android:id="@+id/newSchedule_title"
@@ -15,7 +15,7 @@
         android:gravity="center"
         android:paddingTop="20dp"
         android:paddingBottom="20dp"
-        android:text="@string/newSchedule_title"
+        android:text="@string/updateSchedule_title"
         android:textColor="@color/common_text"
         android:textSize="18sp"
         android:textStyle="bold"
