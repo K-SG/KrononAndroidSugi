@@ -4,4 +4,9 @@
     <string name="title_calendar">カレンダー</string>
     <string name="title_schedule">予定表</string>
     <string name="title_account">アカウント</string>
+    <string name="back_button">戻る</string>
+    <string name="calendar_title_text">カレンダー</string>
+    <string name="schedule_title_text">予定表</string>
+    <string name="account_title_text">アカウント</string>
+    <string name="create_button">予定登録</string>
 </resources>
