@@ -50,9 +50,9 @@
 
     <LinearLayout
         android:layout_width="337dp"
-        android:layout_height="450dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="160dp"
+        android:layout_height="340dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="100dp"
         android:background="@color/grayColor"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -108,6 +108,7 @@
                 android:layout_marginHorizontal="1dp"
                 android:layout_weight="1"
                 android:background="@color/whiteColor"
+                android:gravity="center_horizontal"
                 android:text="日"
                 android:textAlignment="center"
                 android:textColor="@color/redColor" />
@@ -118,6 +119,7 @@
                 android:layout_marginRight="1dp"
                 android:layout_weight="1"
                 android:background="@color/whiteColor"
+                android:gravity="center_horizontal"
                 android:text="月"
                 android:textAlignment="center"
                 android:textColor="@color/blackColor" />
@@ -128,6 +130,7 @@
                 android:layout_marginRight="1dp"
                 android:layout_weight="1"
                 android:background="@color/whiteColor"
+                android:gravity="center_horizontal"
                 android:text="火"
                 android:textAlignment="center"
                 android:textColor="@color/blackColor" />
@@ -138,6 +141,7 @@
                 android:layout_marginRight="1dp"
                 android:layout_weight="1"
                 android:background="@color/whiteColor"
+                android:gravity="center_horizontal"
                 android:text="水"
                 android:textAlignment="center"
                 android:textColor="@color/blackColor" />
@@ -148,6 +152,7 @@
                 android:layout_marginRight="1dp"
                 android:layout_weight="1"
                 android:background="@color/whiteColor"
+                android:gravity="center_horizontal"
                 android:text="木"
                 android:textAlignment="center"
                 android:textColor="@color/blackColor" />
@@ -158,6 +163,7 @@
                 android:layout_marginRight="1dp"
                 android:layout_weight="1"
                 android:background="@color/whiteColor"
+                android:gravity="center_horizontal"
                 android:text="金"
                 android:textAlignment="center"
                 android:textColor="@color/blackColor" />
@@ -168,6 +174,7 @@
                 android:layout_marginRight="1dp"
                 android:layout_weight="1"
                 android:background="@color/whiteColor"
+                android:gravity="center_horizontal"
                 android:text="土"
                 android:textAlignment="center"
                 android:textColor="@color/blueColor" />
@@ -176,8 +183,8 @@
 
         <GridView
             android:id="@+id/calendarGridView"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="1dp"
             android:layout_weight="15"
             android:horizontalSpacing="1dp"
