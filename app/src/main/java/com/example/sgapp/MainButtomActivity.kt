@@ -14,7 +14,7 @@ class MainButtomActivity : AppCompatActivity() {
     private var titleText: TextView? = null
     private val prevButton: Button? = null
     private  var nextButton:Button? = null
-    private val mCalendarAdapter: CalendarAdapter? = null
+//    private val mCalendarAdapter: CalendarAdapter? = null
     private val calendarGridView: GridView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {

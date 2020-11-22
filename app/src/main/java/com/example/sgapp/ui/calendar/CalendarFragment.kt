@@ -9,7 +9,6 @@ import android.widget.GridView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.sgapp.CalendarAdapter
 import com.example.sgapp.R
 
 
@@ -19,7 +18,7 @@ class CalendarFragment : Fragment() {
     private var titleText: TextView? = null
     private var prevButton: Button? = null
     private  var nextButton: Button? = null
-    private var mCalendarAdapter: CalendarAdapter? = null
+//    private var mCalendarAdapter: CalendarAdapter? = null
     private var calendarGridView: GridView? = null
 
     override fun onCreateView(
@@ -30,17 +29,17 @@ class CalendarFragment : Fragment() {
         homeViewModel =
             ViewModelProvider(this).get(CalendarViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_calendar, container, false)
-        prevButton!!.setOnClickListener {
-            mCalendarAdapter.prevMonth()
-            titleText.setText(mCalendarAdapter.getTitle())
-        }
-        nextButton!!.setOnClickListener {
-            mCalendarAdapter.nextMonth()
-            titleText.setText(mCalendarAdapter.getTitle())
-        }
-        mCalendarAdapter = CalendarAdapter(this)
-        calendarGridView!!.setAdapter(mCalendarAdapter)
-        titleText.setText(mCalendarAdapter.getTitle())
+//        prevButton!!.setOnClickListener {
+//            mCalendarAdapter.prevMonth()
+//            titleText.setText(mCalendarAdapter.getTitle())
+//        }
+//        nextButton!!.setOnClickListener {
+//            mCalendarAdapter.nextMonth()
+//            titleText.setText(mCalendarAdapter.getTitle())
+//        }
+//        mCalendarAdapter = CalendarAdapter(this)
+//        calendarGridView!!.setAdapter(mCalendarAdapter)
+//        titleText.setText(mCalendarAdapter.getTitle())
 
         return root
     }
