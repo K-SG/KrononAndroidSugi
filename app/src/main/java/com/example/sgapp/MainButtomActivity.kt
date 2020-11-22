@@ -1,6 +1,7 @@
 package com.example.sgapp
 
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.GridView
 import android.widget.TextView
@@ -33,6 +34,8 @@ class MainButtomActivity : AppCompatActivity() {
 //            )
 //        )
 //        setupActionBarWithNavController(navController, appBarConfiguration)
+
+
 
         navView.setupWithNavController(navController)
 
