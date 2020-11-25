@@ -187,6 +187,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="1dp"
             android:layout_weight="15"
+            android:background="@color/white"
             android:horizontalSpacing="1dp"
             android:numColumns="7"
             android:stretchMode="columnWidth"
