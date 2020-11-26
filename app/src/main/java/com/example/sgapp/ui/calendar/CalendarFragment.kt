@@ -12,6 +12,7 @@ import android.widget.GridView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.sgapp.CalendarAdapter
 import com.example.sgapp.R
 import java.security.AccessController.getContext
 import java.util.ArrayList
@@ -20,10 +21,6 @@ class CalendarFragment : Fragment() {
 
 //    private var context = null
     private lateinit var homeViewModel: CalendarViewModel
-    private val texts = arrayOf(
-        1, 2, 3, 4, 5,
-        6, 7, 8
-    )
     var root: View? = null
 
 
@@ -63,39 +60,39 @@ class CalendarFragment : Fragment() {
 
 
 }
-class CalendarAdapter:BaseAdapter{
-    private val texts = arrayOf(
-        1, 2, 3, 4, 5,
-        6, 7, 8
-    )
-    var context: Context? = null
-
-    constructor(context: Context?) : super() {
-        this.context = context
-    }
-
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
-        //calendar
-        val calendar_number = texts[position]
-
-        var inflator = context!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        var calendar:View = inflator.inflate(R.layout.calendar_cell, null)
-//        foodView.imgFood.setImageResource(food.image!!)
-
-        calendar.findViewById<TextView>(R.id.dateText).text = calendar_number.toString()
-
-        return calendar
-    }
-
-    override fun getCount(): Int {
-        return texts.size
-    }
-
-    override fun getItem(position: Int): Any {
-        return texts[position]
-    }
-
-    override fun getItemId(position: Int): Long {
-        return position.toLong()
-    }
-}
+//class CalendarAdapter:BaseAdapter{
+//    private val texts = arrayOf(
+//        1, 2, 3, 4, 5,
+//        6, 7, 8
+//    )
+//    var context: Context? = null
+//
+//    constructor(context: Context?) : super() {
+//        this.context = context
+//    }
+//
+//    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
+//        //calendar
+//        val calendar_number = texts[position]
+//
+//        var inflator = context!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+//        var calendar:View = inflator.inflate(R.layout.calendar_cell, null)
+////        foodView.imgFood.setImageResource(food.image!!)
+//
+//        calendar.findViewById<TextView>(R.id.dateText).text = calendar_number.toString()
+//
+//        return calendar
+//    }
+//
+//    override fun getCount(): Int {
+//        return texts.size
+//    }
+//
+//    override fun getItem(position: Int): Any {
+//        return texts[position]
+//    }
+//
+//    override fun getItemId(position: Int): Long {
+//        return position.toLong()
+//    }
+//}
