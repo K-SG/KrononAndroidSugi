@@ -1,26 +1,28 @@
 package com.example.sgapp.ui.calendar
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewParent
-import android.widget.ArrayAdapter
-import android.widget.BaseAdapter
+import android.widget.Button
 import android.widget.GridView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.sgapp.CalendarAdapter
+import com.example.sgapp.DateManager
 import com.example.sgapp.R
-import java.security.AccessController.getContext
-import java.util.ArrayList
+import java.text.SimpleDateFormat
+import java.util.*
+
 
 class CalendarFragment : Fragment() {
 
 //    private var context = null
     private lateinit var homeViewModel: CalendarViewModel
+    private var calendarAdapter: CalendarAdapter? = null
+    private var dateManager:DateManager? = null
+    var calendar: Calendar? = null
     var root: View? = null
 
 
@@ -42,6 +44,24 @@ class CalendarFragment : Fragment() {
 //            textView.text = it
 //        })
 
+        var titleText = root?.findViewById<TextView>(R.id.titleText)
+        var prevButton = root?.findViewById<Button>(R.id.prevButton)
+        var nextButton = root?.findViewById<Button>(R.id.nextButton)
+
+        prevButton!!.setOnClickListener {
+            calendarAdapter?.prevMonth()
+            titleText?.text = getMonthTitle()
+        }
+        nextButton!!.setOnClickListener {
+            calendarAdapter?.nextMonth()
+            titleText?.text = getMonthTitle()
+        }
+//        var test = calendaradapter?.getTitle()
+//        var test2 = getMonth()
+//        titleText?.text = calendaradapter?.getTitle()
+//        var titleFormat = SimpleDateFormat("yyyy.MM", Locale.US)
+//        var titleMonth = mDateManager?.mCalendar?.tim
+        titleText?.text = getMonthTitle()
         return root
     }
 
@@ -56,6 +76,12 @@ class CalendarFragment : Fragment() {
 //        gridView?.adapter = activity?.applicationContext?.let { ArrayAdapter(it,android.R.layout.simple_list_item_1,texts) }
         gridView?.adapter = CalendarAdapter(context)
 
+    }
+
+    private fun getMonthTitle(): String {
+        var titleFormat = SimpleDateFormat("yyyy.MM", Locale.US)
+        var month = Date()
+        return titleFormat.format(month)
     }
 
 

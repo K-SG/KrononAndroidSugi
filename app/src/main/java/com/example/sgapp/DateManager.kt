@@ -5,39 +5,38 @@ import kotlin.collections.ArrayList
 
 
 class DateManager {
-    var mCalendar: Calendar? = null
+    var calendar: Calendar? = null
 
     fun DateManager() {
-        mCalendar = Calendar.getInstance()
+        calendar = Calendar.getInstance()
     }
 
     //当月の要素を取得
     fun getDays(): List<Date>? {
         //現在の状態を保持
-        mCalendar = Calendar.getInstance()
-        val startDate = mCalendar?.time
+        calendar = Calendar.getInstance()
+        val startDate = calendar?.time
         //GridViewに表示するマスの合計を計算
         val count: Int = getWeeks()!! * 7
-
         //当月のカレンダーに表示される前月分の日数を計算
-        mCalendar!![Calendar.DATE] = 1
-        val dayOfWeek = mCalendar!![Calendar.DAY_OF_WEEK] - 1
-        mCalendar!!.add(Calendar.DATE, -dayOfWeek)
+        calendar!![Calendar.DATE] = 1
+        val dayOfWeek = calendar!![Calendar.DAY_OF_WEEK] - 1
+        calendar!!.add(Calendar.DATE, -dayOfWeek)
         val days: MutableList<Date> = ArrayList()
         for (i in 0 until count) {
-            days.add(mCalendar!!.time)
-            mCalendar!!.add(Calendar.DATE, 1)
+            days.add(calendar!!.time)
+            calendar!!.add(Calendar.DATE, 1)
         }
-
         //状態を復元
-        mCalendar!!.time = startDate
+        calendar!!.time = startDate
         return days
     }
 
     //週数を取得
     fun getWeeks(): Int? {
-        return mCalendar?.getActualMaximum(Calendar.WEEK_OF_MONTH)
+        return calendar?.getActualMaximum(Calendar.WEEK_OF_MONTH)
     }
+
 
     //曜日を取得
     fun getDayOfWeek(date: Date?): Int {
@@ -45,4 +44,17 @@ class DateManager {
         calendar.time = date
         return calendar[Calendar.DAY_OF_WEEK]
     }
+
+    //翌月へ
+    fun nextMonth() {
+        calendar?.add(Calendar.MONTH, 1)
+    }
+
+    //前月へ
+    fun prevMonth() {
+        calendar?.add(Calendar.MONTH, -1)
+    }
+
+
+
 }

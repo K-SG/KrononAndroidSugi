@@ -12,10 +12,11 @@ import kotlin.collections.ArrayList
 
 
 class CalendarAdapter: BaseAdapter {
+
     //追加
     private var dateArray: List<Date> = ArrayList()
-    private var mDateManager: DateManager? = null
-    private var mLayoutInflater: LayoutInflater? = null
+    private var dateManager: DateManager? = null
+    private var layoutInflater: LayoutInflater? = null
     private var calendarDays: List<String> = ArrayList()
 
     private val texts = arrayOf(
@@ -27,9 +28,9 @@ class CalendarAdapter: BaseAdapter {
     constructor(context: Context?) : super() {
         this.context = context
         //追加
-        mLayoutInflater = LayoutInflater.from(context)
-        mDateManager = DateManager()
-        dateArray = mDateManager?.getDays()!!
+        layoutInflater = LayoutInflater.from(context)
+        dateManager = DateManager()
+        dateArray = dateManager?.getDays()!!
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
@@ -59,4 +60,22 @@ class CalendarAdapter: BaseAdapter {
     override fun getItemId(position: Int): Long {
         return position.toLong()
     }
+
+    //翌月表示
+    fun nextMonth() {
+        dateManager?.nextMonth()
+        dateArray = dateManager?.getDays()!!
+        notifyDataSetChanged()
+    }
+
+    //前月表示
+    fun prevMonth() {
+        dateManager?.prevMonth()
+        dateArray = dateManager?.getDays()!!
+        notifyDataSetChanged()
+    }
+
+
+
+
 }
