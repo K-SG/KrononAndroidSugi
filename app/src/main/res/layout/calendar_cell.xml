@@ -17,6 +17,7 @@
         android:gravity="center_horizontal"
         android:maxLength="2"
         android:textAlignment="center"
+        android:textColor="@color/grayColor"
         app:autoSizeMinTextSize="2dp" />
 
     <!--ここに拡張可能-->

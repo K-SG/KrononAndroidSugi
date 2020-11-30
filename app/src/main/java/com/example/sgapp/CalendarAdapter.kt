@@ -27,7 +27,7 @@ class CalendarAdapter: BaseAdapter {
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
-        val dateFormat = SimpleDateFormat("dd", Locale.JAPAN)
+        val dateFormat = SimpleDateFormat("d", Locale.JAPAN)
         calendarDays = listOf(dateFormat.format(dateArray[position]))
         //日付のみ表示させる
         var inflator = context!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
@@ -50,7 +50,7 @@ class CalendarAdapter: BaseAdapter {
 
     //表示月を取得
     fun getTitle(): String? {
-        val format = SimpleDateFormat("yyyy.MM", Locale.US)
+        val format = SimpleDateFormat("yyyy年M月", Locale.JAPAN)
         return format.format(dateManager?.calendar?.time)
     }
 
