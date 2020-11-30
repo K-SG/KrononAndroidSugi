@@ -9,4 +9,10 @@
     <string name="schedule_title_text">予定表</string>
     <string name="account_title_text">アカウント</string>
     <string name="create_button">予定登録</string>
+    <string name="sunday_text">日</string>
+    <string name="monday_text">月</string>
+    <string name="tuesday_text">火</string>
+    <string name="wednesday_text">水</string>
+    <string name="thursday_text">木</string>
+    <string name="friday_text">金</string>
 </resources>

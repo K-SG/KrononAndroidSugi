@@ -4,17 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.GridView
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.sgapp.CalendarAdapter
-import com.example.sgapp.DateManager
 import com.example.sgapp.R
-import java.text.DateFormat
-import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -41,8 +37,8 @@ class CalendarFragment : Fragment() {
         //GridViewのメソッドを呼び出す。
         val adapter = gridView.adapter as CalendarAdapter
         var titleText = root?.findViewById<TextView>(R.id.titleText)
-        var prevButton = root?.findViewById<ImageButton>(R.id.prevButton)
-        var nextButton = root?.findViewById<ImageButton>(R.id.nextButton)
+        var prevButton = root?.findViewById<TextView>(R.id.prevButton)
+        var nextButton = root?.findViewById<TextView>(R.id.nextButton)
 
         titleText?.text = adapter.getTitle()
         prevButton!!.setOnClickListener {
