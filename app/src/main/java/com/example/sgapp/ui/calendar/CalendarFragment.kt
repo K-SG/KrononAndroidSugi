@@ -6,30 +6,27 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.GridView
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.sgapp.CalendarAdapter
 import com.example.sgapp.DateManager
 import com.example.sgapp.R
+import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
 
 class CalendarFragment : Fragment() {
 
-//    private var context = null
     private lateinit var homeViewModel: CalendarViewModel
-    private var calendarAdapter: CalendarAdapter? = null
-    private var dateManager:DateManager? = null
-    var calendar: Calendar? = null
     var root: View? = null
+    lateinit var gridView:GridView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        context = getContext() as Nothing?
-//        context = getContext()
     }
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,86 +36,35 @@ class CalendarFragment : Fragment() {
         homeViewModel =
             ViewModelProvider(this).get(CalendarViewModel::class.java)
         root = inflater.inflate(R.layout.fragment_calendar, container, false)
-//        val textView: TextView = root.findViewById(R.id.text_home)
-//        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-//            textView.text = it
-//        })
 
+        setGridView()
+        //GridViewのメソッドを呼び出す。
+        val adapter = gridView.adapter as CalendarAdapter
         var titleText = root?.findViewById<TextView>(R.id.titleText)
-        var prevButton = root?.findViewById<Button>(R.id.prevButton)
-        var nextButton = root?.findViewById<Button>(R.id.nextButton)
+        var prevButton = root?.findViewById<ImageButton>(R.id.prevButton)
+        var nextButton = root?.findViewById<ImageButton>(R.id.nextButton)
 
+        titleText?.text = adapter.getTitle()
         prevButton!!.setOnClickListener {
-            calendarAdapter?.prevMonth()
-            titleText?.text = getMonthTitle()
+            //adapterの呼び方が違う
+            adapter.prevMonth()
+            titleText?.text = adapter.getTitle()
         }
         nextButton!!.setOnClickListener {
-            calendarAdapter?.nextMonth()
-            titleText?.text = getMonthTitle()
+            adapter.nextMonth()
+            titleText?.text = adapter.getTitle()
         }
-//        var test = calendaradapter?.getTitle()
-//        var test2 = getMonth()
-//        titleText?.text = calendaradapter?.getTitle()
-//        var titleFormat = SimpleDateFormat("yyyy.MM", Locale.US)
-//        var titleMonth = mDateManager?.mCalendar?.tim
-        titleText?.text = getMonthTitle()
         return root
     }
 
     override fun onStart() {
         super.onStart()
-        setGridView();
     }
 
     private fun setGridView() {
-//        val gridView = GridView(context)
-        val gridView = root?.findViewById<GridView>(R.id.calendarGridView)
-//        gridView?.adapter = activity?.applicationContext?.let { ArrayAdapter(it,android.R.layout.simple_list_item_1,texts) }
+        gridView = root?.findViewById<GridView>(R.id.calendarGridView)!!
         gridView?.adapter = CalendarAdapter(context)
-
-    }
-
-    private fun getMonthTitle(): String {
-        var titleFormat = SimpleDateFormat("yyyy.MM", Locale.US)
-        var month = Date()
-        return titleFormat.format(month)
     }
 
 
 }
-//class CalendarAdapter:BaseAdapter{
-//    private val texts = arrayOf(
-//        1, 2, 3, 4, 5,
-//        6, 7, 8
-//    )
-//    var context: Context? = null
-//
-//    constructor(context: Context?) : super() {
-//        this.context = context
-//    }
-//
-//    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
-//        //calendar
-//        val calendar_number = texts[position]
-//
-//        var inflator = context!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-//        var calendar:View = inflator.inflate(R.layout.calendar_cell, null)
-////        foodView.imgFood.setImageResource(food.image!!)
-//
-//        calendar.findViewById<TextView>(R.id.dateText).text = calendar_number.toString()
-//
-//        return calendar
-//    }
-//
-//    override fun getCount(): Int {
-//        return texts.size
-//    }
-//
-//    override fun getItem(position: Int): Any {
-//        return texts[position]
-//    }
-//
-//    override fun getItemId(position: Int): Long {
-//        return position.toLong()
-//    }
-//}

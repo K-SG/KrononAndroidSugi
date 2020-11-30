@@ -1,5 +1,7 @@
 package com.example.sgapp
 
+import android.content.Context
+import android.view.LayoutInflater
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -7,14 +9,15 @@ import kotlin.collections.ArrayList
 class DateManager {
     var calendar: Calendar? = null
 
-    fun DateManager() {
+    constructor() : super() {
+        //カレンダーの日時を初期化
         calendar = Calendar.getInstance()
     }
+
 
     //当月の要素を取得
     fun getDays(): List<Date>? {
         //現在の状態を保持
-        calendar = Calendar.getInstance()
         val startDate = calendar?.time
         //GridViewに表示するマスの合計を計算
         val count: Int = getWeeks()!! * 7
@@ -36,25 +39,19 @@ class DateManager {
     fun getWeeks(): Int? {
         return calendar?.getActualMaximum(Calendar.WEEK_OF_MONTH)
     }
-
-
     //曜日を取得
     fun getDayOfWeek(date: Date?): Int {
         val calendar = Calendar.getInstance()
         calendar.time = date
         return calendar[Calendar.DAY_OF_WEEK]
     }
-
     //翌月へ
     fun nextMonth() {
         calendar?.add(Calendar.MONTH, 1)
     }
-
     //前月へ
     fun prevMonth() {
         calendar?.add(Calendar.MONTH, -1)
     }
-
-
 
 }
