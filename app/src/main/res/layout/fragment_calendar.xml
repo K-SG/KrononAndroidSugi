@@ -2,9 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/saturday"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/common_background"
     tools:context=".ui.calendar.CalendarFragment">
 
     <TextView
@@ -42,7 +42,7 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:src="@drawable/kronon_chat"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,7 +53,6 @@
         android:layout_height="360dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="80dp"
-        android:background="@color/grayColor"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -64,35 +63,52 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:background="@color/whiteColor">
+            android:layout_weight="0.1"
+            android:background="@color/krononOrenge">
 
             <TextView
                 android:id="@+id/titleText"
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="113dp"
+                android:layout_marginRight="113dp"
+                android:layout_toStartOf="@+id/prevButton"
+                android:layout_toLeftOf="@+id/prevButton"
+                android:gravity="center_vertical"
                 android:text="2018.2"
+                android:textColor="@color/white"
                 android:textSize="20sp" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/prevButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
+                android:layout_width="12dp"
+                android:layout_height="20dp"
+                android:layout_alignParentTop="true"
                 android:layout_marginVertical="10dp"
-                android:layout_marginLeft="10dp"
-                android:background="@color/colorAccent"
+                android:layout_marginEnd="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_toStartOf="@+id/nextButton"
+                android:layout_toLeftOf="@+id/nextButton"
+                android:background="@drawable/leftbutton"
                 android:text="Prev" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/nextButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="12dp"
+                android:layout_height="20dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginVertical="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@color/colorAccent"
+                android:layout_marginEnd="30dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/rightbutton"
                 android:text="Next" />
         </RelativeLayout>
 
@@ -104,78 +120,107 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/sunday_text"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="1dp"
+                android:layout_marginStart="0dp"
+                android:layout_marginLeft="0dp"
                 android:layout_weight="1"
-                android:background="@color/whiteColor"
+                android:background="@drawable/border"
                 android:gravity="center_horizontal"
+                android:paddingTop="2dp"
+                android:paddingBottom="1dp"
                 android:text="日"
                 android:textAlignment="center"
                 android:textColor="@color/redColor" />
 
             <TextView
+                android:id="@+id/monday_text"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginRight="1dp"
+                android:layout_marginStart="-1dp"
+                android:layout_marginLeft="-1dp"
                 android:layout_weight="1"
-                android:background="@color/whiteColor"
+                android:background="@drawable/border"
                 android:gravity="center_horizontal"
+                android:paddingTop="2dp"
+                android:paddingBottom="1dp"
                 android:text="月"
                 android:textAlignment="center"
                 android:textColor="@color/blackColor" />
 
             <TextView
+                android:id="@+id/tuesday_text"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginRight="1dp"
+                android:layout_marginStart="-1dp"
+                android:layout_marginLeft="-1dp"
                 android:layout_weight="1"
-                android:background="@color/whiteColor"
+                android:background="@drawable/border"
                 android:gravity="center_horizontal"
+                android:paddingTop="2dp"
+                android:paddingBottom="1dp"
                 android:text="火"
                 android:textAlignment="center"
                 android:textColor="@color/blackColor" />
 
             <TextView
+                android:id="@+id/wednesday_text"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginRight="1dp"
+                android:layout_marginStart="-1dp"
+                android:layout_marginLeft="-1dp"
                 android:layout_weight="1"
-                android:background="@color/whiteColor"
+                android:background="@drawable/border"
                 android:gravity="center_horizontal"
+                android:paddingTop="2dp"
+                android:paddingBottom="1dp"
                 android:text="水"
                 android:textAlignment="center"
                 android:textColor="@color/blackColor" />
 
             <TextView
+                android:id="@+id/thursday_text"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginRight="1dp"
+                android:layout_marginStart="-1dp"
+                android:layout_marginLeft="-1dp"
                 android:layout_weight="1"
-                android:background="@color/whiteColor"
+                android:background="@drawable/border"
                 android:gravity="center_horizontal"
+                android:paddingTop="2dp"
+                android:paddingBottom="1dp"
                 android:text="木"
                 android:textAlignment="center"
                 android:textColor="@color/blackColor" />
 
             <TextView
+                android:id="@+id/friday_text"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginRight="1dp"
+                android:layout_marginStart="-1dp"
+                android:layout_marginLeft="-1dp"
                 android:layout_weight="1"
-                android:background="@color/whiteColor"
+                android:background="@drawable/border"
                 android:gravity="center_horizontal"
+                android:paddingTop="2dp"
+                android:paddingBottom="1dp"
                 android:text="金"
                 android:textAlignment="center"
                 android:textColor="@color/blackColor" />
 
             <TextView
+                android:id="@+id/saturday_text"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginRight="1dp"
+                android:layout_marginStart="-1dp"
+                android:layout_marginLeft="-1dp"
                 android:layout_weight="1"
-                android:background="@color/whiteColor"
+                android:background="@drawable/border"
                 android:gravity="center_horizontal"
+                android:paddingTop="2dp"
+                android:paddingBottom="1dp"
                 android:text="土"
                 android:textAlignment="center"
                 android:textColor="@color/blueColor" />
@@ -185,14 +230,14 @@
         <GridView
             android:id="@+id/calendarGridView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="1dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="-1dp"
             android:layout_weight="10"
-            android:background="@color/white"
+            android:background="@drawable/border"
             android:horizontalSpacing="1dp"
             android:numColumns="7"
-            android:stretchMode="columnWidth"
-            android:verticalSpacing="1dp"></GridView>
+            android:paddingBottom="-1dp"
+            android:stretchMode="columnWidth"></GridView>
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
