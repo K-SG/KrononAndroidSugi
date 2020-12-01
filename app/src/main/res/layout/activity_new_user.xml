@@ -17,7 +17,7 @@
         tools:ignore="MissingConstraints">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar2"
+            android:id="@+id/account_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -39,7 +39,7 @@
             android:scaleType="fitCenter"
             android:src="@drawable/back_button"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/toolbar2"
+            app:layout_constraintStart_toStartOf="@+id/account_toolbar"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints" />
 
@@ -49,10 +49,10 @@
             android:layout_height="wrap_content"
             android:text="@string/newAcount_title"
             android:textColor="@color/common_text"
-            app:layout_constraintBottom_toBottomOf="@+id/toolbar2"
-            app:layout_constraintEnd_toEndOf="@+id/toolbar2"
+            app:layout_constraintBottom_toBottomOf="@+id/account_toolbar"
+            app:layout_constraintEnd_toEndOf="@+id/account_toolbar"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/toolbar2"
+            app:layout_constraintTop_toTopOf="@+id/account_toolbar"
             tools:ignore="MissingConstraints" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
