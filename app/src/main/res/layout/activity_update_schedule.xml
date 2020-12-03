@@ -49,159 +49,141 @@
         app:layout_constraintTop_toTopOf="@+id/schedule_update_toolbar"
         tools:ignore="MissingConstraints" />
 
-    <EditText
-        android:id="@+id/date"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:inputType="date"
-        android:paddingLeft="100dp"
-        android:paddingRight="100dp"
-        android:textColor="@color/common_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="LabelFor"
-        tools:layout_editor_absoluteY="53dp" />
-
-    <EditText
-        android:id="@+id/starttime"
-        android:layout_width="0dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        android:ems="10"
-        android:inputType="time"
-        android:paddingLeft="100dp"
-        android:paddingRight="100dp"
-        android:textColor="@color/common_text"
-        android:autofillHints=""
-        tools:ignore="LabelFor"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/date" />
+        app:layout_constraintTop_toBottomOf="@+id/schedule_update_toolbar"
+        app:layout_constraintWidth_max="400dp">
 
-    <EditText
-        android:id="@+id/endtime"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        android:ems="10"
-        android:inputType="time"
-        android:paddingLeft="100dp"
-        android:paddingRight="100dp"
-        android:textColor="@color/common_text"
-        android:autofillHints=""
-        tools:ignore="LabelFor"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/starttime" />
+        <EditText
+            android:id="@+id/title_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="@string/title_text"
+            android:inputType="date"
+            android:textColor="@color/common_text"
+            android:textColorHint="@color/common_hint_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="LabelFor" />
 
+        <EditText
+            android:id="@+id/date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="@string/date_text"
+            android:inputType="date"
+            android:textColor="@color/common_text"
+            android:textColorHint="@color/common_hint_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_text"
+            tools:ignore="LabelFor" />
 
-    <TextView
-        android:id="@+id/date_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:text="@string/date_text"
-        android:textColor="@color/common_text"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/date"
-        app:layout_constraintStart_toStartOf="@+id/date"
-        app:layout_constraintTop_toTopOf="@+id/date" />
+        <EditText
+            android:id="@+id/start_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="@string/starttime_text"
+            android:inputType="time"
+            android:textColor="@color/common_text"
+            android:textColorHint="@color/common_hint_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/date"
+            tools:ignore="LabelFor" />
 
-    <TextView
-        android:id="@+id/starttime_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:text="@string/starttime_text"
-        android:textColor="@color/common_text"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/starttime"
-        app:layout_constraintStart_toStartOf="@+id/starttime"
-        app:layout_constraintTop_toTopOf="@+id/starttime" />
+        <EditText
+            android:id="@+id/end_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="@string/endtime_text"
+            android:inputType="time"
+            android:textColor="@color/common_text"
+            android:textColorHint="@color/common_hint_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/start_time"
+            tools:ignore="LabelFor" />
 
-    <TextView
-        android:id="@+id/endtime_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:text="@string/endtime_text"
-        android:textColor="@color/common_text"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/endtime"
-        app:layout_constraintStart_toStartOf="@+id/endtime"
-        app:layout_constraintTop_toTopOf="@+id/endtime" />
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/end_time">
 
-    <TextView
-        android:id="@+id/content_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginBottom="4dp"
-        android:text="@string/content_text"
-        android:textColor="@color/common_text"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/content"
-        app:layout_constraintStart_toStartOf="parent" />
+            <TextView
+                android:id="@+id/content_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/content_text"
+                android:textColor="@color/common_text"
+                android:textSize="18sp" />
 
-    <EditText
-        android:id="@+id/content"
-        android:layout_width="0dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        android:autofillHints=""
-        android:background="@drawable/partdesign"
-        android:ems="10"
-        android:gravity="top"
-        android:inputType="textMultiLine"
-        android:lines="6"
-        android:padding="10dp"
-        tools:ignore="LabelFor"
-        android:textColor="@color/common_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/endtime" />
+            <EditText
+                android:id="@+id/content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:autofillHints=""
+                android:background="@drawable/partdesign"
+                android:ems="14"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:lines="4"
+                android:padding="10dp"
+                android:textColor="@color/common_text"
+                tools:ignore="LabelFor" />
 
+        </LinearLayout>
 
-    <Button
-        android:id="@+id/ok_button"
-        android:layout_width="144dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/ok_button"
-        android:contentDescription=""
-        android:paddingBottom="10dp"
-        android:scaleType="center"
-        android:text="@string/ok_text"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/content" />
+        <Button
+            android:id="@+id/ok_button"
+            android:layout_width="144dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/ok_button"
+            android:contentDescription=""
+            android:paddingBottom="10dp"
+            android:scaleType="center"
+            android:text="@string/ok_text"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
