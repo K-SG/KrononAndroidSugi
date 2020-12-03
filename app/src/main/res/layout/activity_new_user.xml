@@ -42,7 +42,7 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/newAccount_title"
+        android:id="@+id/new_account_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/newAcount_title"
