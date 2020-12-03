@@ -85,25 +85,6 @@
             app:layout_constraintTop_toBottomOf="@+id/password_comfirm" />
 
         <EditText
-            android:id="@+id/password_comfirm"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="16dp"
-            android:autofillHints=""
-            android:background="@drawable/textarea"
-            android:hint="@string/prompt_password_confirm"
-            android:imeActionLabel=""
-            android:imeOptions="actionDone"
-            android:inputType="textPassword"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:selectAllOnFocus="true"
-            android:textColorHint="@color/hint_text"
-            android:textSize="14sp"
-            app:layout_constraintTop_toBottomOf="@+id/password"
-            tools:layout_editor_absoluteX="-44dp" />
-
-        <EditText
             android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="48dp"
@@ -121,6 +102,25 @@
             android:textSize="14sp"
             app:layout_constraintTop_toBottomOf="@+id/user_mail"
             tools:layout_editor_absoluteX="-16dp" />
+
+        <EditText
+            android:id="@+id/password_comfirm"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:autofillHints=""
+            android:background="@drawable/textarea"
+            android:hint="@string/prompt_password_confirm"
+            android:imeActionLabel=""
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:selectAllOnFocus="true"
+            android:textColorHint="@color/hint_text"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@+id/password"
+            tools:layout_editor_absoluteX="-44dp" />
 
         <EditText
             android:id="@+id/user_mail"
