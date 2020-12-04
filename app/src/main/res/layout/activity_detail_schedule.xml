@@ -59,7 +59,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout2"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -68,7 +68,7 @@
 
             <LinearLayout
                 android:id="@+id/linearLayout"
-                android:layout_width="320dp"
+                android:layout_width="0dp"
                 android:layout_height="400dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
