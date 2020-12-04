@@ -69,94 +69,6 @@
         app:layout_constraintWidth_max="400dp"
         tools:ignore="MissingConstraints">
 
-        <Button
-            android:id="@+id/create_button"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/create_button"
-            android:contentDescription=""
-            android:scaleType="fitCenter"
-            android:text="@string/newAccount_button"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/password_comfirm" />
-
-        <EditText
-            android:id="@+id/password"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="16dp"
-            android:autofillHints=""
-            android:background="@drawable/textarea"
-            android:hint="@string/prompt_password"
-            android:imeActionLabel=""
-            android:imeOptions="actionDone"
-            android:inputType="textPassword"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:selectAllOnFocus="true"
-            android:textColorHint="@color/hint_text"
-            android:textSize="14sp"
-            app:layout_constraintTop_toBottomOf="@+id/user_mail"
-            tools:layout_editor_absoluteX="-16dp" />
-
-        <EditText
-            android:id="@+id/password_comfirm"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="16dp"
-            android:autofillHints=""
-            android:background="@drawable/textarea"
-            android:hint="@string/prompt_password_confirm"
-            android:imeActionLabel=""
-            android:imeOptions="actionDone"
-            android:inputType="textPassword"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:selectAllOnFocus="true"
-            android:textColorHint="@color/hint_text"
-            android:textSize="14sp"
-            app:layout_constraintTop_toBottomOf="@+id/password"
-            tools:layout_editor_absoluteX="-44dp" />
-
-        <EditText
-            android:id="@+id/user_mail"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="16dp"
-            android:autofillHints=""
-            android:background="@drawable/textarea"
-            android:hint="@string/prompt_email"
-            android:inputType="textEmailAddress"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:selectAllOnFocus="true"
-            android:textColorHint="@color/hint_text"
-            android:textSize="14sp"
-            app:layout_constraintTop_toBottomOf="@+id/user_name"
-            tools:layout_editor_absoluteX="0dp" />
-
-        <EditText
-            android:id="@+id/user_name"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="16dp"
-            android:autofillHints=""
-            android:background="@drawable/textarea"
-            android:ems="10"
-            android:hint="@string/prompt_name"
-            android:inputType="text"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:textColor="@color/common_text"
-            android:textColorHint="@color/hint_text"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/description" />
-
         <TextView
             android:id="@+id/description"
             android:layout_width="wrap_content"
@@ -169,6 +81,94 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <EditText
+            android:id="@+id/user_name"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:autofillHints=""
+            android:background="@drawable/text_area"
+            android:ems="10"
+            android:hint="@string/prompt_name"
+            android:inputType="text"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:textColor="@color/common_text"
+            android:textColorHint="@color/hint_text"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/description" />
+
+        <EditText
+            android:id="@+id/user_mail"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:autofillHints=""
+            android:background="@drawable/text_area"
+            android:hint="@string/prompt_email"
+            android:inputType="textEmailAddress"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:selectAllOnFocus="true"
+            android:textColorHint="@color/hint_text"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@+id/user_name"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:autofillHints=""
+            android:background="@drawable/text_area"
+            android:hint="@string/prompt_password"
+            android:imeActionLabel=""
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:selectAllOnFocus="true"
+            android:textColorHint="@color/hint_text"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@+id/user_mail"
+            />
+
+        <EditText
+            android:id="@+id/password_confirm"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:autofillHints=""
+            android:background="@drawable/text_area"
+            android:hint="@string/prompt_password_confirm"
+            android:imeActionLabel=""
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:selectAllOnFocus="true"
+            android:textColorHint="@color/hint_text"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@+id/password"
+            tools:layout_editor_absoluteX="-44dp" />
+
+        <Button
+            android:id="@+id/create_button"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/create_button"
+            android:contentDescription=""
+            android:scaleType="fitCenter"
+            android:text="@string/newAccount_button"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/password_confirm" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -179,7 +179,7 @@
             tools:layout_editor_absoluteX="-90dp">
 
             <TextView
-                android:id="@+id/notaccount_text"
+                android:id="@+id/not_account_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="2dp"
