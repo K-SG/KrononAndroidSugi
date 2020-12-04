@@ -7,4 +7,8 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFF</color>
+    <color name="login_white">#80FEFEFE</color>
+    <color name="kronon_green">#365A0C</color>
+    <color name="common_text">#5C5A5A</color>
+>>>>>>> origin/feature/login_layout
 </resources>

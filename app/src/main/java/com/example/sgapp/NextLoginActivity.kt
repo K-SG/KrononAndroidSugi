@@ -3,16 +3,13 @@ package com.example.sgapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 import android.widget.ImageView
 import com.example.sgapp.ui.login.LoginActivity
 
-//import com.example.sgapp.ui.login.LoginActivity
-
-class TopActivity : AppCompatActivity() {
+class NextLoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_top)
+        setContentView(R.layout.activity_nextlogin)
         var start_button = findViewById<ImageView>(R.id.start_button)
         start_button.setOnClickListener{
             val intent = Intent(this,LoginActivity::class.java)

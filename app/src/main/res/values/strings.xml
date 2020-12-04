@@ -5,4 +5,18 @@
     <string name="kronon">くろのん</string>
     <string name="star">すたっち</string>
     <string name="start_button">スタートボタン</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">メールアドレス</string>
+    <string name="prompt_password">パスワード</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="not_account">アカウントをお持ちでない場合</string>
+    <string name="new_user"><u>新規登録</u></string>
+    <string name="fivestar">星が５つ</string>
+    <string name="login_text">ログイン</string>
+
 </resources>
