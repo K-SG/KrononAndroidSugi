@@ -8,7 +8,6 @@
     android:layout_height="match_parent"
     android:background="@color/kronon_green"
     tools:context=".ui.login.LoginActivity"
-
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -91,7 +90,6 @@
             android:layout_height="50dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/login_button"
-            android:scaleType="fitCenter"
             android:text="@string/login_text"
             android:textColor="@color/common_text"
             app:layout_constraintEnd_toEndOf="parent"
@@ -110,7 +108,7 @@
             app:layout_constraintTop_toBottomOf="@+id/login">
 
             <TextView
-                android:id="@+id/notaccount_text"
+                android:id="@+id/not_account_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="2dp"
