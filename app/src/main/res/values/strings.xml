@@ -6,6 +6,9 @@
     <string name="title_account">アカウント</string>
     <string name="back_button">戻る</string>
     <string name="calendar_title_text">カレンダー</string>
+    <string name="kronon_chat">話すくろのん</string>
+    <string name="pre_button">前の月</string>
+    <string name="next_button">次の月</string>
     <string name="schedule_title_text">予定表</string>
     <string name="account_title_text">アカウント</string>
     <string name="create_button">予定登録</string>
@@ -15,4 +18,5 @@
     <string name="wednesday_text">水</string>
     <string name="thursday_text">木</string>
     <string name="friday_text">金</string>
+    <string name="Saturday_text">土</string>
 </resources>

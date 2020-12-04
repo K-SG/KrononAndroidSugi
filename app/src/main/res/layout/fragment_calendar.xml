@@ -39,11 +39,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/kronon_chat"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
         android:src="@drawable/kronon_chat"
+        android:contentDescription="@string/kronon_chat"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/newAccount_title" />
@@ -57,7 +58,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/kronon_chat"
         tools:context="jp.co.apps.workout.calendarsample.MainActivity">
 
         <RelativeLayout
@@ -81,7 +82,6 @@
                 android:layout_toStartOf="@+id/prevButtonImg"
                 android:layout_toLeftOf="@+id/prevButtonImg"
                 android:gravity="center_vertical"
-                android:text="2018.2"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
@@ -93,10 +93,10 @@
                 android:layout_marginVertical="10dp"
                 android:layout_marginEnd="30dp"
                 android:layout_marginRight="30dp"
+                android:contentDescription="@string/pre_button"
                 android:layout_toStartOf="@+id/nextButtonImg"
                 android:layout_toLeftOf="@+id/nextButtonImg"
-                android:background="@drawable/leftbutton"
-                android:text="Prev" />
+                android:background="@drawable/left_button" />
 
             <ImageButton
                 android:id="@+id/nextButtonImg"
@@ -105,11 +105,11 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
+                android:contentDescription="@string/next_button"
                 android:layout_marginVertical="10dp"
                 android:layout_marginEnd="30dp"
                 android:layout_marginRight="30dp"
-                android:background="@drawable/rightbutton"
-                android:text="Next" />
+                android:background="@drawable/rightbutton" />
 
             <TextView
                 android:id="@+id/nextButton"
@@ -138,7 +138,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="1dp"
-            android:layout_weight="0.25"
             android:orientation="horizontal">
 
             <TextView
@@ -153,7 +152,7 @@
                 android:gravity="center_horizontal"
                 android:paddingTop="2dp"
                 android:paddingBottom="1dp"
-                android:text="日"
+                android:text="@string/sunday_text"
                 android:textAlignment="center"
                 android:textColor="@color/redColor" />
 
@@ -168,7 +167,7 @@
                 android:gravity="center_horizontal"
                 android:paddingTop="2dp"
                 android:paddingBottom="1dp"
-                android:text="月"
+                android:text="@string/monday_text"
                 android:textAlignment="center"
                 android:textColor="@color/grayColor" />
 
@@ -183,7 +182,7 @@
                 android:gravity="center_horizontal"
                 android:paddingTop="2dp"
                 android:paddingBottom="1dp"
-                android:text="火"
+                android:text="@string/tuesday_text"
                 android:textAlignment="center"
                 android:textColor="@color/grayColor" />
 
@@ -198,7 +197,7 @@
                 android:gravity="center_horizontal"
                 android:paddingTop="2dp"
                 android:paddingBottom="1dp"
-                android:text="水"
+                android:text="@string/wednesday_text"
                 android:textAlignment="center"
                 android:textColor="@color/grayColor" />
 
@@ -213,7 +212,7 @@
                 android:gravity="center_horizontal"
                 android:paddingTop="2dp"
                 android:paddingBottom="1dp"
-                android:text="木"
+                android:text="@string/thursday_text"
                 android:textAlignment="center"
                 android:textColor="@color/grayColor" />
 
@@ -228,7 +227,7 @@
                 android:gravity="center_horizontal"
                 android:paddingTop="2dp"
                 android:paddingBottom="1dp"
-                android:text="金"
+                android:text="@string/friday_text"
                 android:textAlignment="center"
                 android:textColor="@color/grayColor" />
 
@@ -243,7 +242,7 @@
                 android:gravity="center_horizontal"
                 android:paddingTop="2dp"
                 android:paddingBottom="1dp"
-                android:text="土"
+                android:text="@string/Saturday_text"
                 android:textAlignment="center"
                 android:textColor="@color/blueColor" />
 
