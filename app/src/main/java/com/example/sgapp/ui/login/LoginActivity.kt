@@ -1,6 +1,7 @@
 package com.example.sgapp.ui.login
 
 import android.app.Activity
+import android.content.Intent
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -11,6 +12,7 @@ import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.*
+import com.example.sgapp.NewUserCreateActivity
 
 import com.example.sgapp.R
 
@@ -26,6 +28,12 @@ class LoginActivity : AppCompatActivity() {
         val username = findViewById<EditText>(R.id.user_name)
         val password = findViewById<EditText>(R.id.password)
         val login = findViewById<Button>(R.id.login)
+
+        var new_user = findViewById<TextView>(R.id.new_user)
+        new_user.setOnClickListener{
+            val intent = Intent(this, NewUserCreateActivity::class.java)
+            startActivity(intent)
+        }
 
         loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
                 .get(LoginViewModel::class.java)
