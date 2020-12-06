@@ -18,6 +18,8 @@
         </activity>
         <activity android:name=".ui.login.LoginActivity">
         </activity>
+        <activity android:name=".NewUserCreateActivity"></activity>
+        <activity android:name=".NewUserActivity"></activity>
     </application>
 
 </manifest>
