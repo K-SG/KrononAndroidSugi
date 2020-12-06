@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.GridView
-import android.widget.ImageButton
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -36,7 +35,7 @@ class CalendarFragment : Fragment() {
         setGridView()
         //GridViewのメソッドを呼び出す。
         val adapter = gridView.adapter as CalendarAdapter
-        var titleText = root?.findViewById<TextView>(R.id.titleText)
+        var titleText = root?.findViewById<TextView>(R.id.schedule_date)
         var prevButton = root?.findViewById<TextView>(R.id.prevButton)
         var nextButton = root?.findViewById<TextView>(R.id.nextButton)
 

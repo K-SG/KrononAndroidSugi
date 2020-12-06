@@ -19,4 +19,6 @@
     <color name="blackColor">#000</color>
     <color name="krononOrenge">#D59D5D</color>
     <color name="calendargray">#EDEDED</color>
+    <color name="black_board">#467021</color>
+
 </resources>
