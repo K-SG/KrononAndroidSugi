@@ -17,7 +17,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:subtitleTextColor="#FFFFFF"
+        app:subtitleTextColor="@color/white"
         tools:ignore="MissingConstraints" />
 
     <ImageButton
@@ -69,12 +69,11 @@
             android:autofillHints=""
             android:ems="10"
             android:hint="@string/title_text"
-            android:inputType="date"
+            android:inputType="text"
             android:textColor="@color/common_text"
             android:textColorHint="@color/common_hint_text"
             app:theme="@style/EditTextStyle"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="LabelFor" />
