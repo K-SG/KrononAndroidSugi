@@ -11,4 +11,5 @@
     <color name="common_text">#5C5A5A</color>
     <color name="common_hint_text">#805C5A5A</color>
     <color name="common_solid">#D8D5D5</color>
+    <color name="edit_text">#00000000</color>
 </resources>
