@@ -33,6 +33,7 @@
             android:layout_height="wrap_content"
             android:text="@string/calendar_title_text"
             android:textColor="@color/common_text"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/account_toolbar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -61,16 +62,33 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/kronon_chat"
+            <LinearLayout
+                android:id="@+id/linearLayout2"
                 android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:contentDescription="@string/kronon_chat"
-                android:src="@drawable/kronon_chat"
+                android:layout_height="60dp"
+                android:background="@drawable/chat_border"
+                android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/kronon_chat_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:padding="8dp"
+                    android:text="@string/kronon_chat_text" />
+
+                <ImageView
+                    android:id="@+id/kronon_image"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:src="@drawable/chat_kronon" />
+
+            </LinearLayout>
 
             <RelativeLayout
                 android:id="@+id/relativeLayout"
@@ -80,10 +98,10 @@
                 android:background="@color/krononOrenge"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/kronon_chat">
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
                 <TextView
-                    android:id="@+id/titleText"
+                    android:id="@+id/month_title"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
@@ -94,27 +112,27 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="114dp"
                     android:layout_marginRight="114dp"
-                    android:layout_toStartOf="@+id/prevButtonImg"
-                    android:layout_toLeftOf="@+id/prevButtonImg"
+                    android:layout_toStartOf="@+id/prev_image"
+                    android:layout_toLeftOf="@+id/prev_image"
                     android:gravity="center_vertical"
                     android:textColor="@color/white"
                     android:textSize="20sp" />
 
                 <ImageButton
-                    android:id="@+id/prevButtonImg"
+                    android:id="@+id/prev_image"
                     android:layout_width="12dp"
                     android:layout_height="20dp"
                     android:layout_alignParentTop="true"
                     android:layout_marginVertical="10dp"
                     android:layout_marginEnd="30dp"
                     android:layout_marginRight="30dp"
-                    android:layout_toStartOf="@+id/nextButtonImg"
-                    android:layout_toLeftOf="@+id/nextButtonImg"
+                    android:layout_toStartOf="@+id/next_img"
+                    android:layout_toLeftOf="@+id/next_img"
                     android:background="@drawable/left_button"
                     android:contentDescription="@string/pre_button" />
 
                 <ImageButton
-                    android:id="@+id/nextButtonImg"
+                    android:id="@+id/next_img"
                     android:layout_width="12dp"
                     android:layout_height="20dp"
                     android:layout_alignParentTop="true"
@@ -127,26 +145,26 @@
                     android:contentDescription="@string/next_button" />
 
                 <TextView
-                    android:id="@+id/nextButton"
+                    android:id="@+id/next_button"
                     android:layout_width="50dp"
                     android:layout_height="40dp"
-                    android:layout_alignEnd="@+id/nextButtonImg"
-                    android:layout_alignRight="@+id/nextButtonImg"
+                    android:layout_alignEnd="@+id/next_img"
+                    android:layout_alignRight="@+id/next_img"
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="-28dp"
                     android:layout_marginRight="-28dp" />
 
                 <TextView
-                    android:id="@+id/prevButton"
+                    android:id="@+id/prev_button"
                     android:layout_width="50dp"
                     android:layout_height="40dp"
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="-29dp"
                     android:layout_marginRight="-29dp"
-                    android:layout_toStartOf="@+id/prevButtonImg"
-                    android:layout_toLeftOf="@+id/prevButtonImg" />
+                    android:layout_toStartOf="@+id/prev_image"
+                    android:layout_toLeftOf="@+id/prev_image" />
             </RelativeLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -163,6 +181,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginVertical="1dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginLeft="1dp"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -277,7 +297,7 @@
             </LinearLayout>
 
             <GridView
-                android:id="@+id/calendarGridView"
+                android:id="@+id/calendar_gridview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="10"
