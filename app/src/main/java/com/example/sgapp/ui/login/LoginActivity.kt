@@ -9,7 +9,6 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.*
 import com.example.sgapp.NewUserCreateActivity
@@ -29,7 +28,7 @@ class LoginActivity : AppCompatActivity() {
         val password = findViewById<EditText>(R.id.password)
         val login = findViewById<Button>(R.id.login)
 
-        var new_user = findViewById<TextView>(R.id.new_user)
+        var new_user = findViewById<TextView>(R.id.new_login)
         new_user.setOnClickListener{
             val intent = Intent(this, NewUserCreateActivity::class.java)
             startActivity(intent)
