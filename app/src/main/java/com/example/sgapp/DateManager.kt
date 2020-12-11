@@ -2,6 +2,7 @@ package com.example.sgapp
 
 import android.content.Context
 import android.view.LayoutInflater
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -33,6 +34,12 @@ class DateManager {
         //状態を復元
         calendar!!.time = startDate
         return days
+    }
+
+    fun isToday():String {
+        val dateFormat = SimpleDateFormat("yyyy.MM.dd", Locale.JAPAN)
+        var today = dateFormat.format(Calendar.getInstance().time)
+        return today
     }
 
     //週数を取得

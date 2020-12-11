@@ -1,6 +1,7 @@
 package com.example.sgapp
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,6 +34,13 @@ class CalendarAdapter: BaseAdapter {
         var inflator = context!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         var calendar: View = inflator.inflate(R.layout.calendar_cell, null)
         calendar.findViewById<TextView>(R.id.dateText).text = dateFormat.format(dateArray[position]).toString()
+
+        //当日の背景を黄色に（今回追記）
+        if (dateManager?.isToday()!!.equals(dateArray[position])) {
+            convertView?.setBackgroundColor(Color.YELLOW);
+        }
+
+
         return calendar
     }
 
@@ -53,6 +61,7 @@ class CalendarAdapter: BaseAdapter {
         val format = SimpleDateFormat("yyyy年M月", Locale.JAPAN)
         return format.format(dateManager?.calendar?.time)
     }
+
 
     //翌月表示
     fun nextMonth() {

@@ -17,6 +17,8 @@
     <color name="redColor">#F00</color>
     <color name="whiteColor">#FFF</color>
     <color name="blackColor">#000</color>
-    <color name="krononOrenge">#D59D5D</color>
+    <color name="kronon_orenge">#D59D5D</color>
     <color name="calendar_gray">#EDEDED</color>
+    <color name="no_color">#00000000</color>
+
 </resources>
