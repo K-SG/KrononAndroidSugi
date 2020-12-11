@@ -11,6 +11,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.inputmethod.EditorInfo
 import android.widget.*
+import com.example.sgapp.MainButtomActivity
 import com.example.sgapp.NewUserCreateActivity
 
 import com.example.sgapp.R
@@ -26,11 +27,14 @@ class LoginActivity : AppCompatActivity() {
 
         val username = findViewById<EditText>(R.id.user_name)
         val password = findViewById<EditText>(R.id.password)
-        val login = findViewById<Button>(R.id.login)
-
         var new_user = findViewById<TextView>(R.id.new_login)
         new_user.setOnClickListener{
             val intent = Intent(this, NewUserCreateActivity::class.java)
+            startActivity(intent)
+        }
+        var loginButton = findViewById<Button>(R.id.login)
+        loginButton.setOnClickListener {
+            val intent = Intent(this, MainButtomActivity::class.java)
             startActivity(intent)
         }
 
@@ -93,10 +97,10 @@ class LoginActivity : AppCompatActivity() {
                 false
             }
 
-            login.setOnClickListener {
-//                loading.visibility = View.VISIBLE
-                loginViewModel.login(username.text.toString(), password.text.toString())
-            }
+//            login.setOnClickListener {
+////                loading.visibility = View.VISIBLE
+//                loginViewModel.login(username.text.toString(), password.text.toString())
+//            }
         }
     }
 

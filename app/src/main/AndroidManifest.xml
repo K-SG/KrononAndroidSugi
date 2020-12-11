@@ -20,6 +20,8 @@
         </activity>
         <activity android:name=".NewUserCreateActivity"></activity>
         <activity android:name=".NewUserActivity"></activity>
+            <activity
+                android:name=".MainButtomActivity"></activity>
     </application>
 
 </manifest>

@@ -31,4 +31,17 @@
     <string name="back_button">戻る</string>
     <string name="login"><u>ログイン</u></string>
     <string name="not_account_text">ログインアカウントがある？</string>
+    <string name="title_activity_main_buttom">MainActivity</string>
+    <string name="title_calendar">カレンダー</string>
+    <string name="title_schedule">予定表</string>
+    <string name="title_account">アカウント</string>
+    <string name="calendar_title_text">カレンダー</string>
+    <string name="schedule_title_text">予定表</string>
+    <string name="account_title_text">アカウント</string>
+    <string name="create_button">予定登録</string>
+    <string name="account_name_text">藤本</string>
+    <string name="account_mail_text">fujimoto@gmail.com</string>
+    <string name="avator_text">アバター</string>
+    <string name="logout_button_text">ログアウト</string>
 </resources>
+
