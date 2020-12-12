@@ -1,7 +1,8 @@
 package com.example.sgapp.ui.schedule
 
-import android.R.attr.button
+import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import android.text.format.DateFormat
 import android.util.Log
@@ -16,13 +17,16 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.sgapp.DateManager
 import com.example.sgapp.R
 import com.example.sgapp.ScheduleModel
+import java.text.SimpleDateFormat
 import java.util.*
 
 
 class ScheduleFragment : Fragment() {
 
+    private var dateManager: DateManager? = null
     private lateinit var dashboardViewModel: ScheduleViewModel
     private var root: View? = null
     private var timeFontSize = 10f
@@ -68,9 +72,25 @@ class ScheduleFragment : Fragment() {
 
         var dateText = root?.findViewById<TextView>(R.id.schedule_show_date)
         var calendar = Calendar.getInstance()
-        var date:java.util.Date = calendar.time
+        var date: Calendar = calendar
+
         val dateDisplay: String = DateFormat.format("yyyy年MM月dd日(EEE)の予定", date).toString()
         dateText?.text = dateDisplay
+        var prevButton = root?.findViewById<TextView>(R.id.prev_day_button)
+        var nextButton = root?.findViewById<TextView>(R.id.next_day_button)
+
+        prevButton!!.setOnClickListener {
+            //adapterの呼び方が違う
+            date.add(Calendar.DATE,-1)
+            val dateDisplay: String = DateFormat.format("yyyy年MM月dd日(EEE)の予定", date).toString()
+            dateText?.text = dateDisplay
+
+        }
+        nextButton!!.setOnClickListener {
+            date.add(Calendar.DATE,1)
+            val dateDisplay: String = DateFormat.format("yyyy年MM月dd日(EEE)の予定", date).toString()
+            dateText?.text = dateDisplay
+        }
         //端末の幅のサイズ[pixel]
         widthPixel = resources.displayMetrics.widthPixels
         Log.i("Tag", "width:$widthPixel")
@@ -99,6 +119,7 @@ class ScheduleFragment : Fragment() {
     }
 
     //名前表示
+    @SuppressLint("ResourceAsColor")
     private fun viewName(layout: RelativeLayout){
         mContext = activity
         for (i in 0 until nx) {
@@ -107,6 +128,7 @@ class ScheduleFragment : Fragment() {
 
             // テキストサイズ 30sp
             textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, timeFontSize)
+            textView?.setTextColor(Color.WHITE)
 
 
             val param = RelativeLayout.LayoutParams(
@@ -159,8 +181,6 @@ class ScheduleFragment : Fragment() {
             imageView.layoutParams = param
 
             layout.addView(imageView)
-
-
         }
     }
 
@@ -170,6 +190,8 @@ class ScheduleFragment : Fragment() {
             textView = TextView(mContext)
             textView?.text = "${i + startDayTime}:00"
             textView?.setTextSize(TypedValue.COMPLEX_UNIT_SP, timeFontSize)
+            textView?.setTextColor(Color.WHITE)
+
             val param = RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.WRAP_CONTENT,
                 RelativeLayout.LayoutParams.WRAP_CONTENT

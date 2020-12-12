@@ -36,8 +36,8 @@ class CalendarFragment : Fragment() {
         //GridViewのメソッドを呼び出す。
         val adapter = gridView.adapter as CalendarAdapter
         var titleText = root?.findViewById<TextView>(R.id.schedule_date)
-        var prevButton = root?.findViewById<TextView>(R.id.prevButton)
-        var nextButton = root?.findViewById<TextView>(R.id.nextButton)
+        var prevButton = root?.findViewById<TextView>(R.id.prev_month_button)
+        var nextButton = root?.findViewById<TextView>(R.id.next_month_button)
 
         titleText?.text = adapter.getTitle()
         prevButton!!.setOnClickListener {

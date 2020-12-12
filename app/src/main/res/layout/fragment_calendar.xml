@@ -127,7 +127,7 @@
                     android:contentDescription="@string/next_button" />
 
                 <TextView
-                    android:id="@+id/nextButton"
+                    android:id="@+id/next_month_button"
                     android:layout_width="50dp"
                     android:layout_height="40dp"
                     android:layout_alignEnd="@+id/nextButtonImg"
@@ -138,7 +138,7 @@
                     android:layout_marginRight="-28dp" />
 
                 <TextView
-                    android:id="@+id/prevButton"
+                    android:id="@+id/prev_month_button"
                     android:layout_width="50dp"
                     android:layout_height="40dp"
                     android:layout_alignParentTop="true"

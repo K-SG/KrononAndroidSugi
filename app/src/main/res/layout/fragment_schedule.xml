@@ -91,7 +91,7 @@
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/prevButton"
+                app:layout_constraintEnd_toStartOf="@+id/prev_day_button"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -105,9 +105,9 @@
                 android:layout_toLeftOf="@+id/nextButtonImg"
                 android:background="@drawable/left_button"
                 android:contentDescription="@string/pre_button"
-                app:layout_constraintBottom_toBottomOf="@+id/prevButton"
-                app:layout_constraintEnd_toStartOf="@+id/nextButton"
-                app:layout_constraintStart_toStartOf="@+id/prevButton"
+                app:layout_constraintBottom_toBottomOf="@+id/prev_day_button"
+                app:layout_constraintEnd_toStartOf="@+id/next_day_button"
+                app:layout_constraintStart_toStartOf="@+id/prev_day_button"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
@@ -122,13 +122,13 @@
                 android:layout_marginRight="16dp"
                 android:background="@drawable/rightbutton"
                 android:contentDescription="@string/next_button"
-                app:layout_constraintBottom_toBottomOf="@+id/nextButton"
+                app:layout_constraintBottom_toBottomOf="@+id/next_day_button"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/nextButton"
-                app:layout_constraintTop_toTopOf="@+id/nextButton" />
+                app:layout_constraintStart_toStartOf="@+id/next_day_button"
+                app:layout_constraintTop_toTopOf="@+id/next_day_button" />
 
             <TextView
-                android:id="@+id/nextButton"
+                android:id="@+id/next_day_button"
                 android:layout_width="50dp"
                 android:layout_height="40dp"
                 android:layout_alignEnd="@+id/nextButtonImg"
@@ -139,13 +139,13 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/prevButton"
+                android:id="@+id/prev_day_button"
                 android:layout_width="50dp"
                 android:layout_height="40dp"
                 android:layout_alignParentTop="true"
                 android:layout_toStartOf="@+id/prevButtonImg"
                 android:layout_toLeftOf="@+id/prevButtonImg"
-                app:layout_constraintEnd_toStartOf="@+id/nextButton"
+                app:layout_constraintEnd_toStartOf="@+id/next_day_button"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
