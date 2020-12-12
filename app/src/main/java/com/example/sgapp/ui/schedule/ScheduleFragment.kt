@@ -1,8 +1,7 @@
 package com.example.sgapp.ui.schedule
 
+import android.R.attr.button
 import android.content.Context
-import android.content.res.Resources
-import android.graphics.Color
 import android.os.Bundle
 import android.text.format.DateFormat
 import android.util.Log
@@ -14,12 +13,13 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
-import androidx.core.content.ContextCompat
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.sgapp.R
 import com.example.sgapp.ScheduleModel
 import java.util.*
+
 
 class ScheduleFragment : Fragment() {
 
@@ -46,7 +46,7 @@ class ScheduleFragment : Fragment() {
     private val nx = names.size
 
     private val schedules = arrayOf(
-        ScheduleModel(1,1,"お腹減ったよ",10*60,11*60+30,0)
+        ScheduleModel(1, 1, "お腹減ったよ", 10 * 60, 11 * 60 + 30, 0)
     )
 
     companion object {
@@ -133,7 +133,7 @@ class ScheduleFragment : Fragment() {
         }
     }
 
-    private fun drawLine(pattern : Int, offset : Int, layout: RelativeLayout){
+    private fun drawLine(pattern: Int, offset: Int, layout: RelativeLayout){
         mContext = activity
         for (i in 0 until (endDayTime - startDayTime)) {
             val imageView = ImageView(mContext)
@@ -165,18 +165,6 @@ class ScheduleFragment : Fragment() {
     }
 
     private fun showTime(blackboardContainer: RelativeLayout?) {
-//        mContext = activity
-//        textView = TextView(mContext)
-//        textView?.text = "9:00"
-//        textView?.setTextSize(TypedValue.COMPLEX_UNIT_SP, timeFontSize)
-//        textView?.setTextColor(Color.WHITE)
-//        val param = RelativeLayout.LayoutParams(
-//            RelativeLayout.LayoutParams.WRAP_CONTENT,
-//            RelativeLayout.LayoutParams.WRAP_CONTENT
-//        )
-//        textView?.layoutParams = param
-//        blackboardContainer?.addView(textView)
-
         mContext = activity
         for (i in 0 until (endDayTime - startDayTime+1)) {
             textView = TextView(mContext)
@@ -237,6 +225,13 @@ class ScheduleFragment : Fragment() {
                 contentMargin.toInt(),
                 0
             )
+            textView.setOnClickListener(View.OnClickListener {
+                Toast.makeText(
+                    activity,
+                    "hoge!",
+                    Toast.LENGTH_SHORT
+                ).show()
+            })
 
             textView.layoutParams = param
 
