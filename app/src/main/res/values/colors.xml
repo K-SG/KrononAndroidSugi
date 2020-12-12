@@ -20,5 +20,8 @@
     <color name="krononOrenge">#D59D5D</color>
     <color name="calendargray">#EDEDED</color>
     <color name="black_board">#467021</color>
+    <color name="place_home">#FFD8D6</color>
+    <color name="place_office">#FFF08D</color>
+    <color name="place_away">#E1FBFF</color>
 
 </resources>
