@@ -8,6 +8,7 @@ import android.widget.GridView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.example.sgapp.CalendarAdapter
 import com.example.sgapp.R
 
@@ -19,9 +20,6 @@ class CalendarFragment : Fragment() {
     lateinit var gridView:GridView
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -51,13 +49,14 @@ class CalendarFragment : Fragment() {
         return root
     }
 
-    override fun onStart() {
-        super.onStart()
-    }
-
     private fun setGridView() {
         gridView = root?.findViewById<GridView>(R.id.calendar_gridview)!!
-        gridView?.adapter = CalendarAdapter(context)
+//        gridView.setOnClickListener(){
+//            view?.findNavController()?.navigate(
+//                R.id.action_navigation_calendar_to_navigation_schedule
+//            )
+//        }
+        gridView.adapter = CalendarAdapter(context)
     }
 
 

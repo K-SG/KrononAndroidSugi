@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
+import androidx.navigation.findNavController
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -22,6 +23,7 @@ class CalendarAdapter: BaseAdapter {
     private var calendarDays: List<String> = ArrayList()
     var context: Context? = null
 
+
     constructor(context: Context?) : super() {
         this.context = context
         layoutInflater = LayoutInflater.from(context)
@@ -31,7 +33,6 @@ class CalendarAdapter: BaseAdapter {
 
     @SuppressLint("ResourceAsColor")
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
-        var res: Resources = Resources.getSystem()
         val dateFormat = SimpleDateFormat("d", Locale.JAPAN)
         calendarDays = listOf(dateFormat.format(dateArray[position]))
         //日付のみ表示させる
@@ -39,6 +40,12 @@ class CalendarAdapter: BaseAdapter {
         var calendar: View = inflator.inflate(R.layout.calendar_cell, null)
         calendar.findViewById<TextView>(R.id.dateText).text = dateFormat.format(dateArray[position]).toString()
         calendar.setBackgroundColor(Color.WHITE)
+        //カレンダータップすると予定表に飛びたいんだが
+//        calendar.setOnClickListener(){
+//            convertView?.findNavController()?.navigate(
+//                R.id.action_navigation_calendar_to_navigation_schedule
+//            )
+//        }
 
         if(dateManager?.getDayOfWeek(dateArray[position]) == 1){
             calendar.setBackgroundResource(R.color.sunday_color)
