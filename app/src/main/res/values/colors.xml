@@ -20,5 +20,9 @@
     <color name="kronon_orenge">#D59D5D</color>
     <color name="calendar_gray">#EDEDED</color>
     <color name="no_color">#00000000</color>
+    <color name="not_to_month">#E6E6E6</color>
+    <color name="today">#FDF7F0</color>
+    <color name="sunday_color">#FDEDEF</color>
+    <color name="saturday_color">#F2F6FD</color>
 
 </resources>

@@ -1,7 +1,5 @@
 package com.example.sgapp
 
-import android.content.Context
-import android.view.LayoutInflater
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -14,7 +12,6 @@ class DateManager {
         //カレンダーの日時を初期化
         calendar = Calendar.getInstance()
     }
-
 
     //当月の要素を取得
     fun getDays(): List<Date>? {
@@ -36,16 +33,34 @@ class DateManager {
         return days
     }
 
-    fun isToday():String {
-        val dateFormat = SimpleDateFormat("yyyy.MM.dd", Locale.JAPAN)
-        var today = dateFormat.format(Calendar.getInstance().time)
-        return today
+
+    //当月かどうか確認
+    fun isCurrentMonth(date: Date?): Boolean {
+        val format = SimpleDateFormat("yyyy.MM", Locale.JAPAN)
+        val currentMonth = format.format(calendar?.time)
+        if (currentMonth == format.format(date)) {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    fun isToday(date: Date?):Boolean {
+        val calendar = Calendar.getInstance()
+        val format = SimpleDateFormat("yyyy.MM.dd", Locale.JAPAN)
+        val currentMonth = format.format(calendar?.time)
+        if (currentMonth.equals(format.format(date))) {
+            return true
+        } else {
+            return false
+        }
     }
 
     //週数を取得
     fun getWeeks(): Int? {
         return calendar?.getActualMaximum(Calendar.WEEK_OF_MONTH)
     }
+
     //曜日を取得
     fun getDayOfWeek(date: Date?): Int {
         val calendar = Calendar.getInstance()

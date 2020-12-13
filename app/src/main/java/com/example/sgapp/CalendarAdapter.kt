@@ -1,6 +1,8 @@
 package com.example.sgapp
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.content.res.Resources
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
@@ -27,20 +29,28 @@ class CalendarAdapter: BaseAdapter {
         dateArray = dateManager?.getDays()!!
     }
 
+    @SuppressLint("ResourceAsColor")
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
+        var res: Resources = Resources.getSystem()
         val dateFormat = SimpleDateFormat("d", Locale.JAPAN)
         calendarDays = listOf(dateFormat.format(dateArray[position]))
         //日付のみ表示させる
         var inflator = context!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         var calendar: View = inflator.inflate(R.layout.calendar_cell, null)
         calendar.findViewById<TextView>(R.id.dateText).text = dateFormat.format(dateArray[position]).toString()
+        calendar.setBackgroundColor(Color.WHITE)
 
-        //当日の背景を黄色に（今回追記）
-        if (dateManager?.isToday()!!.equals(dateArray[position])) {
-            convertView?.setBackgroundColor(Color.YELLOW);
+        if(dateManager?.getDayOfWeek(dateArray[position]) == 1){
+            calendar.setBackgroundResource(R.color.sunday_color)
+        }
+        if(dateManager?.getDayOfWeek(dateArray[position]) == 7){
+            calendar.setBackgroundResource(R.color.saturday_color)
         }
 
-
+        //当日の背景を黄色に
+        if (dateManager?.isToday(dateArray[position]) == true) {
+            calendar.setBackgroundResource(R.color.today);
+        }
         return calendar
     }
 
