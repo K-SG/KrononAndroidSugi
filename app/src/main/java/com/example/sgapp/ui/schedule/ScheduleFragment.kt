@@ -2,6 +2,7 @@ package com.example.sgapp.ui.schedule
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.text.format.DateFormat
@@ -11,16 +12,10 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.RelativeLayout
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.sgapp.DateManager
-import com.example.sgapp.R
-import com.example.sgapp.ScheduleModel
-import java.text.SimpleDateFormat
+import com.example.sgapp.*
 import java.util.*
 
 
@@ -81,16 +76,23 @@ class ScheduleFragment : Fragment() {
 
         prevButton!!.setOnClickListener {
             //adapterの呼び方が違う
-            date.add(Calendar.DATE,-1)
+            date.add(Calendar.DATE, -1)
             val dateDisplay: String = DateFormat.format("yyyy年MM月dd日(EEE)の予定", date).toString()
             dateText?.text = dateDisplay
 
         }
         nextButton!!.setOnClickListener {
-            date.add(Calendar.DATE,1)
+            date.add(Calendar.DATE, 1)
             val dateDisplay: String = DateFormat.format("yyyy年MM月dd日(EEE)の予定", date).toString()
             dateText?.text = dateDisplay
         }
+
+        val appButton = root?.findViewById<ImageView>(R.id.create_button)
+        appButton?.setOnClickListener(View.OnClickListener {
+            val intent = Intent(activity, TestActivity::class.java)
+            startActivity(intent)
+        })
+
         //端末の幅のサイズ[pixel]
         widthPixel = resources.displayMetrics.widthPixels
         Log.i("Tag", "width:$widthPixel")
