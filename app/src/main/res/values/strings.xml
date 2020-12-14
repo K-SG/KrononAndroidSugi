@@ -20,4 +20,8 @@
     <string name="friday_text">金</string>
     <string name="Saturday_text">土</string>
     <string name="kronon_chat_text">おはよう☀︎今日は日曜日かも！！\n今日も1日頑張ろうね★</string>
+    <string name="account_name_text">藤本</string>
+    <string name="account_mail_text">fujimoto@gmail.com</string>
+    <string name="avator_text">アバター</string>
+    <string name="logout_button_text">ログアウト</string>
 </resources>

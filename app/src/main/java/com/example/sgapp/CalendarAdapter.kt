@@ -30,7 +30,7 @@ class CalendarAdapter: BaseAdapter {
         dateManager = DateManager()
         dateArray = dateManager?.getDays()!!
     }
-    
+
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
         val dateFormat = SimpleDateFormat("d", Locale.JAPAN)
         calendarDays = listOf(dateFormat.format(dateArray[position]))
