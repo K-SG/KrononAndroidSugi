@@ -30,8 +30,7 @@ class CalendarAdapter: BaseAdapter {
         dateManager = DateManager()
         dateArray = dateManager?.getDays()!!
     }
-
-    @SuppressLint("ResourceAsColor")
+    
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
         val dateFormat = SimpleDateFormat("d", Locale.JAPAN)
         calendarDays = listOf(dateFormat.format(dateArray[position]))
@@ -40,6 +39,7 @@ class CalendarAdapter: BaseAdapter {
         var calendar: View = inflator.inflate(R.layout.calendar_cell, null)
         calendar.findViewById<TextView>(R.id.dateText).text = dateFormat.format(dateArray[position]).toString()
         calendar.setBackgroundColor(Color.WHITE)
+
         //カレンダータップすると予定表に飛びたいんだが
 //        calendar.setOnClickListener(){
 //            convertView?.findNavController()?.navigate(
