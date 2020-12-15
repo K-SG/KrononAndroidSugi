@@ -61,4 +61,7 @@
     <string name="end_time_text">終了時間</string>
     <string name="ok_text">OK</string>
     <string name="title_text">タイトル</string>
+    <string name="detail_schedule_title">予定詳細</string>
+    <string name="update">修正</string>
+    <string name="delete">削除</string>
 </resources>

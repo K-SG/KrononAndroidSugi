@@ -252,11 +252,13 @@ class ScheduleFragment : Fragment() {
                 0
             )
             textView.setOnClickListener(View.OnClickListener {
-                Toast.makeText(
-                    activity,
-                    "hoge!",
-                    Toast.LENGTH_SHORT
-                ).show()
+//                Toast.makeText(
+//                    activity,
+//                    "hoge!",
+//                    Toast.LENGTH_SHORT
+//                ).show()
+                var intent = Intent(activity,DetailScheduleActivity::class.java)
+                startActivity(intent)
             })
 
             textView.layoutParams = param
