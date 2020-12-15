@@ -2,53 +2,322 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/calendar_navi"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/common_background"
     tools:context=".ui.calendar.CalendarFragment">
 
-    <TextView
-        android:id="@+id/newAccount_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:gravity="center"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp"
-        android:text="@string/title_calendar"
-        android:textColor="@color/common_text"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/text_home"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/account_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/calendar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/calendar_title_text"
+            android:textColor="@color/common_text"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/account_toolbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintWidth_max="400dp">
 
-    <ImageView
-        android:id="@+id/create_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
-        android:layout_marginBottom="8dp"
-        android:contentDescription="@string/create_button"
-        android:src="@drawable/ic_create"
-        app:layout_constraintBottom_toBottomOf="@+id/newAccount_title"
-        app:layout_constraintEnd_toEndOf="@+id/newAccount_title"
-        app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:background="@drawable/chat_border"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/kronon_chat_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:padding="8dp"
+                    android:text="@string/kronon_chat_text"
+                    android:textColor="@color/common_text" />
+
+                <ImageView
+                    android:id="@+id/kronon_image"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:src="@drawable/chat_kronon"
+                    android:contentDescription="@string/kronon_chat"
+                    />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/kronon_orenge"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+                <TextView
+                    android:id="@+id/month_title"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="114dp"
+                    android:layout_marginRight="114dp"
+                    android:layout_toStartOf="@+id/prev_image"
+                    android:layout_toLeftOf="@+id/prev_image"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+                <ImageButton
+                    android:id="@+id/prev_image"
+                    android:layout_width="12dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginVertical="10dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_toStartOf="@+id/next_img"
+                    android:layout_toLeftOf="@+id/next_img"
+                    android:background="@drawable/left_button"
+                    android:contentDescription="@string/pre_button" />
+
+                <ImageButton
+                    android:id="@+id/next_img"
+                    android:layout_width="12dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginVertical="10dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginRight="30dp"
+                    android:background="@drawable/right_button"
+                    android:contentDescription="@string/next_button" />
+
+                <TextView
+                    android:id="@+id/next_button"
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:layout_alignEnd="@+id/next_img"
+                    android:layout_alignRight="@+id/next_img"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="-28dp"
+                    android:layout_marginRight="-28dp" />
+
+                <TextView
+                    android:id="@+id/prev_button"
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="-29dp"
+                    android:layout_marginRight="-29dp"
+                    android:layout_toStartOf="@+id/prev_image"
+                    android:layout_toLeftOf="@+id/prev_image" />
+            </RelativeLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginVertical="1dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginLeft="1dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/sunday_text"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="1dp"
+                    android:layout_marginStart="-0.5dp"
+                    android:layout_marginLeft="-0.5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/holiday_border"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="1dp"
+                    android:text="@string/sunday_text"
+                    android:textAlignment="center"
+                    android:textColor="@color/redColor" />
+
+                <TextView
+                    android:id="@+id/monday_text"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="-1dp"
+                    android:layout_marginLeft="-1dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/weekdays_border"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="1dp"
+                    android:text="@string/monday_text"
+                    android:textAlignment="center"
+                    android:textColor="@color/grayColor" />
+
+                <TextView
+                    android:id="@+id/tuesday_text"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="-1dp"
+                    android:layout_marginLeft="-1dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/weekdays_border"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="1dp"
+                    android:text="@string/tuesday_text"
+                    android:textAlignment="center"
+                    android:textColor="@color/grayColor" />
+
+                <TextView
+                    android:id="@+id/wednesday_text"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="-1dp"
+                    android:layout_marginLeft="-1dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/weekdays_border"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="1dp"
+                    android:text="@string/wednesday_text"
+                    android:textAlignment="center"
+                    android:textColor="@color/grayColor" />
+
+                <TextView
+                    android:id="@+id/thursday_text"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="-1dp"
+                    android:layout_marginLeft="-1dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/weekdays_border"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="1dp"
+                    android:text="@string/thursday_text"
+                    android:textAlignment="center"
+                    android:textColor="@color/grayColor" />
+
+                <TextView
+                    android:id="@+id/friday_text"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="-1dp"
+                    android:layout_marginLeft="-1dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/weekdays_border"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="1dp"
+                    android:text="@string/friday_text"
+                    android:textAlignment="center"
+                    android:textColor="@color/grayColor" />
+
+                <TextView
+                    android:id="@+id/saturday_text"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="-1dp"
+                    android:layout_marginLeft="-1dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/saturday_border"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="1dp"
+                    android:text="@string/Saturday_text"
+                    android:textAlignment="center"
+                    android:textColor="@color/blueColor" />
+
+            </LinearLayout>
+
+            <GridView
+                android:id="@+id/calendar_gridview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="10"
+                android:background="@drawable/border"
+                android:horizontalSpacing="1dp"
+                android:numColumns="7"
+                android:paddingBottom="-1dp"
+                android:stretchMode="columnWidth"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+                tools:layout_editor_absoluteX="16dp"></GridView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

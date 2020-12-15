@@ -12,4 +12,25 @@
     <color name="common_background">#FDF7F0</color>
     <color name="common_text">#5C5A5A</color>
     <color name="hint_text">#805C5A5A</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="grayColor">#777</color>
+    <color name="blueColor">#00F</color>
+    <color name="redColor">#F00</color>
+    <color name="whiteColor">#FFF</color>
+    <color name="blackColor">#000</color>
+    <color name="kronon_orenge">#D59D5D</color>
+    <color name="calendar_gray">#EDEDED</color>
+    <color name="no_color">#00000000</color>
+    <color name="not_to_month">#E6E6E6</color>
+    <color name="today">#FDF7F0</color>
+    <color name="sunday_color">#FDEDEF</color>
+    <color name="saturday_color">#F2F6FD</color>
+    <color name="krononOrenge">#D59D5D</color>
+    <color name="calendargray">#EDEDED</color>
+    <color name="black_board">#467021</color>
+    <color name="place_home">#FFD8D6</color>
+    <color name="place_office">#FFF08D</color>
+    <color name="place_away">#E1FBFF</color>
 </resources>
