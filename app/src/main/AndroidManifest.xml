@@ -22,6 +22,7 @@
         <activity android:name=".ui.login.LoginActivity"></activity>
         <activity android:name=".NewUserCreateActivity"></activity>
         <activity android:name=".NewUserActivity"></activity>
+        <activity android:name=".CreateScheduleActivity"></activity>
     </application>
 
 </manifest>

@@ -33,4 +33,8 @@
     <color name="place_home">#FFD8D6</color>
     <color name="place_office">#FFF08D</color>
     <color name="place_away">#E1FBFF</color>
+    <color name="common_hint_text">#805C5A5A</color>
+    <color name="common_solid">#D8D5D5</color>
+    <color name="edit_text">#00000000</color>
+
 </resources>

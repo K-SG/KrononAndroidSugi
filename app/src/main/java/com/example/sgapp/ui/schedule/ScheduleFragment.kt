@@ -89,7 +89,7 @@ class ScheduleFragment : Fragment() {
 
         val appButton = root?.findViewById<ImageView>(R.id.create_button)
         appButton?.setOnClickListener(View.OnClickListener {
-            val intent = Intent(activity, TestActivity::class.java)
+            val intent = Intent(activity, CreateScheduleActivity::class.java)
             startActivity(intent)
         })
 
