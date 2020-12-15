@@ -18,7 +18,7 @@ class DetailScheduleActivity : AppCompatActivity() {
             finish()
         }
         editScheduleButton.setOnClickListener{
-            val intent = Intent(this,CreateScheduleActivity::class.java)
+            val intent = Intent(this,UpdateScheduleActivity::class.java)
             startActivity(intent)
         }
         deleteScheduleButton.setOnClickListener{

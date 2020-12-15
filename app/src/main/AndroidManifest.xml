@@ -24,6 +24,7 @@
         <activity android:name=".NewUserActivity"></activity>
         <activity android:name=".CreateScheduleActivity"></activity>
         <activity android:name=".DetailScheduleActivity"></activity>
+        <activity android:name=".UpdateScheduleActivity"></activity>
     </application>
 
 </manifest>
