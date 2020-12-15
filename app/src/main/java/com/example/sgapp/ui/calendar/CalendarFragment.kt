@@ -36,6 +36,7 @@ class CalendarFragment : Fragment() {
         var prevButton = root?.findViewById<TextView>(R.id.prev_button)
         var nextButton = root?.findViewById<TextView>(R.id.next_button)
 
+
         titleText?.text = adapter.getTitle()
         prevButton!!.setOnClickListener {
             //adapterの呼び方が違う
