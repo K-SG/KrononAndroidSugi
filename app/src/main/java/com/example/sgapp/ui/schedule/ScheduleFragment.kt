@@ -73,6 +73,12 @@ class ScheduleFragment : Fragment() {
         dateText?.text = dateDisplay
         var prevButton = root?.findViewById<TextView>(R.id.prev_day_button)
         var nextButton = root?.findViewById<TextView>(R.id.next_day_button)
+        val newScheduleButton = root?.findViewById<ImageView>(R.id.create_button)
+
+        newScheduleButton?.setOnClickListener(View.OnClickListener {
+            val intent = Intent(activity, CreateScheduleActivity::class.java)
+            startActivity(intent)
+        })
 
         prevButton!!.setOnClickListener {
             //adapterの呼び方が違う
@@ -87,11 +93,7 @@ class ScheduleFragment : Fragment() {
             dateText?.text = dateDisplay
         }
 
-        val appButton = root?.findViewById<ImageView>(R.id.create_button)
-        appButton?.setOnClickListener(View.OnClickListener {
-            val intent = Intent(activity, CreateScheduleActivity::class.java)
-            startActivity(intent)
-        })
+
 
         //端末の幅のサイズ[pixel]
         widthPixel = resources.displayMetrics.widthPixels
@@ -223,7 +225,7 @@ class ScheduleFragment : Fragment() {
 
             // テキストサイズ 30sp
             textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, timeFontSize)
-            textView.setTextColor(R.color.common_text)
+            textView.setTextColor(Color.GRAY)
 
 
             when (contentColor) {
