@@ -18,8 +18,8 @@
     <string name="new_user"><u>新規登録</u></string>
     <string name="five_star">星が５つ</string>
     <string name="login_text">ログイン</string>
-    <string name="newAcount_title">アカウント作成</string>
-    <string name="newAcount_description">
+    <string name="new_account_title">アカウント作成</string>
+    <string name="new_account_description">
         表示名は日本語で15文字以内\n
         パスワードは半角英数字で8~20文字\n
         大文字•小文字•数字は必ず使用して\n
@@ -27,7 +27,7 @@
     </string>
     <string name="prompt_name">表示名</string>
     <string name="prompt_password_confirm">パスワードの確認</string>
-    <string name="newAccount_button">新規登録</string>
+    <string name="new_account_button">新規登録</string>
     <string name="back_button">戻る</string>
     <string name="login"><u>ログイン</u></string>
     <string name="not_account_text">ログインアカウントがある？</string>
@@ -49,7 +49,7 @@
     <string name="thursday_text">木</string>
     <string name="friday_text">金</string>
     <string name="Saturday_text">土</string>
-    <string name="kronon_chat_text">おはよう☀︎今日は日曜日かも！！\n今日も1日頑張ろうね★</string>
+    <string name="kronon_chat_text">おはよう☀︎もうすぐ日曜日！！\n今日も1日頑張ろうね★</string>
     <string name="account_name_text">藤本</string>
     <string name="account_mail_text">fujimoto@gmail.com</string>
     <string name="avatar_text">アバター</string>
