@@ -43,16 +43,18 @@ class ScheduleFragment : Fragment() {
     private var scale = 0f
     private val names = arrayOf("中根", "奥野", "杉")
     private val nx = names.size
+    var calendar: Calendar = Calendar.getInstance()
 
     private val schedules = arrayOf(
         ScheduleModel(1, 1, "お腹減ったよ", 10 * 60, 11 * 60 + 30, 0)
     )
-
+    
     companion object {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        var calendar = Calendar.getInstance()
     }
 
     override fun onCreateView(
@@ -63,17 +65,16 @@ class ScheduleFragment : Fragment() {
         dashboardViewModel =
             ViewModelProvider(this).get(ScheduleViewModel::class.java)
         root = inflater.inflate(R.layout.fragment_schedule, container, false)
+        //コンテキストを取得
         mContext = activity
-
         var dateText = root?.findViewById<TextView>(R.id.schedule_show_date)
-        var calendar = Calendar.getInstance()
-        var date: Calendar = calendar
-
-        val dateDisplay: String = DateFormat.format("yyyy年MM月dd日(EEE)の予定", date).toString()
-        dateText?.text = dateDisplay
         var prevButton = root?.findViewById<TextView>(R.id.prev_day_button)
         var nextButton = root?.findViewById<TextView>(R.id.next_day_button)
-        val newScheduleButton = root?.findViewById<ImageView>(R.id.create_button)
+        var newScheduleButton = root?.findViewById<ImageView>(R.id.create_button)
+        var date: Calendar = calendar
+        //日付フォーマット
+        var dateDisplay: String = DateFormat.format("yyyy年MM月dd日(EEE)の予定", date).toString()
+        dateText?.text = dateDisplay
 
         newScheduleButton?.setOnClickListener(View.OnClickListener {
             val intent = Intent(activity, CreateScheduleActivity::class.java)
@@ -83,17 +84,14 @@ class ScheduleFragment : Fragment() {
         prevButton!!.setOnClickListener {
             //adapterの呼び方が違う
             date.add(Calendar.DATE, -1)
-            val dateDisplay: String = DateFormat.format("yyyy年MM月dd日(EEE)の予定", date).toString()
+            dateDisplay = DateFormat.format("yyyy年MM月dd日(EEE)の予定", date).toString()
             dateText?.text = dateDisplay
-
         }
         nextButton!!.setOnClickListener {
             date.add(Calendar.DATE, 1)
-            val dateDisplay: String = DateFormat.format("yyyy年MM月dd日(EEE)の予定", date).toString()
+            dateDisplay = DateFormat.format("yyyy年MM月dd日(EEE)の予定", date).toString()
             dateText?.text = dateDisplay
         }
-
-
 
         //端末の幅のサイズ[pixel]
         widthPixel = resources.displayMetrics.widthPixels
@@ -252,11 +250,6 @@ class ScheduleFragment : Fragment() {
                 0
             )
             textView.setOnClickListener(View.OnClickListener {
-//                Toast.makeText(
-//                    activity,
-//                    "hoge!",
-//                    Toast.LENGTH_SHORT
-//                ).show()
                 var intent = Intent(activity,DetailScheduleActivity::class.java)
                 startActivity(intent)
             })

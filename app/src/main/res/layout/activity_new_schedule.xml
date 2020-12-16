@@ -42,7 +42,7 @@
         android:id="@+id/create_schedule_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/new_shedule_title"
+        android:text="@string/new_schedule_title"
         android:textColor="@color/common_text"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/schedule_new_toolbar"

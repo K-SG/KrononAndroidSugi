@@ -18,7 +18,6 @@
     <color name="grayColor">#777</color>
     <color name="blueColor">#00F</color>
     <color name="redColor">#F00</color>
-    <color name="whiteColor">#FFF</color>
     <color name="blackColor">#000</color>
     <color name="kronon_orenge">#D59D5D</color>
     <color name="calendar_gray">#EDEDED</color>
@@ -27,8 +26,6 @@
     <color name="today">#FDF7F0</color>
     <color name="sunday_color">#FDEDEF</color>
     <color name="saturday_color">#F2F6FD</color>
-    <color name="krononOrenge">#D59D5D</color>
-    <color name="calendargray">#EDEDED</color>
     <color name="black_board">#467021</color>
     <color name="place_home">#FFD8D6</color>
     <color name="place_office">#FFF08D</color>

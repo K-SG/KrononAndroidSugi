@@ -12,16 +12,16 @@ class NewUserCreateActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_user)
         var returnButton = findViewById<ImageButton>(R.id.back_button)
-        var returnLoginText = findViewById<TextView>(R.id.new_login)
+        var returnLogin = findViewById<TextView>(R.id.new_login)
         var createUserButton = findViewById<Button>(R.id.create_button)
         returnButton.setOnClickListener{
             finish()
         }
-        returnLoginText.setOnClickListener{
+        returnLogin.setOnClickListener{
             finish()
         }
         createUserButton?.setOnClickListener{
-            val intent = Intent(this, MainButtomActivity::class.java)
+            val intent = Intent(this, MainButtomNavigationActivity::class.java)
             startActivity(intent)
         }
     }

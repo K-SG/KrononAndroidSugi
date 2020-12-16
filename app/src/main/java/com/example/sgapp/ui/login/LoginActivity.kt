@@ -11,7 +11,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.inputmethod.EditorInfo
 import android.widget.*
-import com.example.sgapp.MainButtomActivity
+import com.example.sgapp.MainButtomNavigationActivity
 import com.example.sgapp.NewUserCreateActivity
 
 import com.example.sgapp.R
@@ -25,16 +25,16 @@ class LoginActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_login)
 
-        val username = findViewById<EditText>(R.id.user_name)
+        val userName = findViewById<EditText>(R.id.user_name)
         val password = findViewById<EditText>(R.id.password)
-        var new_user = findViewById<TextView>(R.id.new_login)
-        new_user.setOnClickListener{
+        var newUser = findViewById<TextView>(R.id.new_login)
+        newUser.setOnClickListener{
             val intent = Intent(this, NewUserCreateActivity::class.java)
             startActivity(intent)
         }
         var loginButton = findViewById<Button>(R.id.login)
         loginButton.setOnClickListener {
-            val intent = Intent(this, MainButtomActivity::class.java)
+            val intent = Intent(this, MainButtomNavigationActivity::class.java)
             startActivity(intent)
         }
 
@@ -71,9 +71,9 @@ class LoginActivity : AppCompatActivity() {
             finish()
         })
 
-        username.afterTextChanged {
+        userName.afterTextChanged {
             loginViewModel.loginDataChanged(
-                    username.text.toString(),
+                    userName.text.toString(),
                     password.text.toString()
             )
         }
@@ -81,7 +81,7 @@ class LoginActivity : AppCompatActivity() {
         password.apply {
             afterTextChanged {
                 loginViewModel.loginDataChanged(
-                        username.text.toString(),
+                        userName.text.toString(),
                         password.text.toString()
                 )
             }
@@ -90,7 +90,7 @@ class LoginActivity : AppCompatActivity() {
                 when (actionId) {
                     EditorInfo.IME_ACTION_DONE ->
                         loginViewModel.login(
-                                username.text.toString(),
+                                userName.text.toString(),
                                 password.text.toString()
                         )
                 }

@@ -16,7 +16,7 @@
     <string name="login_failed">"Login failed"</string>
     <string name="not_account">アカウントをお持ちでない場合</string>
     <string name="new_user"><u>新規登録</u></string>
-    <string name="fivestar">星が５つ</string>
+    <string name="five_star">星が５つ</string>
     <string name="login_text">ログイン</string>
     <string name="newAcount_title">アカウント作成</string>
     <string name="newAcount_description">
@@ -52,9 +52,9 @@
     <string name="kronon_chat_text">おはよう☀︎今日は日曜日かも！！\n今日も1日頑張ろうね★</string>
     <string name="account_name_text">藤本</string>
     <string name="account_mail_text">fujimoto@gmail.com</string>
-    <string name="avator_text">アバター</string>
+    <string name="avatar_text">アバター</string>
     <string name="logout_button_text">ログアウト</string>
-    <string name="new_shedule_title">予定登録</string>
+    <string name="new_schedule_title">予定登録</string>
     <string name="update_schedule_title">予定修正</string>
     <string name="content_text">内容</string>
     <string name="date_text">日付</string>

@@ -39,7 +39,6 @@ class CalendarAdapter: BaseAdapter {
         var calendar: View = inflator.inflate(R.layout.calendar_cell, null)
         calendar.findViewById<TextView>(R.id.dateText).text = dateFormat.format(dateArray[position]).toString()
         calendar.setBackgroundColor(Color.WHITE)
-
         //カレンダータップすると予定表に飛びたいんだが
 //        calendar.setOnClickListener(){
 //            convertView?.findNavController()?.navigate(
@@ -54,7 +53,7 @@ class CalendarAdapter: BaseAdapter {
             calendar.setBackgroundResource(R.color.saturday_color)
         }
 
-        //当日の背景を黄色に
+        //当日の背景に色をつける
         if (dateManager?.isToday(dateArray[position]) == true) {
             calendar.setBackgroundResource(R.color.today);
         }
@@ -84,6 +83,7 @@ class CalendarAdapter: BaseAdapter {
     fun nextMonth() {
         dateManager?.nextMonth()
         dateArray = dateManager?.getDays()!!
+        //画面をリフレッシュしてくれる
         notifyDataSetChanged()
     }
 

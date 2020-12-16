@@ -38,26 +38,18 @@ class DateManager {
     fun isCurrentMonth(date: Date?): Boolean {
         val format = SimpleDateFormat("yyyy.MM", Locale.JAPAN)
         val currentMonth = format.format(calendar?.time)
-        if (currentMonth == format.format(date)) {
-            return true
-        } else {
-            return false
-        }
+        return currentMonth == format.format(date)
     }
 
     fun isToday(date: Date?):Boolean {
         val calendar = Calendar.getInstance()
         val format = SimpleDateFormat("yyyy.MM.dd", Locale.JAPAN)
         val currentMonth = format.format(calendar?.time)
-        if (currentMonth.equals(format.format(date))) {
-            return true
-        } else {
-            return false
-        }
+        return currentMonth.equals(format.format(date))
     }
 
     //週数を取得
-    fun getWeeks(): Int? {
+    private fun getWeeks(): Int? {
         return calendar?.getActualMaximum(Calendar.WEEK_OF_MONTH)
     }
 
