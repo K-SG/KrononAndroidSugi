@@ -27,12 +27,12 @@ class LoginActivity : AppCompatActivity() {
 
         val userName = findViewById<EditText>(R.id.user_name)
         val password = findViewById<EditText>(R.id.password)
-        var newUser = findViewById<TextView>(R.id.new_login)
+        val newUser = findViewById<TextView>(R.id.new_login)
         newUser.setOnClickListener{
             val intent = Intent(this, NewUserCreateActivity::class.java)
             startActivity(intent)
         }
-        var loginButton = findViewById<Button>(R.id.login)
+        val loginButton = findViewById<Button>(R.id.login)
         loginButton.setOnClickListener {
             val intent = Intent(this, MainButtomNavigationActivity::class.java)
             startActivity(intent)

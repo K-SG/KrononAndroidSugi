@@ -35,14 +35,14 @@ class CalendarFragment : Fragment() {
         setGridView()
         //GridViewのメソッドを呼び出す。
         val adapter = gridView.adapter as CalendarAdapter
-        var titleText = root?.findViewById<TextView>(R.id.month_title)
-        var prevButton = root?.findViewById<TextView>(R.id.prev_button)
-        var nextButton = root?.findViewById<TextView>(R.id.next_button)
-        var newScheduleButton = root?.findViewById<ImageView>(R.id.create_button)
+        val titleText = root?.findViewById<TextView>(R.id.month_title)
+        val prevButton = root?.findViewById<TextView>(R.id.prev_button)
+        val nextButton = root?.findViewById<TextView>(R.id.next_button)
+        val newScheduleButton = root?.findViewById<ImageView>(R.id.create_button)
 
 
         newScheduleButton?.setOnClickListener{
-            var intent = Intent(activity,CreateScheduleActivity::class.java)
+            val intent = Intent(activity,CreateScheduleActivity::class.java)
             startActivity(intent)
         }
 

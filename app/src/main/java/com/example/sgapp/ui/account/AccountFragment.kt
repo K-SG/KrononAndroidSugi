@@ -25,7 +25,7 @@ class AccountFragment : Fragment() {
         notificationsViewModel =
             ViewModelProvider(this).get(AccountViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_account, container, false)
-        var logoutButton = root?.findViewById<ImageButton>(R.id.logout_button)
+        val logoutButton = root?.findViewById<ImageButton>(R.id.logout_button)
         logoutButton?.setOnClickListener{
             val intent = Intent(activity, TopActivity::class.java)
             startActivity(intent)
