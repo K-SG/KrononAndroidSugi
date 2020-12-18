@@ -9,11 +9,11 @@ class CreateScheduleActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_schedule)
-        var backButton = findViewById<ImageView>(R.id.back_button)
+        val backButton = findViewById<ImageView>(R.id.back_button)
         backButton.setOnClickListener{
             finish()
         }
-        var okButton = findViewById<Button>(R.id.ok_button)
+        val okButton = findViewById<Button>(R.id.ok_button)
         okButton.setOnClickListener{
             finish()
         }

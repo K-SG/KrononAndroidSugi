@@ -67,11 +67,11 @@ class ScheduleFragment : Fragment() {
         root = inflater.inflate(R.layout.fragment_schedule, container, false)
         //コンテキストを取得
         mContext = activity
-        var dateText = root?.findViewById<TextView>(R.id.schedule_show_date)
-        var prevButton = root?.findViewById<TextView>(R.id.prev_day_button)
-        var nextButton = root?.findViewById<TextView>(R.id.next_day_button)
-        var newScheduleButton = root?.findViewById<ImageView>(R.id.create_button)
-        var date: Calendar = calendar
+        val dateText = root?.findViewById<TextView>(R.id.schedule_show_date)
+        val prevButton = root?.findViewById<TextView>(R.id.prev_day_button)
+        val nextButton = root?.findViewById<TextView>(R.id.next_day_button)
+        val newScheduleButton = root?.findViewById<ImageView>(R.id.create_button)
+        val date: Calendar = calendar
         //日付フォーマット
         var dateDisplay: String = DateFormat.format("yyyy年MM月dd日(EEE)の予定", date).toString()
         dateText?.text = dateDisplay
@@ -99,7 +99,7 @@ class ScheduleFragment : Fragment() {
         // dp 設定
         scale = resources.displayMetrics.density
 
-        var blackboardContainer = root?.findViewById<RelativeLayout>(R.id.blackboard)
+        val blackboardContainer = root?.findViewById<RelativeLayout>(R.id.blackboard)
         blackboardContainer?.removeAllViews()
         //予定ブロックの幅
         widthContent = ((widthPixel - lineReduceLength * scale) / nx).toInt()

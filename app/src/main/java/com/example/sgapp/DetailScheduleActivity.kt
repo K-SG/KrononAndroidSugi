@@ -10,9 +10,9 @@ class DetailScheduleActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_schedule)
-        var backButton = findViewById<ImageView>(R.id.back_button)
-        var editScheduleButton = findViewById<ImageButton>(R.id.update_button)
-        var deleteScheduleButton = findViewById<ImageButton>(R.id.delete_button)
+        val backButton = findViewById<ImageView>(R.id.back_button)
+        val editScheduleButton = findViewById<ImageButton>(R.id.update_button)
+        val deleteScheduleButton = findViewById<ImageButton>(R.id.delete_button)
 
         backButton.setOnClickListener{
             finish()

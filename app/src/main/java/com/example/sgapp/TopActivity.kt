@@ -12,7 +12,7 @@ class TopActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_top)
-        var startButton = findViewById<ImageView>(R.id.start_button)
+        val startButton = findViewById<ImageView>(R.id.start_button)
         startButton.setOnClickListener{
             val intent = Intent(this,LoginActivity::class.java)
             startActivity(intent)

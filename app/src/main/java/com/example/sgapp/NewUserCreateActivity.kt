@@ -11,9 +11,9 @@ class NewUserCreateActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_user)
-        var returnButton = findViewById<ImageButton>(R.id.back_button)
-        var returnLogin = findViewById<TextView>(R.id.new_login)
-        var createUserButton = findViewById<Button>(R.id.create_button)
+        val returnButton = findViewById<ImageButton>(R.id.back_button)
+        val returnLogin = findViewById<TextView>(R.id.new_login)
+        val createUserButton = findViewById<Button>(R.id.create_button)
         returnButton.setOnClickListener{
             finish()
         }
