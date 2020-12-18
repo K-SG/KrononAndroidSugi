@@ -31,11 +31,11 @@ class CalendarAdapter: BaseAdapter {
         dateArray = dateManager?.getDays()!!
     }
 
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val dateFormat = SimpleDateFormat("d", Locale.JAPAN)
         calendarDays = listOf(dateFormat.format(dateArray[position]))
         //日付のみ表示させる
-        var inflator = context!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        var inflator = context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         var calendar: View = inflator.inflate(R.layout.calendar_cell, null)
         calendar.findViewById<TextView>(R.id.dateText).text = dateFormat.format(dateArray[position]).toString()
         calendar.setBackgroundColor(Color.WHITE)
@@ -73,7 +73,7 @@ class CalendarAdapter: BaseAdapter {
     }
 
     //表示月を取得
-    fun getTitle(): String? {
+    fun getTitle(): String {
         val format = SimpleDateFormat("yyyy年M月", Locale.JAPAN)
         return format.format(dateManager?.calendar?.time)
     }
