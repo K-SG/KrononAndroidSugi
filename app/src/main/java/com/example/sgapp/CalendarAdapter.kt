@@ -1,15 +1,16 @@
 package com.example.sgapp
 
-import android.annotation.SuppressLint
 import android.content.Context
-import android.content.res.Resources
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.inflate
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
-import androidx.navigation.findNavController
+import androidx.core.content.res.ColorStateListInflaterCompat.inflate
+import androidx.core.graphics.drawable.DrawableCompat.inflate
+import androidx.recyclerview.widget.RecyclerView
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -23,6 +24,15 @@ class CalendarAdapter: BaseAdapter {
     private var calendarDays: List<String> = ArrayList()
     var context: Context? = null
 
+    //カスタムセルを拡張したらここでWigetを定義
+    private class ViewHolder {
+        var dateText: TextView? = null
+    }
+
+    private val schedules = arrayOf(
+        ScheduleModel(1, 1, "2020/12/30", "タスク１", 13, 14, 3),
+        ScheduleModel(1, 2, "2020/12/30", "タスク2", 15, 16, 3)
+    )
 
     constructor(context: Context?) : super() {
         this.context = context
@@ -32,13 +42,27 @@ class CalendarAdapter: BaseAdapter {
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        val dateFormat = SimpleDateFormat("d", Locale.JAPAN)
-        calendarDays = listOf(dateFormat.format(dateArray[position]))
         //日付のみ表示させる
         val inflator = context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val calendar: View = inflator.inflate(R.layout.calendar_cell, null)
+        val dateFormat = SimpleDateFormat("d", Locale.JAPAN)
+        calendarDays = listOf(dateFormat.format(dateArray[position]))
+        val dateFormat_date = SimpleDateFormat("yyyy/MM/dd", Locale.JAPAN)
+
         calendar.findViewById<TextView>(R.id.dateText).text = dateFormat.format(dateArray[position]).toString()
+        var titletext =  calendar.findViewById<TextView>(R.id.title1)
         calendar.setBackgroundColor(Color.WHITE)
+        //日付クラスのリストからその日付のインスタンスを呼び出してVIEWを作る、カレンダークラスの中に日付のクラス（中にイベントクラスがある）のリストを持たせる
+
+
+        for(schedule in schedules){
+            if (dateFormat_date.format(dateArray[position]).toString() == schedule.scheduleDate){
+                titletext.text = schedule.title
+            }
+        }
+        var holder: RecyclerView.ViewHolder
+
+
         //カレンダータップすると予定表に飛びたいんだが
 //        calendar.setOnClickListener(){
 //            convertView?.findNavController()?.navigate(

@@ -10,7 +10,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
 import com.example.sgapp.CalendarAdapter
 import com.example.sgapp.CreateScheduleActivity
 import com.example.sgapp.R
@@ -21,6 +20,8 @@ class CalendarFragment : Fragment() {
     private lateinit var homeViewModel: CalendarViewModel
     var root: View? = null
     lateinit var gridView:GridView
+
+
 
 
     override fun onCreateView(

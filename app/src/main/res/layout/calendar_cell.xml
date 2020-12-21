@@ -21,7 +21,7 @@
         app:autoSizeMinTextSize="2dp" />
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/title1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/dateText"
@@ -32,6 +32,15 @@
         android:layout_alignParentRight="true"
         android:layout_marginTop="10dp" />
 
-    <!--ここに拡張可能-->
-
+    <TextView
+        android:id="@+id/title2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/dateText"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp" />
 </RelativeLayout>

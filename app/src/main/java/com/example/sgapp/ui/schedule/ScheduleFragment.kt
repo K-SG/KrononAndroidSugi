@@ -46,7 +46,7 @@ class ScheduleFragment : Fragment() {
     var calendar: Calendar = Calendar.getInstance()
 
     private val schedules = arrayOf(
-        ScheduleModel(1, 1, "お腹減ったよ", 10 * 60, 11 * 60 + 30, 0)
+        ScheduleModel(1, 1, "2020/12/20","タスク１" ,10 * 60, 11 * 60 + 30, 0)
     )
     
     companion object {
