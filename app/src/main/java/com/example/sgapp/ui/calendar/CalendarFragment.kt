@@ -22,8 +22,6 @@ class CalendarFragment : Fragment() {
     lateinit var gridView:GridView
 
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

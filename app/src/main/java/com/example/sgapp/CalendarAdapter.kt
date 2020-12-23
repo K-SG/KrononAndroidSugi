@@ -31,7 +31,7 @@ class CalendarAdapter: BaseAdapter {
 
     private val schedules = arrayOf(
         ScheduleModel(1, 1, "2020/12/30", "タスク１", 13, 14, 3),
-        ScheduleModel(1, 2, "2020/12/30", "タスク2", 15, 16, 3)
+        ScheduleModel(1, 2, "2020/12/30", "タスク2あああああああs", 15, 16, 3)
     )
 
     constructor(context: Context?) : super() {
@@ -58,6 +58,7 @@ class CalendarAdapter: BaseAdapter {
         for(schedule in schedules){
             if (dateFormat_date.format(dateArray[position]).toString() == schedule.scheduleDate){
                 titletext.text = schedule.title
+                titletext.setBackgroundResource(R.drawable.event)
             }
         }
         var holder: RecyclerView.ViewHolder
