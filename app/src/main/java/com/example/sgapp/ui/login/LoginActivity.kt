@@ -26,7 +26,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         val userName = findViewById<EditText>(R.id.user_name)
-        val password = findViewById<EditText>(R.id.password)
+        val passWord = findViewById<EditText>(R.id.password)
         val newUser = findViewById<TextView>(R.id.new_login)
         newUser.setOnClickListener{
             val intent = Intent(this, NewUserCreateActivity::class.java)
@@ -74,15 +74,15 @@ class LoginActivity : AppCompatActivity() {
         userName.afterTextChanged {
             loginViewModel.loginDataChanged(
                     userName.text.toString(),
-                    password.text.toString()
+                    passWord.text.toString()
             )
         }
 
-        password.apply {
+        passWord.apply {
             afterTextChanged {
                 loginViewModel.loginDataChanged(
                         userName.text.toString(),
-                        password.text.toString()
+                        passWord.text.toString()
                 )
             }
 
@@ -91,7 +91,7 @@ class LoginActivity : AppCompatActivity() {
                     EditorInfo.IME_ACTION_DONE ->
                         loginViewModel.login(
                                 userName.text.toString(),
-                                password.text.toString()
+                                passWord.text.toString()
                         )
                 }
                 false
