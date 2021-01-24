@@ -14,6 +14,7 @@ class TopActivity : AppCompatActivity() {
         setContentView(R.layout.activity_top)
         val startButton = findViewById<ImageView>(R.id.start_button)
         startButton.setOnClickListener{
+
             val intent = Intent(this,LoginActivity::class.java)
             startActivity(intent)
         }

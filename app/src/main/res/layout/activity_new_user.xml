@@ -113,6 +113,7 @@
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:selectAllOnFocus="true"
+            android:textColor="@color/common_text"
             android:textColorHint="@color/hint_text"
             android:textSize="14sp"
             app:layout_constraintTop_toBottomOf="@+id/user_name"
@@ -132,10 +133,10 @@
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:selectAllOnFocus="true"
+            android:textColor="@color/common_text"
             android:textColorHint="@color/hint_text"
             android:textSize="14sp"
-            app:layout_constraintTop_toBottomOf="@+id/user_mail"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/user_mail" />
 
         <EditText
             android:id="@+id/password_confirm"
@@ -151,6 +152,7 @@
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:selectAllOnFocus="true"
+            android:textColor="@color/common_text"
             android:textColorHint="@color/hint_text"
             android:textSize="14sp"
             app:layout_constraintTop_toBottomOf="@+id/password"
