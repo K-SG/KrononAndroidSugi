@@ -1,5 +1,6 @@
 package com.example.sgapp.Retrofit2
 
+import com.example.retrofit2_kotlin.Retrofit2.CreateUser
 import com.google.gson.annotations.SerializedName
 
 class CreateUserResponse (
@@ -8,7 +9,7 @@ class CreateUserResponse (
     @SerializedName("code")
     var code: Int?,
     @SerializedName("data")
-    var data: Data?
+    var data: CreateUserData?
 )
 //class Data{
 //    @SerializedName("name")
@@ -18,7 +19,7 @@ class CreateUserResponse (
 //    @SerializedName("token")
 //    var token: String? = null
 //}
-class Data(
+class CreateUserData(
     @SerializedName("name")
     var name: String?,
     @SerializedName("email")
