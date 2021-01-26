@@ -2,31 +2,23 @@ package com.example.sgapp.Retrofit2
 
 import com.google.gson.annotations.SerializedName
 
-class CreateUserResponse (
+class LoginUserResponse (
     @SerializedName("success")
     var success: Boolean?,
     @SerializedName("code")
     var code: Int?,
     @SerializedName("data")
-    var data: CreateUserData?
+    var data: LoginUserData?
 )
-class CreateUser(
-    @SerializedName("name")
-    var name: String? = null,
+
+class LoginUser(
     @SerializedName("email")
     var email: String? = null,
     @SerializedName("password")
     var password: String? = null
 )
-//class Data{
-//    @SerializedName("name")
-//    var name: String? = null
-//    @SerializedName("email")
-//    var email: String? = null
-//    @SerializedName("token")
-//    var token: String? = null
-//}
-class CreateUserData(
+
+class LoginUserData(
     @SerializedName("name")
     var name: String?,
     @SerializedName("email")

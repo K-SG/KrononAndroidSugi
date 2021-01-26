@@ -83,7 +83,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/user_name"
+            android:id="@+id/login_email"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginTop="16dp"
@@ -116,11 +116,11 @@
             android:textColor="@color/common_text"
             android:textColorHint="@color/hint_text"
             android:textSize="14sp"
-            app:layout_constraintTop_toBottomOf="@+id/user_name"
+            app:layout_constraintTop_toBottomOf="@+id/login_email"
             tools:layout_editor_absoluteX="0dp" />
 
         <EditText
-            android:id="@+id/password"
+            android:id="@+id/login_password"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginTop="16dp"
@@ -155,7 +155,7 @@
             android:textColor="@color/common_text"
             android:textColorHint="@color/hint_text"
             android:textSize="14sp"
-            app:layout_constraintTop_toBottomOf="@+id/password"
+            app:layout_constraintTop_toBottomOf="@+id/login_password"
             tools:layout_editor_absoluteX="-44dp" />
 
         <Button

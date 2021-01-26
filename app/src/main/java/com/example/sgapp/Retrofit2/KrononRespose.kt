@@ -21,14 +21,14 @@ class CreateResponse{
 //    var message: ErrorMessage? = null
 //)
 
-class CreateUser(
-    @SerializedName("name")
-    var name: String? = null,
-    @SerializedName("email")
-    var email: String? = null,
-    @SerializedName("password")
-    var password: String? = null
-)
+//class CreateUser(
+//    @SerializedName("name")
+//    var name: String? = null,
+//    @SerializedName("email")
+//    var email: String? = null,
+//    @SerializedName("password")
+//    var password: String? = null
+//)
 
 class User{
     @SerializedName("name")

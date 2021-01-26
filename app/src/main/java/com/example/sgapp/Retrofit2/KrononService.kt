@@ -1,6 +1,9 @@
 package com.example.retrofit2_kotlin.Retrofit2
 
+import com.example.sgapp.Retrofit2.CreateUser
 import com.example.sgapp.Retrofit2.CreateUserResponse
+import com.example.sgapp.Retrofit2.LoginUser
+import com.example.sgapp.Retrofit2.LoginUserResponse
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -15,5 +18,6 @@ interface KrononService{
     @POST("api/users")
     fun createUser(@Body user: CreateUser): Call<CreateUserResponse>;
 //    fun createUser(@Query("name") name:String,@Query("email") email:String,@Query("password") password:String): Call<KrononRespose>;
-
+    @POST("api/login")
+    fun login(@Body user: LoginUser): Call<LoginUserResponse>;
 }

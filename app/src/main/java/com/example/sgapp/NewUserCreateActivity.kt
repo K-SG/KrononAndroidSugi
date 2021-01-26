@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import com.example.retrofit2_kotlin.Retrofit2.*
+import com.example.sgapp.Retrofit2.CreateUser
 import com.example.sgapp.Retrofit2.CreateUserErrorResponse
 import com.example.sgapp.Retrofit2.CreateUserResponse
 import com.google.gson.Gson
@@ -23,9 +24,9 @@ class NewUserCreateActivity : AppCompatActivity() {
         val returnButton = findViewById<ImageButton>(R.id.back_button)
         val returnLogin = findViewById<TextView>(R.id.new_login)
         val createUserButton = findViewById<Button>(R.id.create_button)
-        val name = findViewById<EditText>(R.id.user_name)
+        val name = findViewById<EditText>(R.id.login_email)
         val email = findViewById<EditText>(R.id.user_mail)
-        val password = findViewById<EditText>(R.id.password)
+        val password = findViewById<EditText>(R.id.login_password)
         val passwordConfirm = findViewById<EditText>(R.id.password_confirm)
 
 
