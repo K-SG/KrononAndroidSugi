@@ -3,12 +3,13 @@ package com.example.sgapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
-import com.example.retrofit2_kotlin.Retrofit2.KrononRespose
-import com.example.retrofit2_kotlin.Retrofit2.KrononService
-import com.example.retrofit2_kotlin.Retrofit2.User
-import org.json.JSONObject
+import com.example.retrofit2_kotlin.Retrofit2.*
+import com.example.sgapp.Retrofit2.CreateUserErrorResponse
+import com.example.sgapp.Retrofit2.CreateUserResponse
+import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -63,49 +64,46 @@ class NewUserCreateActivity : AppCompatActivity() {
             .build()
 
         val service = retrofit.create(KrononService::class.java)
-        val call = service.createUser(name, email, password)
-        call.enqueue(object : Callback<KrononRespose> {
-            override fun onResponse(call : Call<KrononRespose>, response: Response<KrononRespose>){
-                if(response.code() == 200){
-                    val weatherResponse = response.body()
+        val user = CreateUser(name,email,password)
+        val call = service.createUser(user)
+        call.enqueue(object : Callback<CreateUserResponse> {
+            override fun onResponse(call : Call<CreateUserResponse>, response: Response<CreateUserResponse>){
+                if(response.code() == 201){
+                    val userResponse = response.body()
 //                    Toast.makeText(this@MainActivity, weatherResponse!!.sys!!.country, Toast.LENGTH_LONG).show() }
-                    Toast.makeText(this@NewUserCreateActivity, weatherResponse!!.success.toString()
+                    Toast.makeText(this@NewUserCreateActivity, userResponse!!.success.toString()
                             +"\n"+
-                            weatherResponse!!.code.toString()
+                            userResponse!!.code.toString()
                             +"\n"+
-                            weatherResponse!!.message.toString()
+                            userResponse!!.data?.token.toString()
                         , Toast.LENGTH_LONG).show()
-
                     val intent = Intent(this@NewUserCreateActivity, MainButtomNavigationActivity::class.java)
                     startActivity(intent)
                 }
-                if(response.code() == 201){
-                    val weatherResponse = response.body()
-
-//                    Toast.makeText(this@MainActivity, weatherResponse!!.sys!!.country, Toast.LENGTH_LONG).show() }
-                    Toast.makeText(this@NewUserCreateActivity, weatherResponse!!.success.toString()
-                            +"\n"+
-                            weatherResponse!!.code.toString()
-                            +"\n"+
-                            weatherResponse!!.user?.token.toString()
-                        , Toast.LENGTH_LONG).show() }
                 if(response.code() == 400){
-                    val weatherResponseEroor = response.errorBody()
-                    val jsonObj = JSONObject(response.errorBody()!!.charStream().readText())
+                    val responseError = response.errorBody()
+                    //GsonでKotlinクラスに型を変えてもらえる。
+                    val exceptionBody = Gson().fromJson(responseError?.string(), CreateUserErrorResponse::class.java)
+                    exceptionBody.message?.name?.forEach { element-> Log.i("nameError",element) }
+                    exceptionBody.message?.email?.forEach { element-> Log.i("emailError",element) }
+                    exceptionBody.message?.password?.forEach { element-> Log.i("passwordError",element) }
+//                    Jsonのまま受け取る
+//                    val jsonObj = JSONObject(responseError?.charStream()?.readText())
+//                    val message = jsonObj.getJSONObject("message").get("email")
 //                    JSONObject jObjError = new JSONObject(response.errorBody()?.string());
 //                    Toast.makeText(this@NewUserCreateActivity, jsonObj.getString("message"), Toast.LENGTH_LONG).show()
+
                     AlertDialog.Builder(this@NewUserCreateActivity) // FragmentではActivityを取得して生成
                         .setTitle("エラー")
-                        .setMessage(jsonObj.getString("message"))
+                        .setMessage("何かが間違っているよ")
                         .setPositiveButton("OK", { dialog, which ->
                             // TODO:Yesが押された時の挙動
-
                         })
                         .show()
                 }
             }
 
-            override fun onFailure(calll: Call<KrononRespose>, t: Throwable){
+            override fun onFailure(calll: Call<CreateUserResponse>, t: Throwable){
                 Toast.makeText(this@NewUserCreateActivity, "Fail", Toast.LENGTH_LONG)
             }
         })
@@ -115,11 +113,5 @@ class NewUserCreateActivity : AppCompatActivity() {
 
         //        var BaseUrl = "http://api.openweathermap.org/"
         var BaseUrl = "http://54.199.202.205/"
-//        var AppId = "2e65127e909e178d0af311a81f39948c"
-//        var lat = "35"
-//        var lon = "139"
-//        var name = "sgsgsg"
-//        var email = "sugi@kmail.com"
-//        var password = "Kronon1122"
     }
 }
