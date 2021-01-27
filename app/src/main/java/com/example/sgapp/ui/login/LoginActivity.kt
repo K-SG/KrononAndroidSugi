@@ -9,10 +9,12 @@ import android.text.TextWatcher
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import com.example.retrofit2_kotlin.Retrofit2.KrononService
+import com.example.sgapp.DateManager
 import com.example.sgapp.MainButtomNavigationActivity
 import com.example.sgapp.NewUserCreateActivity
 
 import com.example.sgapp.R
+import com.example.sgapp.api.KrononClient
 import com.example.sgapp.api.LoginUserResponse
 import com.example.sgapp.api.LoginUser
 import com.example.sgapp.api.LoginUserErrorResponse
@@ -25,7 +27,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var loginViewModel: LoginViewModel
+    private var KrononClient: KrononClient? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,16 +51,11 @@ class LoginActivity : AppCompatActivity() {
     }
     fun getAPI(email:String,password:String){
         //APIクラスでやったほうがよい
-        val retrofit = Retrofit.Builder()
-            .baseUrl(BaseUrl)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        val service = retrofit.create(KrononService::class.java)
+        val service = KrononClient?.retrofitBuilder()
         val user = LoginUser(email,password)
         //ここをトライキャッチ　オフライン　と　タイムアウト（スリープ関数で処理を止める）
-        val call = service.login(user)
-        call.enqueue(object : Callback<LoginUserResponse> {
+        val call = service?.login(user)
+        call?.enqueue(object : Callback<LoginUserResponse> {
             override fun onResponse(call : Call<LoginUserResponse>, response: Response<LoginUserResponse>){
                 if(response.code() == 200){
                     val userResponse = response.body()
@@ -100,40 +97,4 @@ class LoginActivity : AppCompatActivity() {
             }
         })
     }
-
-    companion object {
-
-        //        var BaseUrl = "http://api.openweathermap.org/"
-        var BaseUrl = "http://54.199.202.205/"
-    }
-
-    private fun updateUiWithUser(model: LoggedInUserView) {
-        val welcome = getString(R.string.welcome)
-        val displayName = model.displayName
-        // TODO : initiate successful logged in experience
-//        Toast.makeText(
-//                applicationContext,
-//                "$welcome $displayName",
-//                Toast.LENGTH_LONG
-//        ).show()
-    }
-
-    private fun showLoginFailed(@StringRes errorString: Int) {
-        Toast.makeText(applicationContext, errorString, Toast.LENGTH_SHORT).show()
-    }
-}
-
-/**
- * Extension function to simplify setting an afterTextChanged action to EditText components.
- */
-fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {
-    this.addTextChangedListener(object : TextWatcher {
-        override fun afterTextChanged(editable: Editable?) {
-            afterTextChanged.invoke(editable.toString())
-        }
-
-        override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-
-        override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
-    })
 }
