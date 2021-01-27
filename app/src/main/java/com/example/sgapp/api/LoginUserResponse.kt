@@ -1,4 +1,4 @@
-package com.example.sgapp.Retrofit2
+package com.example.sgapp.api
 
 import com.google.gson.annotations.SerializedName
 
@@ -9,6 +9,7 @@ class LoginUserResponse (
     var code: Int?,
     @SerializedName("data")
     var data: LoginUserData?
+    //if文でmessageなかったらでERRORも一緒にいれてOK
 )
 
 class LoginUser(

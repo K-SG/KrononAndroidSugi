@@ -1,9 +1,9 @@
 package com.example.retrofit2_kotlin.Retrofit2
 
-import com.example.sgapp.Retrofit2.CreateUser
-import com.example.sgapp.Retrofit2.CreateUserResponse
-import com.example.sgapp.Retrofit2.LoginUser
-import com.example.sgapp.Retrofit2.LoginUserResponse
+import com.example.sgapp.api.CreateUser
+import com.example.sgapp.api.CreateUserResponse
+import com.example.sgapp.api.LoginUser
+import com.example.sgapp.api.LoginUserResponse
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET

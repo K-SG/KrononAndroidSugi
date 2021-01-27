@@ -1,4 +1,4 @@
-package com.example.sgapp.Retrofit2
+package com.example.sgapp.api
 
 import com.google.gson.annotations.SerializedName
 

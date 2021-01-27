@@ -6,7 +6,6 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import com.example.retrofit2_kotlin.Retrofit2.KrononService
@@ -14,9 +13,9 @@ import com.example.sgapp.MainButtomNavigationActivity
 import com.example.sgapp.NewUserCreateActivity
 
 import com.example.sgapp.R
-import com.example.sgapp.Retrofit2.CreateUserErrorResponse
-import com.example.sgapp.Retrofit2.LoginUserResponse
-import com.example.sgapp.Retrofit2.LoginUser
+import com.example.sgapp.api.LoginUserResponse
+import com.example.sgapp.api.LoginUser
+import com.example.sgapp.api.LoginUserErrorResponse
 import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
@@ -49,6 +48,7 @@ class LoginActivity : AppCompatActivity() {
 
     }
     fun getAPI(email:String,password:String){
+        //APIクラスでやったほうがよい
         val retrofit = Retrofit.Builder()
             .baseUrl(BaseUrl)
             .addConverterFactory(GsonConverterFactory.create())
@@ -56,6 +56,7 @@ class LoginActivity : AppCompatActivity() {
 
         val service = retrofit.create(KrononService::class.java)
         val user = LoginUser(email,password)
+        //ここをトライキャッチ　オフライン　と　タイムアウト（スリープ関数で処理を止める）
         val call = service.login(user)
         call.enqueue(object : Callback<LoginUserResponse> {
             override fun onResponse(call : Call<LoginUserResponse>, response: Response<LoginUserResponse>){
@@ -66,6 +67,7 @@ class LoginActivity : AppCompatActivity() {
                             +"\n"+
                             userResponse!!.code.toString()
                             +"\n"+
+                            //プリファレンスに保存
                             userResponse!!.data?.token.toString()
                         , Toast.LENGTH_LONG).show()
                     val intent = Intent(this@LoginActivity, MainButtomNavigationActivity::class.java)
@@ -74,9 +76,9 @@ class LoginActivity : AppCompatActivity() {
                 if(response.code() == 400){
                     val responseError = response.errorBody()
                     //GsonでKotlinクラスに型を変えてもらえる。
-                    val exceptionBody = Gson().fromJson(responseError?.string(), CreateUserErrorResponse::class.java)
-                    exceptionBody.message?.name?.forEach { element-> Log.i("nameError",element) }
-                    exceptionBody.message?.email?.forEach { element-> Log.i("emailError",element) }
+                    val exceptionBody = Gson().fromJson(responseError?.string(), LoginUserErrorResponse::class.java)
+//                    exceptionBody.message?.name?.forEach { element-> Log.i("nameError",element) }
+//                    exceptionBody.message?.email?.forEach { element-> Log.i("emailError",element) }
 //                    Jsonのまま受け取る
 //                    val jsonObj = JSONObject(responseError?.charStream()?.readText())
 //                    val message = jsonObj.getJSONObject("message").get("email")
@@ -85,7 +87,7 @@ class LoginActivity : AppCompatActivity() {
 
                     AlertDialog.Builder(this@LoginActivity) // FragmentではActivityを取得して生成
                         .setTitle("エラー")
-                        .setMessage("何かが間違っているよ")
+                        .setMessage(exceptionBody.message.toString())
                         .setPositiveButton("OK", { dialog, which ->
                             // TODO:Yesが押された時の挙動
                         })

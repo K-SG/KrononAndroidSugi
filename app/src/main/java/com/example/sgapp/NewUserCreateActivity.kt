@@ -7,9 +7,9 @@ import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import com.example.retrofit2_kotlin.Retrofit2.*
-import com.example.sgapp.Retrofit2.CreateUser
-import com.example.sgapp.Retrofit2.CreateUserErrorResponse
-import com.example.sgapp.Retrofit2.CreateUserResponse
+import com.example.sgapp.api.CreateUser
+import com.example.sgapp.api.CreateUserErrorResponse
+import com.example.sgapp.api.CreateUserResponse
 import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
@@ -85,9 +85,16 @@ class NewUserCreateActivity : AppCompatActivity() {
                     val responseError = response.errorBody()
                     //GsonでKotlinクラスに型を変えてもらえる。
                     val exceptionBody = Gson().fromJson(responseError?.string(), CreateUserErrorResponse::class.java)
-                    exceptionBody.message?.name?.forEach { element-> Log.i("nameError",element) }
-                    exceptionBody.message?.email?.forEach { element-> Log.i("emailError",element) }
-                    exceptionBody.message?.password?.forEach { element-> Log.i("passwordError",element) }
+                    var errorMessage = ""
+                    exceptionBody.message?.name?.forEach { element->
+                        errorMessage += element + "¥n"
+                        Log.i("nameError",element) }
+                    exceptionBody.message?.email?.forEach { element->
+                        errorMessage += element + "¥n"
+                        Log.i("emailError",element) }
+                    exceptionBody.message?.password?.forEach { element->
+                        errorMessage += element + "¥n"
+                        Log.i("passwordError",element) }
 //                    Jsonのまま受け取る
 //                    val jsonObj = JSONObject(responseError?.charStream()?.readText())
 //                    val message = jsonObj.getJSONObject("message").get("email")
@@ -96,7 +103,7 @@ class NewUserCreateActivity : AppCompatActivity() {
 
                     AlertDialog.Builder(this@NewUserCreateActivity) // FragmentではActivityを取得して生成
                         .setTitle("エラー")
-                        .setMessage("何かが間違っているよ")
+                        .setMessage(errorMessage)
                         .setPositiveButton("OK", { dialog, which ->
                             // TODO:Yesが押された時の挙動
                         })
