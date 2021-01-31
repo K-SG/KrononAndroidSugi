@@ -1,5 +1,6 @@
 package com.example.sgapp
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,6 +11,8 @@ import com.example.retrofit2_kotlin.Retrofit2.*
 import com.example.sgapp.api.CreateUser
 import com.example.sgapp.api.CreateUserErrorResponse
 import com.example.sgapp.api.CreateUserResponse
+import com.example.sgapp.api.KrononClient.Companion.BaseUrl
+import com.example.sgapp.api.LoginUserErrorResponse
 import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
@@ -71,39 +74,20 @@ class NewUserCreateActivity : AppCompatActivity() {
             override fun onResponse(call : Call<CreateUserResponse>, response: Response<CreateUserResponse>){
                 if(response.code() == 201){
                     val userResponse = response.body()
-//                    Toast.makeText(this@MainActivity, weatherResponse!!.sys!!.country, Toast.LENGTH_LONG).show() }
-                    Toast.makeText(this@NewUserCreateActivity, userResponse!!.success.toString()
-                            +"\n"+
-                            userResponse!!.code.toString()
-                            +"\n"+
-                            userResponse!!.data?.token.toString()
-                        , Toast.LENGTH_LONG).show()
+                    getSharedPreferences("user_data", Context.MODE_PRIVATE).edit().apply {
+                        putString("name", userResponse!!.data?.name.toString())
+                        putString("email", userResponse!!.data?.email.toString())
+                        commit()
+                    }
                     val intent = Intent(this@NewUserCreateActivity, MainButtomNavigationActivity::class.java)
                     startActivity(intent)
-                }
-                if(response.code() == 400){
+                }else {
                     val responseError = response.errorBody()
                     //GsonでKotlinクラスに型を変えてもらえる。
                     val exceptionBody = Gson().fromJson(responseError?.string(), CreateUserErrorResponse::class.java)
-                    var errorMessage = ""
-                    exceptionBody.message?.name?.forEach { element->
-                        errorMessage += element + "¥n"
-                        Log.i("nameError",element) }
-                    exceptionBody.message?.email?.forEach { element->
-                        errorMessage += element + "¥n"
-                        Log.i("emailError",element) }
-                    exceptionBody.message?.password?.forEach { element->
-                        errorMessage += element + "¥n"
-                        Log.i("passwordError",element) }
-//                    Jsonのまま受け取る
-//                    val jsonObj = JSONObject(responseError?.charStream()?.readText())
-//                    val message = jsonObj.getJSONObject("message").get("email")
-//                    JSONObject jObjError = new JSONObject(response.errorBody()?.string());
-//                    Toast.makeText(this@NewUserCreateActivity, jsonObj.getString("message"), Toast.LENGTH_LONG).show()
-
                     AlertDialog.Builder(this@NewUserCreateActivity) // FragmentではActivityを取得して生成
                         .setTitle("エラー")
-                        .setMessage(errorMessage)
+                        .setMessage(exceptionBody.message.toString())
                         .setPositiveButton("OK", { dialog, which ->
                             // TODO:Yesが押された時の挙動
                         })
@@ -112,14 +96,18 @@ class NewUserCreateActivity : AppCompatActivity() {
             }
 
             override fun onFailure(calll: Call<CreateUserResponse>, t: Throwable){
-                Toast.makeText(this@NewUserCreateActivity, "Fail", Toast.LENGTH_LONG)
+//                Toast.makeText(this@NewUserCreateActivity, "Fail", Toast.LENGTH_LONG)
+                AlertDialog.Builder(this@NewUserCreateActivity) // FragmentではActivityを取得して生成
+                    .setTitle("ネットワークエラー")
+                    .setMessage("ネットワークの接続が悪いです")
+                    .setPositiveButton("OK", { dialog, which ->
+                        // TODO:Yesが押された時の挙動
+                    })
+                    .show()
             }
+
         })
     }
 
-    companion object {
 
-        //        var BaseUrl = "http://api.openweathermap.org/"
-        var BaseUrl = "http://54.199.202.205/"
-    }
 }
