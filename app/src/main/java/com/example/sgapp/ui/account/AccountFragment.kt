@@ -33,7 +33,7 @@ class AccountFragment : Fragment() {
             val intent = Intent(activity, TopActivity::class.java)
             startActivity(intent)
         }
-        val pref = activity?.getSharedPreferences("my_settings", Context.MODE_PRIVATE)
+        val pref = activity?.getSharedPreferences("user_data", Context.MODE_PRIVATE)
         val name = pref?.getString("name", "")
         val email = pref?.getString("email", "")
         nameText?.text = name

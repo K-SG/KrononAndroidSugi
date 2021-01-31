@@ -64,22 +64,14 @@ class LoginActivity : AppCompatActivity() {
             override fun onResponse(call : Call<LoginUserResponse>, response: Response<LoginUserResponse>){
                 if(response.code() == 200){
                     val userResponse = response.body()
-                    Toast.makeText(this@LoginActivity, userResponse!!.success.toString()
-                            +"\n"+
-                            userResponse!!.code.toString()
-                            +"\n"+
-                            //プリファレンスに保存
-                            userResponse!!.data?.token.toString()
-                        , Toast.LENGTH_LONG).show()
-                    getSharedPreferences("my_settings", Context.MODE_PRIVATE).edit().apply {
+                    getSharedPreferences("user_data", Context.MODE_PRIVATE).edit().apply {
                         putString("name", userResponse!!.data?.name.toString())
                         putString("email", userResponse!!.data?.email.toString())
                         commit()
                     }
                     val intent = Intent(this@LoginActivity, MainButtomNavigationActivity::class.java)
                     startActivity(intent)
-                }
-                if(response.code() == 400){
+                }else{
                     val responseError = response.errorBody()
                     //GsonでKotlinクラスに型を変えてもらえる。
                     val exceptionBody = Gson().fromJson(responseError?.string(), LoginUserErrorResponse::class.java)
@@ -93,7 +85,14 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
             override fun onFailure(calll: Call<LoginUserResponse>, t: Throwable){
-                Toast.makeText(this@LoginActivity, "Fail", Toast.LENGTH_LONG)
+//                Toast.makeText(this@LoginActivity, "Fail", Toast.LENGTH_LONG)
+                AlertDialog.Builder(this@LoginActivity) // FragmentではActivityを取得して生成
+                    .setTitle("ネットワークエラー")
+                    .setMessage("ネットワークの接続が悪いです")
+                    .setPositiveButton("OK", { dialog, which ->
+                        // TODO:Yesが押された時の挙動
+                    })
+                    .show()
             }
         })
     }
