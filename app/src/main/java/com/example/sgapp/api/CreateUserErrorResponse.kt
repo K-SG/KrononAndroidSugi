@@ -17,13 +17,13 @@ class CreateUserErrorResponse (
     @SerializedName("code")
     var code: Int?,
     @SerializedName("message")
-    var message: ErrorMessage? = null
+    var message: String? = null
 )
-class ErrorMessage(
-    @SerializedName("name")
-    var name: Array<String>?,
-    @SerializedName("email")
-    var email: Array<String>? ,
-    @SerializedName("password")
-    var password: Array<String>?
-)
+//class ErrorMessage(
+//    @SerializedName("name")
+//    var name: Array<String>?,
+//    @SerializedName("email")ß
+//    var email: Array<String>? ,
+//    @SerializedName("password")
+//    var password: Array<String>?
+//)

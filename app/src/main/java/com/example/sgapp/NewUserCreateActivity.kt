@@ -10,6 +10,7 @@ import com.example.retrofit2_kotlin.Retrofit2.*
 import com.example.sgapp.api.CreateUser
 import com.example.sgapp.api.CreateUserErrorResponse
 import com.example.sgapp.api.CreateUserResponse
+import com.example.sgapp.api.KrononClient.Companion.BaseUrl
 import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
@@ -42,7 +43,7 @@ class NewUserCreateActivity : AppCompatActivity() {
             val passwordStr = password.text.toString()
             var passwordConfirmStr = passwordConfirm.text.toString()
 
-            if(passwordStr == passwordConfirmStr){
+            if(passwordStr == passwordConfirmStr || passwordStr == "" || passwordConfirmStr == "" ){
                 getAPI(nameStr,emailStr,passwordStr)
             }else{
                 AlertDialog.Builder(this) // FragmentではActivityを取得して生成
@@ -85,25 +86,9 @@ class NewUserCreateActivity : AppCompatActivity() {
                     val responseError = response.errorBody()
                     //GsonでKotlinクラスに型を変えてもらえる。
                     val exceptionBody = Gson().fromJson(responseError?.string(), CreateUserErrorResponse::class.java)
-                    var errorMessage = ""
-                    exceptionBody.message?.name?.forEach { element->
-                        errorMessage += element + "¥n"
-                        Log.i("nameError",element) }
-                    exceptionBody.message?.email?.forEach { element->
-                        errorMessage += element + "¥n"
-                        Log.i("emailError",element) }
-                    exceptionBody.message?.password?.forEach { element->
-                        errorMessage += element + "¥n"
-                        Log.i("passwordError",element) }
-//                    Jsonのまま受け取る
-//                    val jsonObj = JSONObject(responseError?.charStream()?.readText())
-//                    val message = jsonObj.getJSONObject("message").get("email")
-//                    JSONObject jObjError = new JSONObject(response.errorBody()?.string());
-//                    Toast.makeText(this@NewUserCreateActivity, jsonObj.getString("message"), Toast.LENGTH_LONG).show()
-
                     AlertDialog.Builder(this@NewUserCreateActivity) // FragmentではActivityを取得して生成
                         .setTitle("エラー")
-                        .setMessage(errorMessage)
+                        .setMessage(exceptionBody.message)
                         .setPositiveButton("OK", { dialog, which ->
                             // TODO:Yesが押された時の挙動
                         })
@@ -117,9 +102,4 @@ class NewUserCreateActivity : AppCompatActivity() {
         })
     }
 
-    companion object {
-
-        //        var BaseUrl = "http://api.openweathermap.org/"
-        var BaseUrl = "http://54.199.202.205/"
-    }
 }
