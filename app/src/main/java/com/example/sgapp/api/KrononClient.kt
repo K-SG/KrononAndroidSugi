@@ -1,20 +1,20 @@
 package com.example.sgapp.api
 
 import com.example.retrofit2_kotlin.Retrofit2.KrononService
-import com.example.sgapp.NewUserCreateActivity
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class KrononClient {
     //API1こに対するクライアントを入れる
+    var BaseUrl = "http://54.199.202.205/"
 
     fun retrofitBuilder(): KrononService {
+
         val retrofit = Retrofit.Builder()
             .baseUrl(BaseUrl)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-        val service = retrofit.create(KrononService::class.java)
-        return service
+        return retrofit.create(KrononService::class.java)
     }
 
     companion object {

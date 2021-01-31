@@ -1,5 +1,6 @@
 package com.example.sgapp.ui.login
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.annotation.StringRes
@@ -14,10 +15,8 @@ import com.example.sgapp.MainButtomNavigationActivity
 import com.example.sgapp.NewUserCreateActivity
 
 import com.example.sgapp.R
-import com.example.sgapp.api.KrononClient
-import com.example.sgapp.api.LoginUserResponse
-import com.example.sgapp.api.LoginUser
-import com.example.sgapp.api.LoginUserErrorResponse
+import com.example.sgapp.api.*
+import com.example.sgapp.api.KrononClient.Companion.BaseUrl
 import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
@@ -50,8 +49,14 @@ class LoginActivity : AppCompatActivity() {
 
     }
     fun getAPI(email:String,password:String){
+        val retrofit = Retrofit.Builder()
+            .baseUrl(BaseUrl)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        val service = retrofit.create(KrononService::class.java)
         //APIクラスでやったほうがよい
-        val service = KrononClient?.retrofitBuilder()
+//        val service = KrononClient?.retrofitBuilder()
         val user = LoginUser(email,password)
         //ここをトライキャッチ　オフライン　と　タイムアウト（スリープ関数で処理を止める）
         val call = service?.login(user)
@@ -59,7 +64,6 @@ class LoginActivity : AppCompatActivity() {
             override fun onResponse(call : Call<LoginUserResponse>, response: Response<LoginUserResponse>){
                 if(response.code() == 200){
                     val userResponse = response.body()
-//                    Toast.makeText(this@MainActivity, weatherResponse!!.sys!!.country, Toast.LENGTH_LONG).show() }
                     Toast.makeText(this@LoginActivity, userResponse!!.success.toString()
                             +"\n"+
                             userResponse!!.code.toString()
@@ -67,6 +71,11 @@ class LoginActivity : AppCompatActivity() {
                             //プリファレンスに保存
                             userResponse!!.data?.token.toString()
                         , Toast.LENGTH_LONG).show()
+                    getSharedPreferences("my_settings", Context.MODE_PRIVATE).edit().apply {
+                        putString("name", userResponse!!.data?.name.toString())
+                        putString("email", userResponse!!.data?.email.toString())
+                        commit()
+                    }
                     val intent = Intent(this@LoginActivity, MainButtomNavigationActivity::class.java)
                     startActivity(intent)
                 }
@@ -74,14 +83,6 @@ class LoginActivity : AppCompatActivity() {
                     val responseError = response.errorBody()
                     //GsonでKotlinクラスに型を変えてもらえる。
                     val exceptionBody = Gson().fromJson(responseError?.string(), LoginUserErrorResponse::class.java)
-//                    exceptionBody.message?.name?.forEach { element-> Log.i("nameError",element) }
-//                    exceptionBody.message?.email?.forEach { element-> Log.i("emailError",element) }
-//                    Jsonのまま受け取る
-//                    val jsonObj = JSONObject(responseError?.charStream()?.readText())
-//                    val message = jsonObj.getJSONObject("message").get("email")
-//                    JSONObject jObjError = new JSONObject(response.errorBody()?.string());
-//                    Toast.makeText(this@NewUserCreateActivity, jsonObj.getString("message"), Toast.LENGTH_LONG).show()
-
                     AlertDialog.Builder(this@LoginActivity) // FragmentではActivityを取得して生成
                         .setTitle("エラー")
                         .setMessage(exceptionBody.message.toString())
@@ -91,7 +92,6 @@ class LoginActivity : AppCompatActivity() {
                         .show()
                 }
             }
-
             override fun onFailure(calll: Call<LoginUserResponse>, t: Throwable){
                 Toast.makeText(this@LoginActivity, "Fail", Toast.LENGTH_LONG)
             }
