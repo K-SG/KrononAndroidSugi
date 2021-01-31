@@ -87,7 +87,7 @@
                     android:background="@color/edit_text"
                     android:ems="10"
                     android:hint="@string/title_text"
-                    android:inputType="date"
+                    android:inputType="text"
                     android:textColor="@color/common_text"
                     android:textColorHint="@color/common_hint_text"
                     app:theme="@style/EditTextStyle"
@@ -114,7 +114,7 @@
                     android:textColor="@color/common_text"
                     android:textSize="18sp" />
 
-                <EditText
+                <TextView
                     android:id="@+id/date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -122,7 +122,6 @@
                     android:autofillHints=""
                     android:background="@color/edit_text"
                     android:gravity="end"
-                    android:inputType="date"
                     android:textColor="@color/common_text"
                     android:textColorHint="@color/common_hint_text"
                     app:theme="@style/EditTextStyle"
