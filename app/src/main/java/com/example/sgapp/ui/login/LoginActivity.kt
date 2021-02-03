@@ -67,6 +67,7 @@ class LoginActivity : AppCompatActivity() {
                     getSharedPreferences("user_data", Context.MODE_PRIVATE).edit().apply {
                         putString("name", userResponse!!.data?.name.toString())
                         putString("email", userResponse!!.data?.email.toString())
+                        putString("token", userResponse!!.data?.token.toString())
                         commit()
                     }
                     val intent = Intent(this@LoginActivity, MainButtomNavigationActivity::class.java)

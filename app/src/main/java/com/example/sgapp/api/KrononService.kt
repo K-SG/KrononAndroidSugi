@@ -1,14 +1,8 @@
 package com.example.retrofit2_kotlin.Retrofit2
 
-import com.example.sgapp.api.CreateUser
-import com.example.sgapp.api.CreateUserResponse
-import com.example.sgapp.api.LoginUser
-import com.example.sgapp.api.LoginUserResponse
+import com.example.sgapp.api.*
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface KrononService{
 //    @GET("data/2.5/weather?")
@@ -20,4 +14,10 @@ interface KrononService{
 //    fun createUser(@Query("name") name:String,@Query("email") email:String,@Query("password") password:String): Call<KrononRespose>;
     @POST("api/login")
     fun login(@Body user: LoginUser): Call<LoginUserResponse>;
+
+    @POST("api/schedules")
+    fun createSchedule(@Body schedule: CreateSchedule,@Header("Authorization") token: String,@Header ("Accept") accept:String): Call<CreateScheduleResponse>;
+//    @GET("user")
+//    fun getUser(@Header("Authorization") authorization: String): Call<User>
+
 }

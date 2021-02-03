@@ -57,6 +57,7 @@
     <string name="new_schedule_title">予定登録</string>
     <string name="update_schedule_title">予定修正</string>
     <string name="content_text">内容</string>
+    <string name="place_text">場所</string>
     <string name="date_text">日付</string>
     <string name="start_time_text">開始時間</string>
     <string name="end_time_text">終了時間</string>
@@ -65,4 +66,10 @@
     <string name="detail_schedule_title">予定詳細</string>
     <string name="update">修正</string>
     <string name="delete">削除</string>
+
+    <string-array name="list">
+        <item>オフィス</item>
+        <item>在宅</item>
+        <item>外出</item>
+    </string-array>
 </resources>

@@ -3,14 +3,14 @@ package com.example.retrofit2_kotlin.Retrofit2
 import com.example.sgapp.data.Result
 import com.google.gson.annotations.SerializedName
 
-class CreateResponse{
-    @SerializedName("success")
-    var success: Boolean? = true
-    @SerializedName("code")
-    var code: Int? = 0.toInt()
-    @SerializedName("data")
-    var user: User? = null
-}
+//class CreateResponse{
+//    @SerializedName("success")
+//    var success: Boolean? = true
+//    @SerializedName("code")
+//    var code: Int? = 0.toInt()
+//    @SerializedName("data")
+//    var user: User? = null
+//}
 
 //class CreateUserErrorResponse (
 //    @SerializedName("success")
@@ -30,16 +30,16 @@ class CreateResponse{
 //    var password: String? = null
 //)
 
-class User{
-    @SerializedName("name")
-    var name: String? = null
-    @SerializedName("email")
-    var email: String? = null
-    @SerializedName("password")
-    var password: String? = null
-    @SerializedName("token")
-    var token: String? = null
-}
+//class User{
+//    @SerializedName("name")
+//    var name: String? = null
+//    @SerializedName("email")
+//    var email: String? = null
+//    @SerializedName("password")
+//    var password: String? = null
+//    @SerializedName("token")
+//    var token: String? = null
+//}
 //
 //class ErrorMessage(
 //    @SerializedName("name")
@@ -50,14 +50,14 @@ class User{
 //    var password: Array<String>?
 //)
 
-class Message{
-    @SerializedName("name")
-    var name: String? = null
-    @SerializedName("email")
-    var email: String? = null
-    @SerializedName("password")
-    var password: String? = null
-}
+//class Message{
+//    @SerializedName("name")
+//    var name: String? = null
+//    @SerializedName("email")
+//    var email: String? = null
+//    @SerializedName("password")
+//    var password: String? = null
+//}
 
 //class Schedule {
 //    @SerializedName("all")
