@@ -30,12 +30,12 @@ class CreateScheduleActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_schedule)
 
-        var dateText = findViewById<TextView>(R.id.input_date)
-        var title = findViewById<EditText>(R.id.title_text)
-        var place = findViewById<Spinner>(R.id.place_select)
-        var startTime = findViewById<TextView>(R.id.new_start_time)
-        var endTime = findViewById<TextView>(R.id.new_end_time)
-        var content = findViewById<EditText>(R.id.content)
+        val dateText = findViewById<TextView>(R.id.input_date)
+        val title = findViewById<EditText>(R.id.title_text)
+        val place = findViewById<Spinner>(R.id.place_select)
+        val startTime = findViewById<TextView>(R.id.new_start_time)
+        val endTime = findViewById<TextView>(R.id.new_end_time)
+        val content = findViewById<EditText>(R.id.content)
         var placeSelect : Int = 0
 
         val adapter = ArrayAdapter.createFromResource(
@@ -89,11 +89,11 @@ class CreateScheduleActivity : AppCompatActivity() {
         val okButton = findViewById<Button>(R.id.ok_button)
 
         okButton.setOnClickListener{
-            var titleStr = title.text.toString()
-            var dateStr = dateText.text.toString()
-            var startTimeInput = startTime.text.toString()
-            var endTimeInput = endTime.text.toString()
-            var contentInput = content.text.toString()
+            val titleStr = title.text.toString()
+            val dateStr = dateText.text.toString()
+            val startTimeInput = startTime.text.toString()
+            val endTimeInput = endTime.text.toString()
+            val contentInput = content.text.toString()
             getAPI(titleStr, dateStr, placeSelect, startTimeInput, endTimeInput, contentInput)
         }
 
@@ -159,7 +159,7 @@ class CreateScheduleActivity : AppCompatActivity() {
         val toYear = calender.get(Calendar.YEAR)
         val toMonth = calender.get(Calendar.MONTH)
         val today = calender.get(Calendar.DAY_OF_MONTH)
-        var dateText = findViewById<TextView>(R.id.input_date)
+        val dateText = findViewById<TextView>(R.id.input_date)
         val datePickerDialog = DatePickerDialog(
             this,
             DatePickerDialog.OnDateSetListener() { view, year, month, dayOfMonth ->
@@ -178,8 +178,7 @@ class CreateScheduleActivity : AppCompatActivity() {
         datePickerDialog.show()
     }
     private fun showStartTimePicker(){
-        var startTime = findViewById<TextView>(R.id.new_start_time)
-        var endTime = findViewById<TextView>(R.id.new_end_time)
+        val startTime = findViewById<TextView>(R.id.new_start_time)
         val calendar = Calendar.getInstance()
         val hour = calendar[Calendar.HOUR_OF_DAY]
         val minute = calendar[Calendar.MINUTE]
@@ -192,7 +191,7 @@ class CreateScheduleActivity : AppCompatActivity() {
         timePickerDialog.show()
     }
     private fun showEndTimePicker(){
-        var endTime = findViewById<TextView>(R.id.new_end_time)
+        val endTime = findViewById<TextView>(R.id.new_end_time)
         val calendar = Calendar.getInstance()
         val hour = calendar[Calendar.HOUR_OF_DAY]
         val minute = calendar[Calendar.MINUTE]
