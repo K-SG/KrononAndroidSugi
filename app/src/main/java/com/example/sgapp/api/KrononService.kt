@@ -2,6 +2,7 @@ package com.example.retrofit2_kotlin.Retrofit2
 
 import com.example.sgapp.api.*
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.*
 
 interface KrononService{
@@ -17,6 +18,10 @@ interface KrononService{
 
     @POST("api/schedules")
     fun createSchedule(@Body schedule: CreateSchedule,@Header("Authorization") token: String,@Header ("Accept") accept:String): Call<CreateScheduleResponse>;
+
+    @DELETE("api/logout")
+    fun logout(@Header("Authorization") token : String?): Call<LogoutUserResponse>
+
 //    @GET("user")
 //    fun getUser(@Header("Authorization") authorization: String): Call<User>
 
