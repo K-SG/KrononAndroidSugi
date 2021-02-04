@@ -56,7 +56,6 @@ class LoginActivity : AppCompatActivity() {
 
         val service = retrofit.create(KrononService::class.java)
         //APIクラスでやったほうがよい
-//        val service = KrononClient?.retrofitBuilder()
         val user = LoginUser(email,password)
         //ここをトライキャッチ　オフライン　と　タイムアウト（スリープ関数で処理を止める）
         val call = service?.login(user)
