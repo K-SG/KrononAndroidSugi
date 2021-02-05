@@ -18,11 +18,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.retrofit2_kotlin.Retrofit2.KrononService
 import com.example.sgapp.*
-import com.example.sgapp.api.KrononClient
+import com.example.sgapp.api.*
 import com.example.sgapp.api.KrononClient.Companion.BaseUrl
-import com.example.sgapp.api.LoginUserErrorResponse
-import com.example.sgapp.api.LogoutUserResponse
-import com.example.sgapp.api.ShowScheduleResponse
 import com.example.sgapp.ui.login.LoginActivity
 import com.google.gson.Gson
 import retrofit2.Call
@@ -90,7 +87,7 @@ class ScheduleFragment : Fragment() {
         //日付フォーマット
         var dateDisplay: String = DateFormat.format("yyyy年MM月dd日(EEE)の予定", date).toString()
         dateText?.text = dateDisplay
-
+        names = arrayOf("中根", "奥野", "杉")
         getAPI()
 
         newScheduleButton?.setOnClickListener(View.OnClickListener {
@@ -141,6 +138,7 @@ class ScheduleFragment : Fragment() {
     @SuppressLint("ResourceAsColor")
     private fun viewName(layout: RelativeLayout){
         mContext = activity
+        
         val nx = names.size
         for (i in 0 until nx) {
             val textView = TextView(mContext)
@@ -281,15 +279,18 @@ class ScheduleFragment : Fragment() {
         }
     }
     fun getAPI(){
-//        val pref = activity?.getSharedPreferences("user_data", Context.MODE_PRIVATE)
-//        var token = pref?.getString("token", "")
-
+        val pref = activity?.getSharedPreferences("user_data", Context.MODE_PRIVATE)
+        var token = pref?.getString("token", "")
         val retrofit = Retrofit.Builder()
             .baseUrl(BaseUrl)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
+        var date = "2021-01-01"
+        token = "Bearer $token"
         val service = retrofit.create(KrononService::class.java)
-        val call = service.showSchedules("2021-01-01")
+//        val scheduleDate = ScheduleDate(date)
+        val call = service.showSchedules(date,token)
+
         call.enqueue(object : Callback<ShowScheduleResponse> {
             override fun onResponse(
                 call: Call<ShowScheduleResponse>,

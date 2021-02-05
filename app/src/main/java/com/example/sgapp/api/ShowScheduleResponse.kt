@@ -1,5 +1,6 @@
 package com.example.sgapp.api
 
+import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 
 class ShowScheduleResponse (
@@ -8,13 +9,18 @@ class ShowScheduleResponse (
         @SerializedName("code")
         val code: Int?,
         @SerializedName("data")
-        var data: ShowSchedule? = null
+        var data: Array<ShowSchedule>?
 )
 
 class ShowSchedule(
         @SerializedName("name")
         var name: String? = null,
-        @SerializedName("schedule_date")
-        var schedule_date: String? = null
+        @SerializedName("schedules")
+        var schedules: Array<String>?
+)
+
+class ScheduleDate(
+        @SerializedName("date")
+        var date: String?
 )
 

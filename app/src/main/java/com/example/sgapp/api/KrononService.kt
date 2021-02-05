@@ -1,9 +1,12 @@
 package com.example.retrofit2_kotlin.Retrofit2
 
 import com.example.sgapp.api.*
+import com.google.gson.Gson
+import com.google.gson.annotations.SerializedName
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
+import java.util.*
 
 interface KrononService{
 //    @GET("data/2.5/weather?")
@@ -22,8 +25,9 @@ interface KrononService{
     @DELETE("api/logout")
     fun logout(@Header("Authorization") token : String?): Call<LogoutUserResponse>
 
-    @GET("api//show-schedules/search-by-day")
-    fun showSchedules(@Query("date") date : String): Call<ShowScheduleResponse>
+    @GET("api/show-schedules/search-by-day")
+    fun showSchedules(@Query("date") date : String, @Header("Authorization") token : String?): Call<ShowScheduleResponse>
+
 
 
 //    @GET("user")
