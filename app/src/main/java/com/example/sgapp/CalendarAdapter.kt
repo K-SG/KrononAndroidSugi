@@ -30,8 +30,8 @@ class CalendarAdapter: BaseAdapter {
     }
 
     private val schedules = arrayOf(
-        ScheduleModel(1, 1, "2020/12/30", "タスク１", 13, 14, 3),
-        ScheduleModel(1, 2, "2020/12/30", "タスク2あああああああs", 15, 16, 3)
+        ScheduleModel(1, 1, "2021/01/01", "タスク１", 13, 14, 3),
+        ScheduleModel(1, 2, "2021/01/01", "タスク2あああああああs", 15, 16, 3)
     )
 
     constructor(context: Context?) : super() {

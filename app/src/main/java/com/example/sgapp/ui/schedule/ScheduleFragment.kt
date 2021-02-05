@@ -13,9 +13,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.retrofit2_kotlin.Retrofit2.KrononService
 import com.example.sgapp.*
+import com.example.sgapp.api.KrononClient
+import com.example.sgapp.api.KrononClient.Companion.BaseUrl
+import com.example.sgapp.api.LoginUserErrorResponse
+import com.example.sgapp.api.LogoutUserResponse
+import com.example.sgapp.api.ShowScheduleResponse
+import com.example.sgapp.ui.login.LoginActivity
+import com.google.gson.Gson
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
 
 
@@ -41,14 +55,15 @@ class ScheduleFragment : Fragment() {
     private var widthPixel = 0
     private var widthContent = 0
     private var scale = 0f
-    private val names = arrayOf("中根", "奥野", "杉")
+    var names : Array<String> = arrayOf()
     private val nx = names.size
     var calendar: Calendar = Calendar.getInstance()
-
-    private val schedules = arrayOf(
-        ScheduleModel(1, 1, "2020/12/20","タスク１" ,10 * 60, 11 * 60 + 30, 0)
+    val schedules = arrayOf(
+        ScheduleModel(1, 1, "2020/12/20","タスク１" ,10 * 60, 11 * 60 + 30, 0),
+        ScheduleModel(0, 2, "2020/12/20","タスク１" ,15 * 60, 16 * 60 + 30, 2)
     )
-    
+//    val schedules = arrayOf<String>()
+
     companion object {
     }
 
@@ -75,6 +90,8 @@ class ScheduleFragment : Fragment() {
         //日付フォーマット
         var dateDisplay: String = DateFormat.format("yyyy年MM月dd日(EEE)の予定", date).toString()
         dateText?.text = dateDisplay
+
+        getAPI()
 
         newScheduleButton?.setOnClickListener(View.OnClickListener {
             val intent = Intent(activity, CreateScheduleActivity::class.java)
@@ -124,6 +141,7 @@ class ScheduleFragment : Fragment() {
     @SuppressLint("ResourceAsColor")
     private fun viewName(layout: RelativeLayout){
         mContext = activity
+        val nx = names.size
         for (i in 0 until nx) {
             val textView = TextView(mContext)
             textView.text = names[i]
@@ -261,6 +279,54 @@ class ScheduleFragment : Fragment() {
             layout.addView(textView)
 
         }
+    }
+    fun getAPI(){
+//        val pref = activity?.getSharedPreferences("user_data", Context.MODE_PRIVATE)
+//        var token = pref?.getString("token", "")
+
+        val retrofit = Retrofit.Builder()
+            .baseUrl(BaseUrl)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        val service = retrofit.create(KrononService::class.java)
+        val call = service.showSchedules("2021-01-01")
+        call.enqueue(object : Callback<ShowScheduleResponse> {
+            override fun onResponse(
+                call: Call<ShowScheduleResponse>,
+                response: Response<ShowScheduleResponse>
+            ) {
+                if (response.code() == 200) {
+                    names = arrayOf("中根", "奥野", "杉")
+                } else {
+                    val responseError = response.errorBody()
+                    val exceptionBody = Gson().fromJson(responseError?.string(), LoginUserErrorResponse::class.java)
+                    activity?.let {
+                        AlertDialog.Builder(it) // FragmentではActivityを取得して生成
+                            .setTitle("エラー")
+                            .setMessage(exceptionBody.message.toString())
+                            .setPositiveButton("OK", { dialog, which ->
+                                // TODO:Yesが押された時の挙動
+                            })
+                            .show()
+                    }
+
+                }
+            }
+
+            override fun onFailure(calll: Call<ShowScheduleResponse>, t: Throwable) {
+//                Toast.makeText(this@NewUserCreateActivity, "Fail", Toast.LENGTH_LONG)
+                activity?.let {
+                    AlertDialog.Builder(it) // FragmentではActivityを取得して生成
+                        .setTitle("ネットワークエラー")
+                        .setMessage("ネットワークの接続が悪いです")
+                        .setPositiveButton("OK", { dialog, which ->
+                            // TODO:Yesが押された時の挙動
+                        })
+                        .show()
+                }
+            }
+
+        })
     }
 
 }

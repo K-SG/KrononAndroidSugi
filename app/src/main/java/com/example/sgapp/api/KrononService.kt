@@ -22,6 +22,10 @@ interface KrononService{
     @DELETE("api/logout")
     fun logout(@Header("Authorization") token : String?): Call<LogoutUserResponse>
 
+    @GET("api//show-schedules/search-by-day")
+    fun showSchedules(@Query("date") date : String): Call<ShowScheduleResponse>
+
+
 //    @GET("user")
 //    fun getUser(@Header("Authorization") authorization: String): Call<User>
 
