@@ -28,6 +28,10 @@ interface KrononService{
     @GET("api/show-schedules/search-by-day")
     fun showSchedules(@Query("date") date : String, @Header("Authorization") token : String?,@Header("Accept") accept :String): Call<ShowScheduleResponse>
 
+    @GET("api/calendar")
+    fun calendar(@Query("date") date : String, @Header("Authorization") token : String?,@Header("Accept") accept :String): Call<CalendarReaponse>
+
+
 
 
 //    @GET("user")

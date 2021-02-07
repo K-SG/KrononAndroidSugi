@@ -8,9 +8,18 @@ import android.view.View.inflate
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.res.ColorStateListInflaterCompat.inflate
 import androidx.core.graphics.drawable.DrawableCompat.inflate
 import androidx.recyclerview.widget.RecyclerView
+import com.example.retrofit2_kotlin.Retrofit2.KrononService
+import com.example.sgapp.api.*
+import com.google.gson.Gson
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -53,8 +62,7 @@ class CalendarAdapter: BaseAdapter {
         var titletext =  calendar.findViewById<TextView>(R.id.title1)
         calendar.setBackgroundColor(Color.WHITE)
         //日付クラスのリストからその日付のインスタンスを呼び出してVIEWを作る、カレンダークラスの中に日付のクラス（中にイベントクラスがある）のリストを持たせる
-
-
+//        getAPI()
         for(schedule in schedules){
             if (dateFormat_date.format(dateArray[position]).toString() == schedule.scheduleDate){
                 titletext.text = schedule.title
@@ -116,7 +124,59 @@ class CalendarAdapter: BaseAdapter {
     fun prevMonth() {
         dateManager?.prevMonth()
         dateArray = dateManager?.getDays()!!
+        getAPI()
         //画面をリフレッシュしてくれる
         notifyDataSetChanged()
+    }
+    fun getAPI(){
+        val pref = context?.getSharedPreferences("user_data", Context.MODE_PRIVATE)
+        var token = pref?.getString("token", "")
+        val retrofit = Retrofit.Builder()
+            .baseUrl(KrononClient.BaseUrl)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        var date = "2021-02-01"
+        token = "Bearer $token"
+        val service = retrofit.create(KrononService::class.java)
+//        val scheduleDate = ScheduleDate(date)
+        val call = service.calendar(date,token,"application/json")
+
+        call.enqueue(object : Callback<CalendarReaponse> {
+            override fun onResponse(
+                call: Call<CalendarReaponse>,
+                response: Response<CalendarReaponse>
+            ) {
+                if (response.code() == 200) {
+//                    names = arrayOf("中根", "奥野", "杉")
+                } else {
+                    val responseError = response.errorBody()
+                    val exceptionBody = Gson().fromJson(responseError?.string(), CalendarErrorResponse::class.java)
+                    context?.let {
+                        AlertDialog.Builder(it) // FragmentではActivityを取得して生成
+                            .setTitle("エラー")
+                            .setMessage(exceptionBody.message.toString())
+                            .setPositiveButton("OK", { dialog, which ->
+                                // TODO:Yesが押された時の挙動
+                            })
+                            .show()
+                    }
+
+                }
+            }
+
+            override fun onFailure(calll: Call<CalendarReaponse>, t: Throwable) {
+//                Toast.makeText(this@NewUserCreateActivity, "Fail", Toast.LENGTH_LONG)
+                context?.let {
+                    AlertDialog.Builder(it) // FragmentではActivityを取得して生成
+                        .setTitle("ネットワークエラー")
+                        .setMessage("ネットワークの接続が悪いです")
+                        .setPositiveButton("OK", { dialog, which ->
+                            // TODO:Yesが押された時の挙動
+                        })
+                        .show()
+                }
+            }
+
+        })
     }
 }
