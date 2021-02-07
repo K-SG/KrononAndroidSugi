@@ -87,7 +87,7 @@ class ScheduleFragment : Fragment() {
         //日付フォーマット
         var dateDisplay: String = DateFormat.format("yyyy年MM月dd日(EEE)の予定", date).toString()
         dateText?.text = dateDisplay
-        names = arrayOf("中根", "奥野", "杉")
+//        names = arrayOf("中根", "奥野", "杉")
         getAPI()
 
         newScheduleButton?.setOnClickListener(View.OnClickListener {
@@ -289,7 +289,7 @@ class ScheduleFragment : Fragment() {
         token = "Bearer $token"
         val service = retrofit.create(KrononService::class.java)
 //        val scheduleDate = ScheduleDate(date)
-        val call = service.showSchedules(date,token)
+        val call = service.showSchedules(date,token,"application/json")
 
         call.enqueue(object : Callback<ShowScheduleResponse> {
             override fun onResponse(

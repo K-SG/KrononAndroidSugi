@@ -26,7 +26,7 @@ interface KrononService{
     fun logout(@Header("Authorization") token : String?): Call<LogoutUserResponse>
 
     @GET("api/show-schedules/search-by-day")
-    fun showSchedules(@Query("date") date : String, @Header("Authorization") token : String?): Call<ShowScheduleResponse>
+    fun showSchedules(@Query("date") date : String, @Header("Authorization") token : String?,@Header("Accept") accept :String): Call<ShowScheduleResponse>
 
 
 
