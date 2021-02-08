@@ -48,6 +48,7 @@ class CalendarAdapter: BaseAdapter {
         layoutInflater = LayoutInflater.from(context)
         dateManager = DateManager()
         dateArray = dateManager?.getDays()!!
+        getAPI()
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
@@ -62,7 +63,7 @@ class CalendarAdapter: BaseAdapter {
         var titletext =  calendar.findViewById<TextView>(R.id.title1)
         calendar.setBackgroundColor(Color.WHITE)
         //日付クラスのリストからその日付のインスタンスを呼び出してVIEWを作る、カレンダークラスの中に日付のクラス（中にイベントクラスがある）のリストを持たせる
-//        getAPI()
+
         for(schedule in schedules){
             if (dateFormat_date.format(dateArray[position]).toString() == schedule.scheduleDate){
                 titletext.text = schedule.title
@@ -124,7 +125,6 @@ class CalendarAdapter: BaseAdapter {
     fun prevMonth() {
         dateManager?.prevMonth()
         dateArray = dateManager?.getDays()!!
-        getAPI()
         //画面をリフレッシュしてくれる
         notifyDataSetChanged()
     }
@@ -147,6 +147,8 @@ class CalendarAdapter: BaseAdapter {
                 response: Response<CalendarReaponse>
             ) {
                 if (response.code() == 200) {
+//                    val response =
+//                    val responseBody = Gson().fromJson(responseError?.string(), CalendarErrorResponse::class.java)
 //                    names = arrayOf("中根", "奥野", "杉")
                 } else {
                     val responseError = response.errorBody()

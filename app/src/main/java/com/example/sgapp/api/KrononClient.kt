@@ -17,6 +17,6 @@ class KrononClient {
     }
 
     companion object {
-        var BaseUrl = "http://54.64.229.155/"
+        var BaseUrl = "http://52.197.190.20/"
     }
 }

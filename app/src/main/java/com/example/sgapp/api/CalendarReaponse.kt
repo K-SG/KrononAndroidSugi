@@ -13,9 +13,9 @@ class CalendarReaponse (
 )
 
 class CalendarSchedule(
-        @SerializedName("name")
+        @SerializedName("date")
         var date: String? = null,
-        @SerializedName("schedules")
+        @SerializedName("start_time")
         var start_time: String? = null,
         @SerializedName("title")
         var title: String? = null
