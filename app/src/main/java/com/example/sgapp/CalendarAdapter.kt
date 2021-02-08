@@ -147,9 +147,10 @@ class CalendarAdapter: BaseAdapter {
                 response: Response<CalendarReaponse>
             ) {
                 if (response.code() == 200) {
-//
-//                    val responseBody = Gson().fromJson(responseError?.string(), CalendarErrorResponse::class.java)
-//                    names = arrayOf("中根", "奥野", "杉")
+                    val response = response.body()
+//                    val responseBody = Gson().fromJson(response.toString(), CalendarReaponse::class.java)
+//                    var title = responseBody.data?.get(1)?.title
+//                    println(title)
                 } else {
                     val responseError = response.errorBody()
                     val exceptionBody = Gson().fromJson(responseError?.string(), CalendarErrorResponse::class.java)
