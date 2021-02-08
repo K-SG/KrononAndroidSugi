@@ -32,7 +32,6 @@ class NewUserCreateActivity : AppCompatActivity() {
         val password = findViewById<EditText>(R.id.login_password)
         val passwordConfirm = findViewById<EditText>(R.id.password_confirm)
 
-
         returnButton.setOnClickListener{
             finish()
         }
