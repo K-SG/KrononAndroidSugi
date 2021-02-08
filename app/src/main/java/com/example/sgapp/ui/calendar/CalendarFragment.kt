@@ -97,7 +97,8 @@ class CalendarFragment : Fragment() {
             ) {
                 if (response.code() == 200) {
                     val response = response.body()
-//                    val responseBody = Gson().fromJson(response?.string(), CalendarReaponse::class.java)
+                    val responseBody = Gson().fromJson(response.toString(), CalendarReaponse::class.java)
+                    
                 } else {
                     val responseError = response.errorBody()
                     val exceptionBody = Gson().fromJson(responseError?.string(), CalendarErrorResponse::class.java)
