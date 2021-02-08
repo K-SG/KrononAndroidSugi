@@ -2,6 +2,7 @@ package com.example.sgapp
 
 import android.content.Context
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.inflate
@@ -48,7 +49,7 @@ class CalendarAdapter: BaseAdapter {
         layoutInflater = LayoutInflater.from(context)
         dateManager = DateManager()
         dateArray = dateManager?.getDays()!!
-        getAPI()
+
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
@@ -148,9 +149,27 @@ class CalendarAdapter: BaseAdapter {
             ) {
                 if (response.code() == 200) {
                     val response = response.body()
-//                    val responseBody = Gson().fromJson(response.toString(), CalendarReaponse::class.java)
+                    val responseBody = Gson().fromJson(response.toString(), CalendarReaponse::class.java)
 //                    var title = responseBody.data?.get(1)?.title
-//                    println(title)
+                    println(responseBody.data)
+                    //GsonでKotlinクラスに型を変えてもらえる。
+//                    val exceptionBody = Gson().fromJson(responseError?.string(), CreateUserErrorResponse::class.java)
+//                    var errorMessage = ""
+//                    exceptionBody.message?.name?.forEach { element->
+//                        errorMessage += element + "¥n"
+//                        Log.i("nameError",element) }
+//                    exceptionBody.message?.email?.forEach { element->
+//                        errorMessage += element + "¥n"
+//                        Log.i("emailError",element) }
+//                    exceptionBody.message?.password?.forEach { element->
+//                        errorMessage += element + "¥n"
+//                        Log.i("passwordError",element) }
+//                    putString("name", userResponse!!.data?.name.toString())
+//                    Jsonのまま受け取る
+//                    val jsonObj = JSONObject(responseError?.charStream()?.readText())
+//                    val message = jsonObj.getJSONObject("message").get("email")
+//                    JSONObject jObjError = new JSONObject(response.errorBody()?.string());
+//                    Toast.makeText(this@NewUserCreateActivity, jsonObj.getString("message"), Toast.LENGTH_LONG).show()
                 } else {
                     val responseError = response.errorBody()
                     val exceptionBody = Gson().fromJson(responseError?.string(), CalendarErrorResponse::class.java)

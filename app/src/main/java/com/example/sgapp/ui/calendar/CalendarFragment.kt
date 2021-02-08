@@ -50,6 +50,7 @@ class CalendarFragment : Fragment() {
         val prevButton = root?.findViewById<TextView>(R.id.prev_button)
         val nextButton = root?.findViewById<TextView>(R.id.next_button)
         val newScheduleButton = root?.findViewById<ImageView>(R.id.create_button)
+        getAPI()
 
 
 
@@ -97,8 +98,8 @@ class CalendarFragment : Fragment() {
             ) {
                 if (response.code() == 200) {
                     val response = response.body()
-                    val responseBody = Gson().fromJson(response.toString(), CalendarReaponse::class.java)
-                    var title = responseBody.data?.get(1)?.title
+                    val responseBody = Gson().fromJson(response?.toString(), CalendarReaponse::class.java)
+                    var title = responseBody?.data
                     println(title)
                 } else {
                     val responseError = response.errorBody()
