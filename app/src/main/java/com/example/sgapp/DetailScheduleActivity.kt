@@ -23,12 +23,20 @@ import java.util.*
 class DetailScheduleActivity : AppCompatActivity() {
 
     var id = ""
+    var showStartTime = ""
+    var showEndTime = ""
+    var showDate = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_schedule)
         val backButton = findViewById<ImageView>(R.id.back_button)
         val editScheduleButton = findViewById<ImageButton>(R.id.update_button)
         val deleteScheduleButton = findViewById<ImageButton>(R.id.delete_button)
+        var nameText = findViewById<TextView>(R.id.account_name_text)
+        var titleText = findViewById<TextView>(R.id.title_text)
+        var contentText = findViewById<TextView>(R.id.content_text)
+        var dateTimeText = findViewById<TextView>(R.id.datetime_text)
+        var place = findViewById<TextView>(R.id.place)
         //受け取った変数を入れる
         val intent = intent
         id = intent.getStringExtra("id").toString()
@@ -38,6 +46,14 @@ class DetailScheduleActivity : AppCompatActivity() {
         }
         editScheduleButton.setOnClickListener {
             val intent = Intent(this, UpdateScheduleActivity::class.java)
+            intent.putExtra("name",nameText.text)
+            intent.putExtra("title",titleText.text)
+            intent.putExtra("content",contentText.text)
+            intent.putExtra("date",showDate)
+            intent.putExtra("startTime",showStartTime)
+            intent.putExtra("endTime",showEndTime)
+            intent.putExtra("place",place.text)
+            intent.putExtra("id",id)
             startActivity(intent)
         }
         deleteScheduleButton.setOnClickListener {
@@ -75,12 +91,12 @@ class DetailScheduleActivity : AppCompatActivity() {
                     nameText.text = "名前：" + response?.data?.name
                     titleText.text = response?.data?.title
                     contentText.text = response?.data?.content
-
-                    val showStartTime = response?.data?.start_time
-                    val showEndTime = response?.data?.end_time
+                    showDate = response?.data?.schedule_date.toString()
+                    showStartTime = response?.data?.start_time.toString().dropLast(3)
+                    showEndTime = response?.data?.end_time.toString().dropLast(3)
 
                     dateTimeText.text =
-                        response?.data?.schedule_date + " " + showStartTime?.dropLast(3) + "~" + showEndTime?.dropLast(3)
+                        response?.data?.schedule_date + " " + showStartTime + "~" + showEndTime
                     when (response?.data?.place.toString()) {
                         "0" -> {
                             place.text = "オフィス"
@@ -174,4 +190,5 @@ class DetailScheduleActivity : AppCompatActivity() {
 
         })
     }
+
 }

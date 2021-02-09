@@ -37,6 +37,9 @@ interface KrononService{
     @DELETE("api/schedules/{id}")
     fun deleteSchedules(@Path("id") id : String,@Header("Authorization") token : String?, @Header("Accept") accept :String): Call<ScheduleDeleteReaponse>
 
+    @PUT("api/schedules/{id}")
+    fun updateSchedule(@Body schedule: CreateSchedule,@Path("id") id : String,@Header("Authorization") token: String,@Header ("Accept") accept:String): Call<UpdateScheduleResponse>;
+
 
 //    @GET("user")
 //    fun getUser(@Header("Authorization") authorization: String): Call<User>

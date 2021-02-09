@@ -1,9 +1,7 @@
 package com.example.sgapp.ui.schedule
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.text.format.DateFormat
 import android.util.Log
@@ -173,7 +171,7 @@ class ScheduleFragment : Fragment() {
     }
 
     private fun showSchedules(root: View, date:Date){
-        val dateTextView = root.findViewById<TextView>(R.id.date)
+        val dateTextView = root.findViewById<TextView>(R.id.update_date)
         val dateDisplay: String = DateFormat.format("yyyy年MM月dd日(EEE)の予定", date).toString()
         dateTextView?.text = dateDisplay
 
