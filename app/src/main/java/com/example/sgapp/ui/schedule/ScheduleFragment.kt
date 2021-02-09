@@ -58,7 +58,11 @@ class ScheduleFragment : Fragment() {
             Array<Array<ScheduleShortData?>?>?= null
     companion object {
     }
-
+    val format = SimpleDateFormat("yyyy-MM-dd")
+    val today = Date()
+    var dateAPI = format.format(today)
+    //Date型のも用意
+    var scheduledate = format.parse(dateAPI)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         var calendar = Calendar.getInstance()
@@ -82,17 +86,25 @@ class ScheduleFragment : Fragment() {
         //日付フォーマット
         var dateDisplay: String = DateFormat.format("yyyy年MM月dd日(EEE)の予定", date).toString()
         dateText?.text = dateDisplay
-        getAPI(root!!)
+//        val format = SimpleDateFormat("yyyy-MM-dd")
+//        val today = Date()
+//        var dateAPI = format.format(today)
+//        //Date型のも用意
+//        val scheduledate = format.parse(dateAPI)
 
+        getAPI(root!!,scheduledate)
         newScheduleButton?.setOnClickListener(View.OnClickListener {
             val intent = Intent(activity, CreateScheduleActivity::class.java)
             startActivity(intent)
         })
 
-        prevButton!!.setOnClickListener {
+        prevButton!!.setOnClickListener{
             //adapterの呼び方が違う
             date.add(Calendar.DATE, -1)
             dateDisplay = DateFormat.format("yyyy年MM月dd日(EEE)の予定", date).toString()
+            var apiDate = DateFormat.format("yyyy-MM-dd", date).toString()
+            scheduledate = format.parse(apiDate)
+            getAPI(root!!,scheduledate)
             dateText?.text = dateDisplay
         }
         nextButton!!.setOnClickListener {
@@ -111,18 +123,17 @@ class ScheduleFragment : Fragment() {
         blackboardContainer?.removeAllViews()
         return root
     }
-    fun getAPI(root: View){
+    fun getAPI(root: View,date: Date){
         val pref = activity?.getSharedPreferences("user_data", Context.MODE_PRIVATE)
         var token = pref?.getString("token", "")
+
+
         val retrofit = Retrofit.Builder()
             .baseUrl(BaseUrl)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         val format = SimpleDateFormat("yyyy-MM-dd")
-        val today = Date()
-        var dateAPI = format.format(today)
-        //Date型のも用意
-        val date = format.parse(dateAPI)
+        var dateAPI = format.format(date)
         token = "Bearer $token"
         val service = retrofit.create(KrononService::class.java)
 //        val scheduleDate = ScheduleDate(date)

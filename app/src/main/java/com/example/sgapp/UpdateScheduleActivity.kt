@@ -3,6 +3,7 @@ package com.example.sgapp
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -182,7 +183,8 @@ class UpdateScheduleActivity : AppCompatActivity() {
             ) {
                 if (response.code() == 200) {
                     Toast.makeText(applicationContext, "更新が完了したよ", Toast.LENGTH_SHORT).show()
-                    finish()
+                    val intent = Intent(this@UpdateScheduleActivity,MainButtomNavigationActivity::class.java)
+                    startActivity(intent)
                 } else {
                     val responseError = response.errorBody()
                     //GsonでKotlinクラスに型を変えてもらえる。
@@ -191,10 +193,12 @@ class UpdateScheduleActivity : AppCompatActivity() {
                         CreateUserErrorResponse::class.java
                     )
                     AlertDialog.Builder(this@UpdateScheduleActivity) // FragmentではActivityを取得して生成
-                        .setTitle("aaー")
+                        .setTitle("エラー")
                         .setMessage(exceptionBody.message.toString())
                         .setPositiveButton("OK", { dialog, which ->
                             // TODO:Yesが押された時の挙動
+                            val intent = Intent(this@UpdateScheduleActivity,MainButtomNavigationActivity::class.java)
+                            startActivity(intent)
                         })
                         .show()
                 }
@@ -206,7 +210,8 @@ class UpdateScheduleActivity : AppCompatActivity() {
                     .setTitle("ネットワークエラー")
                     .setMessage("ネットワークの接続が悪いです")
                     .setPositiveButton("OK", { dialog, which ->
-                        // TODO:Yesが押された時の挙動
+                        val intent = Intent(this@UpdateScheduleActivity,MainButtomNavigationActivity::class.java)
+                        startActivity(intent)
                     })
                     .show()
             }

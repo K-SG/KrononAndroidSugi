@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
@@ -123,7 +124,8 @@ class CreateScheduleActivity : AppCompatActivity() {
             ) {
                 if (response.code() == 200) {
                     Toast.makeText(applicationContext, "登録に完了したよ", Toast.LENGTH_SHORT).show()
-                    finish()
+                    val intent = Intent(this@CreateScheduleActivity,MainButtomNavigationActivity::class.java)
+                    startActivity(intent)
                 } else {
                     val responseError = response.errorBody()
                     //GsonでKotlinクラスに型を変えてもらえる。
@@ -136,6 +138,8 @@ class CreateScheduleActivity : AppCompatActivity() {
                         .setMessage(exceptionBody.message.toString())
                         .setPositiveButton("OK", { dialog, which ->
                             // TODO:Yesが押された時の挙動
+                            val intent = Intent(this@CreateScheduleActivity,MainButtomNavigationActivity::class.java)
+                            startActivity(intent)
                         })
                         .show()
                 }
@@ -148,6 +152,8 @@ class CreateScheduleActivity : AppCompatActivity() {
                     .setMessage("ネットワークの接続が悪いです")
                     .setPositiveButton("OK", { dialog, which ->
                         // TODO:Yesが押された時の挙動
+                        val intent = Intent(this@CreateScheduleActivity,MainButtomNavigationActivity::class.java)
+                        startActivity(intent)
                     })
                     .show()
             }

@@ -4,10 +4,8 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.view.View
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import com.example.retrofit2_kotlin.Retrofit2.KrononService
 import com.example.sgapp.api.*
@@ -40,6 +38,7 @@ class DetailScheduleActivity : AppCompatActivity() {
         //受け取った変数を入れる
         val intent = intent
         id = intent.getStringExtra("id").toString()
+
         getScheduleAPI()
         backButton.setOnClickListener {
             finish()
@@ -71,6 +70,7 @@ class DetailScheduleActivity : AppCompatActivity() {
 
         val pref = getSharedPreferences("user_data", Context.MODE_PRIVATE)
         var token = pref?.getString("token", "")
+        var name = pref?.getString("name", "")
         var URL = KrononClient.BaseUrl
         val retrofit = Retrofit.Builder()
             .baseUrl(URL)
@@ -89,6 +89,12 @@ class DetailScheduleActivity : AppCompatActivity() {
                 if (response.code() == 200) {
                     val response = response.body()
                     nameText.text = "名前：" + response?.data?.name
+                    if(name != response?.data?.name){
+                        val editScheduleButton = findViewById<ImageButton>(R.id.update_button)
+                        val deleteScheduleButton = findViewById<ImageButton>(R.id.delete_button)
+                        editScheduleButton?.visibility = View.GONE
+                        deleteScheduleButton?.visibility = View.GONE
+                    }
                     titleText.text = response?.data?.title
                     contentText.text = response?.data?.content
                     showDate = response?.data?.schedule_date.toString()
@@ -111,6 +117,10 @@ class DetailScheduleActivity : AppCompatActivity() {
                 } else {
                     val responseError = response.errorBody()
                     //GsonでKotlinクラスに型を変えてもらえる。
+                    val editScheduleButton = findViewById<ImageButton>(R.id.update_button)
+                    val deleteScheduleButton = findViewById<ImageButton>(R.id.delete_button)
+                    editScheduleButton?.visibility = View.GONE
+                    deleteScheduleButton?.visibility = View.GONE
                     val exceptionBody = Gson().fromJson(
                         responseError?.string(),
                         ScheduleDetailErrorReaponse::class.java
@@ -127,6 +137,10 @@ class DetailScheduleActivity : AppCompatActivity() {
 
             override fun onFailure(calll: Call<ScheduleDetailReaponse>, t: Throwable) {
 //                Toast.makeText(this@NewUserCreateActivity, "Fail", Toast.LENGTH_LONG)
+                val editScheduleButton = findViewById<ImageButton>(R.id.update_button)
+                val deleteScheduleButton = findViewById<ImageButton>(R.id.delete_button)
+                editScheduleButton?.visibility = View.GONE
+                deleteScheduleButton?.visibility = View.GONE
                 AlertDialog.Builder(this@DetailScheduleActivity) // FragmentではActivityを取得して生成
                     .setTitle("ネットワークエラー")
                     .setMessage("ネットワークの接続が悪いです")
