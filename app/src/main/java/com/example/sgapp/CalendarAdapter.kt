@@ -44,6 +44,10 @@ class CalendarAdapter : BaseAdapter {
         var dateText: TextView? = null
     }
 
+    private val oldSchedules = arrayOf(
+        CalendarData("2021/02/08","12:00","しんどおお")
+//        ScheduleModel(1, 2, "2021/01/01", "タスク2あああああああs", 15, 16, 3)
+    )
     //
 //    private val scheduless :Array<CalendarData?>? = arrayOf(
 //        ScheduleModel(1, 1, "2021/01/01", "タスク１", 13, 14, 3),
@@ -76,12 +80,12 @@ class CalendarAdapter : BaseAdapter {
         //日付クラスのリストからその日付のインスタンスを呼び出してVIEWを作る、カレンダークラスの中に日付のクラス（中にイベントクラスがある）のリストを持たせる
         
 //
-//        for (schedule in schedules!!) {
-//            if (dateFormat_date.format(dateArray[position]).toString() == schedule?.date) {
-//                titletext.text = schedule.title
-//                titletext.setBackgroundResource(R.drawable.event)
-//            }
-//        }
+        for (schedule in oldSchedules) {
+            if (dateFormat_date.format(dateArray[position]).toString() == schedule?.date) {
+                titletext.text = schedule.title
+                titletext.setBackgroundResource(R.drawable.event)
+            }
+        }
 
         var holder: RecyclerView.ViewHolder
 
@@ -162,8 +166,8 @@ class CalendarAdapter : BaseAdapter {
             ) {
                 if (response.code() == 200) {
                     val response = response.body()
-                    response?.getScheduleShortArray()
-                    schedules = response?.getScheduleShortArray()
+//                    response?.getCalendarArray()
+                    schedules = response?.getCalendarArray()
 //                    Log.i("nameArray",schedules.toString())
                 } else {
                     val responseError = response.errorBody()

@@ -279,7 +279,6 @@ class ScheduleFragment : Fragment() {
             val schedules = scheduleArray!![i]
 
             for(schedule in schedules!!) {
-
                 val contentHeight = (schedule!!.endTime - schedule!!.startTime) / 15
                 val contentStart = (schedule!!.startTime - startHour * 60) / 15
                 val contentColor = schedule!!.place
@@ -327,7 +326,9 @@ class ScheduleFragment : Fragment() {
                 layout.addView(textView)
 
                 textView.setOnClickListener(View.OnClickListener {
+                    var detailDate = schedule.scheduleId
                     var intent = Intent(activity, DetailScheduleActivity::class.java)
+                    intent.putExtra("id",detailDate.toString())
                     startActivity(intent)
                 })
             }

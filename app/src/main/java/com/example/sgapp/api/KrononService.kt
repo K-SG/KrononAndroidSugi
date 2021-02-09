@@ -31,7 +31,8 @@ interface KrononService{
     @GET("api/calendar")
     fun calendar(@Query("date") date : String, @Header("Authorization") token : String?,@Header("Accept") accept :String): Call<CalendarReaponse>
 
-
+    @GET("api/schedules/{id}")
+    fun detailSchedules(@Path("id") id : String, @Header("Authorization") token : String?, @Header("Accept") accept :String): Call<ScheduleDetailReaponse>
 
 
 //    @GET("user")
