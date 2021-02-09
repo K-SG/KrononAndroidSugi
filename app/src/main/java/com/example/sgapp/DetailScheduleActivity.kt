@@ -41,8 +41,7 @@ class DetailScheduleActivity : AppCompatActivity() {
             startActivity(intent)
         }
         deleteScheduleButton.setOnClickListener {
-
-            finish()
+            deleteScheduleAPI(id)
         }
     }
 
@@ -98,7 +97,7 @@ class DetailScheduleActivity : AppCompatActivity() {
                     //GsonでKotlinクラスに型を変えてもらえる。
                     val exceptionBody = Gson().fromJson(
                         responseError?.string(),
-                        CreateUserErrorResponse::class.java
+                        ScheduleDetailErrorReaponse::class.java
                     )
                     AlertDialog.Builder(this@DetailScheduleActivity) // FragmentではActivityを取得して生成
                         .setTitle("エラー")
@@ -123,14 +122,7 @@ class DetailScheduleActivity : AppCompatActivity() {
 
         })
     }
-    fun deleteScheduleAPI() {
-        var nameText = findViewById<TextView>(R.id.account_name_text)
-        var titleText = findViewById<TextView>(R.id.title_text)
-        var contentText = findViewById<TextView>(R.id.content_text)
-        var dateTimeText = findViewById<TextView>(R.id.datetime_text)
-        var place = findViewById<TextView>(R.id.place)
-
-
+    fun deleteScheduleAPI(id:String) {
         val pref = getSharedPreferences("user_data", Context.MODE_PRIVATE)
         var token = pref?.getString("token", "")
         var URL = KrononClient.BaseUrl
@@ -141,35 +133,17 @@ class DetailScheduleActivity : AppCompatActivity() {
         token = "Bearer $token"
         val service = retrofit.create(KrononService::class.java)
 //        val scheduleDate = ScheduleDate(date)
-        val call = service.detailSchedules(id, token, "application/json")
+        val call = service.deleteSchedules(id, token,"application/json")
 
-        call.enqueue(object : Callback<ScheduleDetailReaponse> {
+        call.enqueue(object : Callback<ScheduleDeleteReaponse> {
             override fun onResponse(
-                call: Call<ScheduleDetailReaponse>,
-                response: Response<ScheduleDetailReaponse>
+                call: Call<ScheduleDeleteReaponse>,
+                response: Response<ScheduleDeleteReaponse>
             ) {
                 if (response.code() == 200) {
                     val response = response.body()
-                    nameText.text = "名前：" + response?.data?.name
-                    titleText.text = response?.data?.title
-                    contentText.text = response?.data?.content
-
-                    val showStartTime = response?.data?.start_time
-                    val showEndTime = response?.data?.end_time
-
-                    dateTimeText.text =
-                        response?.data?.schedule_date + " " + showStartTime?.dropLast(3) + "~" + showEndTime?.dropLast(3)
-                    when (response?.data?.place.toString()) {
-                        "0" -> {
-                            place.text = "オフィス"
-                        }
-                        "1" -> {
-                            place.text = "在宅"
-                        }
-                        "2" -> {
-                            place.text = "外出"
-                        }
-                    }
+                    Toast.makeText(applicationContext, "削除に完了したよ", Toast.LENGTH_SHORT).show()
+                    finish()
                 } else {
                     val responseError = response.errorBody()
                     //GsonでKotlinクラスに型を変えてもらえる。
@@ -187,7 +161,7 @@ class DetailScheduleActivity : AppCompatActivity() {
                 }
             }
 
-            override fun onFailure(calll: Call<ScheduleDetailReaponse>, t: Throwable) {
+            override fun onFailure(calll: Call<ScheduleDeleteReaponse>, t: Throwable) {
 //                Toast.makeText(this@NewUserCreateActivity, "Fail", Toast.LENGTH_LONG)
                 AlertDialog.Builder(this@DetailScheduleActivity) // FragmentではActivityを取得して生成
                     .setTitle("ネットワークエラー")

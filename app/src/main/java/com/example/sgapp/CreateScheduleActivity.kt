@@ -166,7 +166,6 @@ class CreateScheduleActivity : AppCompatActivity() {
                 calender.set(Calendar.YEAR, year)
                 calender.set(Calendar.MONTH, month)
                 calender.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-
                 val myFormat = "yyyy-MM-dd" // mention the format you need
                 val sdf = SimpleDateFormat(myFormat, Locale.JAPAN)
                 dateText.text = sdf.format(calender.time)
