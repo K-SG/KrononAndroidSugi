@@ -111,22 +111,6 @@ class ScheduleFragment : Fragment() {
 
         val blackboardContainer = root?.findViewById<RelativeLayout>(R.id.blackboard)
         blackboardContainer?.removeAllViews()
-        //予定ブロックの幅
-//        widthContent = ((widthPixel - lineReduceLength * scale) / nx).toInt()
-
-//        blackboardContainer?.let { viewName(it) }
-
-//        //線描画
-//        blackboardContainer?.let { drawLine(R.drawable.stlike, 0, it) }
-//
-//
-//        //点線描画
-//        blackboardContainer?.let { drawLine(R.drawable.dotted, 2, it) }
-
-//        showTime(blackboardContainer)
-
-        //予定表示
-//        blackboardContainer?.let { viewSchedule(it) }
         return root
     }
     fun getAPI(root: View){
@@ -153,7 +137,6 @@ class ScheduleFragment : Fragment() {
             ) {
                 if (response.code() == 200) {
                     var responseBody = response.body()
-                    Log.i("response", responseBody?.data.toString())
                     names = responseBody?.getNamesArray()!!
                     scheduleArray = responseBody.getScheduleShortArray()
                     showSchedules(root,date)

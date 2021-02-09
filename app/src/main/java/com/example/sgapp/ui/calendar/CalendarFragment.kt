@@ -50,7 +50,6 @@ class CalendarFragment : Fragment() {
         val prevButton = root?.findViewById<TextView>(R.id.prev_button)
         val nextButton = root?.findViewById<TextView>(R.id.next_button)
         val newScheduleButton = root?.findViewById<ImageView>(R.id.create_button)
-        getAPI()
 
 
 
@@ -76,61 +75,6 @@ class CalendarFragment : Fragment() {
     private fun setGridView() {
         gridView = root?.findViewById<GridView>(R.id.calendar_gridview)!!
         gridView.adapter = CalendarAdapter(context)
-    }
-
-    fun getAPI(){
-        val pref = context?.getSharedPreferences("user_data", Context.MODE_PRIVATE)
-        var token = pref?.getString("token", "")
-        val retrofit = Retrofit.Builder()
-            .baseUrl(KrononClient.BaseUrl)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-        var date = "2021-02-01"
-        token = "Bearer $token"
-        val service = retrofit.create(KrononService::class.java)
-//        val scheduleDate = ScheduleDate(date)
-        val call = service.calendar(date,token,"application/json")
-
-        call.enqueue(object : Callback<CalendarReaponse> {
-            override fun onResponse(
-                call: Call<CalendarReaponse>,
-                response: Response<CalendarReaponse>
-            ) {
-                if (response.code() == 200) {
-                    val response = response.body()
-                    val responseBody = Gson().fromJson(response?.toString(), CalendarReaponse::class.java)
-                    var title = responseBody?.data
-                    println(title)
-                } else {
-                    val responseError = response.errorBody()
-                    val exceptionBody = Gson().fromJson(responseError?.string(), CalendarErrorResponse::class.java)
-                    context?.let {
-                        AlertDialog.Builder(it) // FragmentではActivityを取得して生成
-                            .setTitle("エラー")
-                            .setMessage(exceptionBody.message.toString())
-                            .setPositiveButton("OK", { dialog, which ->
-                                // TODO:Yesが押された時の挙動
-                            })
-                            .show()
-                    }
-
-                }
-            }
-
-            override fun onFailure(calll: Call<CalendarReaponse>, t: Throwable) {
-//                Toast.makeText(this@NewUserCreateActivity, "Fail", Toast.LENGTH_LONG)
-                context?.let {
-                    AlertDialog.Builder(it) // FragmentではActivityを取得して生成
-                        .setTitle("ネットワークエラー")
-                        .setMessage("ネットワークの接続が悪いです")
-                        .setPositiveButton("OK", { dialog, which ->
-                            // TODO:Yesが押された時の挙動
-                        })
-                        .show()
-                }
-            }
-
-        })
     }
 
 

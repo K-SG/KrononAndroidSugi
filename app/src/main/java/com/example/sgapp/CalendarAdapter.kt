@@ -1,15 +1,20 @@
 package com.example.sgapp
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.util.Log
+import android.util.TypedValue
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.inflate
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ColorStateListInflaterCompat.inflate
 import androidx.core.graphics.drawable.DrawableCompat.inflate
 import androidx.recyclerview.widget.RecyclerView
@@ -26,7 +31,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class CalendarAdapter: BaseAdapter {
+class CalendarAdapter : BaseAdapter {
     //追加
     private var dateArray: List<Date> = ArrayList()
     private var dateManager: DateManager? = null
@@ -39,18 +44,22 @@ class CalendarAdapter: BaseAdapter {
         var dateText: TextView? = null
     }
 
-    private val schedules = arrayOf(
-        ScheduleModel(1, 1, "2021/01/01", "タスク１", 13, 14, 3),
-        ScheduleModel(1, 2, "2021/01/01", "タスク2あああああああs", 15, 16, 3)
-    )
+    //
+//    private val scheduless :Array<CalendarData?>? = arrayOf(
+//        ScheduleModel(1, 1, "2021/01/01", "タスク１", 13, 14, 3),
+//        ScheduleModel(1, 2, "2021/01/01", "タスク2あああああああs", 15, 16, 3)
+//    )
+
+    private var schedules: Array<CalendarData?>? = null
 
     constructor(context: Context?) : super() {
         this.context = context
         layoutInflater = LayoutInflater.from(context)
         dateManager = DateManager()
         dateArray = dateManager?.getDays()!!
-
+        getAPI()
     }
+
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         //日付のみ表示させる
@@ -60,17 +69,20 @@ class CalendarAdapter: BaseAdapter {
         calendarDays = listOf(dateFormat.format(dateArray[position]))
         val dateFormat_date = SimpleDateFormat("yyyy/MM/dd", Locale.JAPAN)
 
-        calendar.findViewById<TextView>(R.id.dateText).text = dateFormat.format(dateArray[position]).toString()
-        var titletext =  calendar.findViewById<TextView>(R.id.title1)
+        calendar.findViewById<TextView>(R.id.dateText).text =
+            dateFormat.format(dateArray[position]).toString()
+        var titletext = calendar.findViewById<TextView>(R.id.title1)
         calendar.setBackgroundColor(Color.WHITE)
         //日付クラスのリストからその日付のインスタンスを呼び出してVIEWを作る、カレンダークラスの中に日付のクラス（中にイベントクラスがある）のリストを持たせる
+        
+//
+//        for (schedule in schedules!!) {
+//            if (dateFormat_date.format(dateArray[position]).toString() == schedule?.date) {
+//                titletext.text = schedule.title
+//                titletext.setBackgroundResource(R.drawable.event)
+//            }
+//        }
 
-        for(schedule in schedules){
-            if (dateFormat_date.format(dateArray[position]).toString() == schedule.scheduleDate){
-                titletext.text = schedule.title
-                titletext.setBackgroundResource(R.drawable.event)
-            }
-        }
         var holder: RecyclerView.ViewHolder
 
 
@@ -81,10 +93,10 @@ class CalendarAdapter: BaseAdapter {
 //            )
 //        }
 
-        if(dateManager?.getDayOfWeek(dateArray[position]) == 1){
+        if (dateManager?.getDayOfWeek(dateArray[position]) == 1) {
             calendar.setBackgroundResource(R.color.sunday_color)
         }
-        if(dateManager?.getDayOfWeek(dateArray[position]) == 7){
+        if (dateManager?.getDayOfWeek(dateArray[position]) == 7) {
             calendar.setBackgroundResource(R.color.saturday_color)
         }
 
@@ -129,7 +141,8 @@ class CalendarAdapter: BaseAdapter {
         //画面をリフレッシュしてくれる
         notifyDataSetChanged()
     }
-    fun getAPI(){
+
+    fun getAPI() {
         val pref = context?.getSharedPreferences("user_data", Context.MODE_PRIVATE)
         var token = pref?.getString("token", "")
         val retrofit = Retrofit.Builder()
@@ -140,7 +153,7 @@ class CalendarAdapter: BaseAdapter {
         token = "Bearer $token"
         val service = retrofit.create(KrononService::class.java)
 //        val scheduleDate = ScheduleDate(date)
-        val call = service.calendar(date,token,"application/json")
+        val call = service.calendar(date, token, "application/json")
 
         call.enqueue(object : Callback<CalendarReaponse> {
             override fun onResponse(
@@ -149,30 +162,13 @@ class CalendarAdapter: BaseAdapter {
             ) {
                 if (response.code() == 200) {
                     val response = response.body()
-                    val responseBody = Gson().fromJson(response.toString(), CalendarReaponse::class.java)
-//                    var title = responseBody.data?.get(1)?.title
-                    println(responseBody.data)
-                    //GsonでKotlinクラスに型を変えてもらえる。
-//                    val exceptionBody = Gson().fromJson(responseError?.string(), CreateUserErrorResponse::class.java)
-//                    var errorMessage = ""
-//                    exceptionBody.message?.name?.forEach { element->
-//                        errorMessage += element + "¥n"
-//                        Log.i("nameError",element) }
-//                    exceptionBody.message?.email?.forEach { element->
-//                        errorMessage += element + "¥n"
-//                        Log.i("emailError",element) }
-//                    exceptionBody.message?.password?.forEach { element->
-//                        errorMessage += element + "¥n"
-//                        Log.i("passwordError",element) }
-//                    putString("name", userResponse!!.data?.name.toString())
-//                    Jsonのまま受け取る
-//                    val jsonObj = JSONObject(responseError?.charStream()?.readText())
-//                    val message = jsonObj.getJSONObject("message").get("email")
-//                    JSONObject jObjError = new JSONObject(response.errorBody()?.string());
-//                    Toast.makeText(this@NewUserCreateActivity, jsonObj.getString("message"), Toast.LENGTH_LONG).show()
+                    response?.getScheduleShortArray()
+                    schedules = response?.getScheduleShortArray()
+//                    Log.i("nameArray",schedules.toString())
                 } else {
                     val responseError = response.errorBody()
-                    val exceptionBody = Gson().fromJson(responseError?.string(), CalendarErrorResponse::class.java)
+                    val exceptionBody =
+                        Gson().fromJson(responseError?.string(), CalendarErrorResponse::class.java)
                     context?.let {
                         AlertDialog.Builder(it) // FragmentではActivityを取得して生成
                             .setTitle("エラー")

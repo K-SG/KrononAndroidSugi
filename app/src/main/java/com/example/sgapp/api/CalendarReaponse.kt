@@ -1,6 +1,5 @@
 package com.example.sgapp.api
 
-import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 
 class CalendarReaponse (
@@ -9,8 +8,21 @@ class CalendarReaponse (
         @SerializedName("code")
         val code: Int?,
         @SerializedName("data")
-        var data: Array<CalendarSchedule>?
-)
+        var data: Array<CalendarSchedule>? = null
+){
+        fun getScheduleShortArray(): Array<CalendarData?>?{
+                val dataArray = this.data ?: return null
+                val scheduleArray: Array<CalendarData?> = arrayOfNulls(dataArray.size)
+                for(i in scheduleArray.indices){
+                        val schedule = dataArray[i]
+//                        val setDate = schedule?.date
+//                        val setStartTime = schedule?.start_time
+//                        val setTitle = schedule?.title
+                        CalendarData(schedule?.date!!,schedule?.start_time!!,schedule?.title!!)
+                }
+                return scheduleArray
+        }
+}
 
 class CalendarSchedule(
         @SerializedName("date")
@@ -26,3 +38,8 @@ class CalendarDate(
         var date: String?
 )
 
+class CalendarData(
+        var date: String,
+        val start_time: String,
+        val title: String
+)
