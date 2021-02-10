@@ -13,8 +13,10 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.retrofit2_kotlin.Retrofit2.KrononService
 import com.example.sgapp.*
 import com.example.sgapp.api.*
@@ -51,18 +53,17 @@ class ScheduleFragment : Fragment() {
     private var widthContent = 0
     private var scale = 0f
 //    var names : Array<String> = arrayOf()
-    private var names = arrayOf("中根", "奥野", "杉")
+    private var names = arrayOf("", "", "")
     private val nx = 3//names.size
     var calendar: Calendar = Calendar.getInstance()
     private var scheduleArray :
             Array<Array<ScheduleShortData?>?>?= null
     companion object {
     }
+    var dateDisplay =""
     val format = SimpleDateFormat("yyyy-MM-dd")
     val today = Date()
     var dateAPI = format.format(today)
-    //Date型のも用意
-    var scheduledate = format.parse(dateAPI)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         var calendar = Calendar.getInstance()
@@ -76,23 +77,31 @@ class ScheduleFragment : Fragment() {
         dashboardViewModel =
             ViewModelProvider(this).get(ScheduleViewModel::class.java)
         root = inflater.inflate(R.layout.fragment_schedule, container, false)
+        dateDisplay = DateFormat.format("yyyy年MM月dd日(EEE)の予定", today).toString()
+        if(arguments != null){
+            requireArguments().run {
+                dateAPI = getString("date").toString()
+                dateDisplay = getString("dateDisplay").toString()
+            }
+        }
+
+        var scheduledate = format.parse(dateAPI)
+        calendar.time = scheduledate
+        val date: Calendar = calendar
         //コンテキストを取得
         mContext = activity
         val dateText = root?.findViewById<TextView>(R.id.schedule_show_date)
         val prevButton = root?.findViewById<TextView>(R.id.prev_day_button)
         val nextButton = root?.findViewById<TextView>(R.id.next_day_button)
         val newScheduleButton = root?.findViewById<ImageView>(R.id.create_button)
-        val date: Calendar = calendar
         //日付フォーマット
-        var dateDisplay: String = DateFormat.format("yyyy年MM月dd日(EEE)の予定", date).toString()
         dateText?.text = dateDisplay
-//        val format = SimpleDateFormat("yyyy-MM-dd")
+//        val format = SimpleDateFormazt("yyyy-MM-dd")
 //        val today = Date()
 //        var dateAPI = format.format(today)
 //        //Date型のも用意
 //        val scheduledate = format.parse(dateAPI)
 
-        getAPI(root!!,scheduledate)
         newScheduleButton?.setOnClickListener(View.OnClickListener {
             val intent = Intent(activity, CreateScheduleActivity::class.java)
             startActivity(intent)
@@ -102,16 +111,26 @@ class ScheduleFragment : Fragment() {
             //adapterの呼び方が違う
             date.add(Calendar.DATE, -1)
             dateDisplay = DateFormat.format("yyyy年MM月dd日(EEE)の予定", date).toString()
-            var apiDate = DateFormat.format("yyyy-MM-dd", date).toString()
-            scheduledate = format.parse(apiDate)
-            getAPI(root!!,scheduledate)
+            var preDate = DateFormat.format("yyyy-MM-dd", date).toString()
+            scheduledate = format.parse(preDate)
             dateText?.text = dateDisplay
+            val params = bundleOf("date" to preDate,"dateDisplay" to dateDisplay)
+            findNavController()?.navigate(
+                R.id.navigation_schedule,params
+            )
         }
         nextButton!!.setOnClickListener {
             date.add(Calendar.DATE, 1)
             dateDisplay = DateFormat.format("yyyy年MM月dd日(EEE)の予定", date).toString()
+            var preDate = DateFormat.format("yyyy-MM-dd", date).toString()
+            scheduledate = format.parse(preDate)
             dateText?.text = dateDisplay
+            val params = bundleOf("date" to preDate,"dateDisplay" to dateDisplay)
+            findNavController()?.navigate(
+                R.id.navigation_schedule,params
+            )
         }
+        getAPI(root!!,scheduledate)
 
         //端末の幅のサイズ[pixel]
         widthPixel = resources.displayMetrics.widthPixels

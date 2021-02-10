@@ -3,9 +3,11 @@ package com.example.sgapp.ui.calendar
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.GridView
 import android.widget.ImageView
 import android.widget.TextView
@@ -32,6 +34,7 @@ class CalendarFragment : Fragment() {
     private lateinit var homeViewModel: CalendarViewModel
     var root: View? = null
     lateinit var gridView:GridView
+//    var context: Context? = null
 
 
     override fun onCreateView(
@@ -51,6 +54,7 @@ class CalendarFragment : Fragment() {
         val nextButton = root?.findViewById<TextView>(R.id.next_button)
         val newScheduleButton = root?.findViewById<ImageView>(R.id.create_button)
 
+//        gridView.setOnItemClickListener(activity)
 
 
         newScheduleButton?.setOnClickListener{
@@ -75,6 +79,9 @@ class CalendarFragment : Fragment() {
     private fun setGridView() {
         gridView = root?.findViewById<GridView>(R.id.calendar_gridview)!!
         gridView.adapter = CalendarAdapter(context)
+    }
+    fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        Log.d("position", position.toString())
     }
 
 

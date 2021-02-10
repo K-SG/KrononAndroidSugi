@@ -1,22 +1,16 @@
 package com.example.sgapp
 
 import android.content.Context
-import android.content.Intent
 import android.graphics.Color
 import android.util.Log
-import android.util.TypedValue
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.inflate
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.BaseAdapter
-import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
-import androidx.core.content.ContextCompat
-import androidx.core.content.res.ColorStateListInflaterCompat.inflate
-import androidx.core.graphics.drawable.DrawableCompat.inflate
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.retrofit2_kotlin.Retrofit2.KrononService
 import com.example.sgapp.api.*
@@ -45,7 +39,7 @@ class CalendarAdapter : BaseAdapter {
     }
 
     private val oldSchedules = arrayOf(
-        CalendarData("2021/02/08","12:00","しんどおお")
+        CalendarData("2021/02/08", "12:00", "しんどおお")
 //        ScheduleModel(1, 2, "2021/01/01", "タスク2あああああああs", 15, 16, 3)
     )
     //
@@ -61,7 +55,7 @@ class CalendarAdapter : BaseAdapter {
         layoutInflater = LayoutInflater.from(context)
         dateManager = DateManager()
         dateArray = dateManager?.getDays()!!
-        getAPI()
+//        getAPI()
     }
 
 
@@ -91,12 +85,20 @@ class CalendarAdapter : BaseAdapter {
 
 
         //カレンダータップすると予定表に飛びたいんだが
-//        calendar.setOnClickListener(){
-//            convertView?.findNavController()?.navigate(
-//                R.id.action_navigation_calendar_to_navigation_schedule
-//            )
-//        }
+        calendar.setOnClickListener(){
+            convertView?.findNavController()?.navigate(
+                R.id.navigation_schedule
+            )
+        }
 
+//        calendar.setOnClickListener {
+//            //savedInstanceState?.putString("date","2020-12-12")
+//            //setResult()
+//            val intent = Intent(context, MainButtomNavigationActivity::class.java)
+//            //intent.putExtra("date","2020-12-13")
+//            val params = bundleOf("date" to dateCalendar, "age" to 30)
+//            findNavController().navigate(R.id.navigation_schedule, params)
+//        }
         if (dateManager?.getDayOfWeek(dateArray[position]) == 1) {
             calendar.setBackgroundResource(R.color.sunday_color)
         }
@@ -122,6 +124,8 @@ class CalendarAdapter : BaseAdapter {
     override fun getItemId(position: Int): Long {
         return position.toLong()
     }
+    @Override
+
 
     //表示月を取得
     fun getTitle(): String {
