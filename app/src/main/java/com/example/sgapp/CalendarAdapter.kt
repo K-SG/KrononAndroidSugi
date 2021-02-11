@@ -32,31 +32,40 @@ class CalendarAdapter : BaseAdapter {
     private var layoutInflater: LayoutInflater? = null
     private var calendarDays: List<String> = ArrayList()
     var context: Context? = null
+    var position:Int = 0
+    val format = SimpleDateFormat("yyyy-MM-dd")
+    val today = Date()
+    var toMonth = format.format(today)
 
     //カスタムセルを拡張したらここでWigetを定義
     private class ViewHolder {
         var dateText: TextView? = null
     }
 
-    private val oldSchedules = arrayOf(
-        CalendarData("2021/02/08", "12:00", "しんどおお")
-//        ScheduleModel(1, 2, "2021/01/01", "タスク2あああああああs", 15, 16, 3)
-    )
+    private var oldSchedules : MutableList<CalendarSchedule> = mutableListOf()
+//    (
+////        CalendarData("2021/02/08", "12:00", "しんどおお"),
+////        CalendarData("2021/02/09", "12:00", "しんどおお")
+//    )
+
     //
 //    private val scheduless :Array<CalendarData?>? = arrayOf(
 //        ScheduleModel(1, 1, "2021/01/01", "タスク１", 13, 14, 3),
 //        ScheduleModel(1, 2, "2021/01/01", "タスク2あああああああs", 15, 16, 3)
 //    )
 
-    private var schedules: Array<CalendarData?>? = null
+    private var schedules: Array<CalendarSchedule?>? = null
 
     constructor(context: Context?) : super() {
         this.context = context
         layoutInflater = LayoutInflater.from(context)
         dateManager = DateManager()
         dateArray = dateManager?.getDays()!!
-//        getAPI()
+        getAPI()
+
     }
+
+
 
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
@@ -65,15 +74,16 @@ class CalendarAdapter : BaseAdapter {
         val calendar: View = inflator.inflate(R.layout.calendar_cell, null)
         val dateFormat = SimpleDateFormat("d", Locale.JAPAN)
         calendarDays = listOf(dateFormat.format(dateArray[position]))
-        val dateFormat_date = SimpleDateFormat("yyyy/MM/dd", Locale.JAPAN)
-
+        val dateFormat_date = SimpleDateFormat("yyyy-MM-dd", Locale.JAPAN)
+        var titletext = calendar.findViewById<TextView>(R.id.title1)
         calendar.findViewById<TextView>(R.id.dateText).text =
             dateFormat.format(dateArray[position]).toString()
-        var titletext = calendar.findViewById<TextView>(R.id.title1)
+
         calendar.setBackgroundColor(Color.WHITE)
         //日付クラスのリストからその日付のインスタンスを呼び出してVIEWを作る、カレンダークラスの中に日付のクラス（中にイベントクラスがある）のリストを持たせる
-        
+
 //
+//        getAPI()
         for (schedule in oldSchedules) {
             if (dateFormat_date.format(dateArray[position]).toString() == schedule?.date) {
                 titletext.text = schedule.title
@@ -85,19 +95,10 @@ class CalendarAdapter : BaseAdapter {
 
 
         //カレンダータップすると予定表に飛びたいんだが
-        calendar.setOnClickListener(){
-            convertView?.findNavController()?.navigate(
-                R.id.navigation_schedule
-            )
-        }
-
-//        calendar.setOnClickListener {
-//            //savedInstanceState?.putString("date","2020-12-12")
-//            //setResult()
-//            val intent = Intent(context, MainButtomNavigationActivity::class.java)
-//            //intent.putExtra("date","2020-12-13")
-//            val params = bundleOf("date" to dateCalendar, "age" to 30)
-//            findNavController().navigate(R.id.navigation_schedule, params)
+//        calendar.setOnClickListener(){
+//            convertView?.findNavController()?.navigate(
+//                R.id.navigation_schedule
+//            )
 //        }
         if (dateManager?.getDayOfWeek(dateArray[position]) == 1) {
             calendar.setBackgroundResource(R.color.sunday_color)
@@ -124,13 +125,12 @@ class CalendarAdapter : BaseAdapter {
     override fun getItemId(position: Int): Long {
         return position.toLong()
     }
-    @Override
-
 
     //表示月を取得
     fun getTitle(): String {
         val format = SimpleDateFormat("yyyy年M月", Locale.JAPAN)
         return format.format(dateManager?.calendar?.time)
+        notifyDataSetChanged()
     }
 
 
@@ -157,7 +157,7 @@ class CalendarAdapter : BaseAdapter {
             .baseUrl(KrononClient.BaseUrl)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-        var date = "2021-02-01"
+        var date = toMonth
         token = "Bearer $token"
         val service = retrofit.create(KrononService::class.java)
 //        val scheduleDate = ScheduleDate(date)
@@ -171,7 +171,23 @@ class CalendarAdapter : BaseAdapter {
                 if (response.code() == 200) {
                     val response = response.body()
 //                    response?.getCalendarArray()
-                    schedules = response?.getCalendarArray()
+                    var resData = response?.data
+                    for (i in resData?.indices!!) {
+                        oldSchedules.add(response?.data?.get(i)!!)
+                    }
+                    val inflator = context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+                    val dateFormat_date = SimpleDateFormat("yyyy-MM-dd", Locale.JAPAN)
+                    val calendar: View = inflator.inflate(R.layout.calendar_cell, null)
+                    notifyDataSetChanged()
+                    var titletext = calendar.findViewById<TextView>(R.id.title1)
+                    var todays = dateFormat_date.format(dateArray[position]).toString()
+//                    for (schedule in oldSchedules) {
+//                        if (todays == schedule?.date) {
+//                            titletext.text = schedule.title
+//                            titletext.setBackgroundResource(R.drawable.event)
+//                        }
+//                    }
+//                    schedules = response?.getCalendarArray()
 //                    Log.i("nameArray",schedules.toString())
                 } else {
                     val responseError = response.errorBody()

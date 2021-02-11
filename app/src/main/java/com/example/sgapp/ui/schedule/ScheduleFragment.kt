@@ -52,6 +52,8 @@ class ScheduleFragment : Fragment() {
     private var widthPixel = 0
     private var widthContent = 0
     private var scale = 0f
+    var calendarDisplayDate = ""
+    var calendarSendDate = ""
 //    var names : Array<String> = arrayOf()
     private var names = arrayOf("", "", "")
     private val nx = 3//names.size
@@ -64,6 +66,9 @@ class ScheduleFragment : Fragment() {
     val format = SimpleDateFormat("yyyy-MM-dd")
     val today = Date()
     var dateAPI = format.format(today)
+    var scheduledate = Date()
+    var sendDays = ""
+    var dateNextDisplay = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         var calendar = Calendar.getInstance()
@@ -77,30 +82,33 @@ class ScheduleFragment : Fragment() {
         dashboardViewModel =
             ViewModelProvider(this).get(ScheduleViewModel::class.java)
         root = inflater.inflate(R.layout.fragment_schedule, container, false)
-        dateDisplay = DateFormat.format("yyyy年MM月dd日(EEE)の予定", today).toString()
-        if(arguments != null){
-            requireArguments().run {
-                dateAPI = getString("date").toString()
-                dateDisplay = getString("dateDisplay").toString()
-            }
-        }
 
-        var scheduledate = format.parse(dateAPI)
-        calendar.time = scheduledate
-        val date: Calendar = calendar
-        //コンテキストを取得
         mContext = activity
         val dateText = root?.findViewById<TextView>(R.id.schedule_show_date)
         val prevButton = root?.findViewById<TextView>(R.id.prev_day_button)
         val nextButton = root?.findViewById<TextView>(R.id.next_day_button)
         val newScheduleButton = root?.findViewById<ImageView>(R.id.create_button)
-        //日付フォーマット
+        dateDisplay = DateFormat.format("yyyy年MM月dd日(EEE)の予定", today).toString()
         dateText?.text = dateDisplay
-//        val format = SimpleDateFormazt("yyyy-MM-dd")
-//        val today = Date()
-//        var dateAPI = format.format(today)
-//        //Date型のも用意
-//        val scheduledate = format.parse(dateAPI)
+        scheduledate = format.parse(dateAPI)
+        if(arguments != null){
+            requireArguments().run {
+                dateAPI = getString("date").toString()
+                dateNextDisplay = getString("dateDisplay").toString()
+                calendarSendDate = getString("calendarSendDate").toString()
+                calendarDisplayDate = getString("calendarDisplayDate").toString()
+                if(calendarDisplayDate != "null"){
+                    dateText?.text = calendarDisplayDate
+                    scheduledate = format.parse(calendarSendDate)
+                }else{
+                    dateText?.text = dateNextDisplay
+                    scheduledate = format.parse(dateAPI)
+                }
+            }
+        }
+
+        calendar.time = scheduledate
+        val date: Calendar = calendar
 
         newScheduleButton?.setOnClickListener(View.OnClickListener {
             val intent = Intent(activity, CreateScheduleActivity::class.java)
