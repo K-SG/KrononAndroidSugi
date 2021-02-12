@@ -158,6 +158,7 @@ class CalendarAdapter : BaseAdapter {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         var date = toMonth
+
         token = "Bearer $token"
         val service = retrofit.create(KrononService::class.java)
 //        val scheduleDate = ScheduleDate(date)
@@ -179,8 +180,6 @@ class CalendarAdapter : BaseAdapter {
                     val dateFormat_date = SimpleDateFormat("yyyy-MM-dd", Locale.JAPAN)
                     val calendar: View = inflator.inflate(R.layout.calendar_cell, null)
                     notifyDataSetChanged()
-                    var titletext = calendar.findViewById<TextView>(R.id.title1)
-                    var todays = dateFormat_date.format(dateArray[position]).toString()
 //                    for (schedule in oldSchedules) {
 //                        if (todays == schedule?.date) {
 //                            titletext.text = schedule.title

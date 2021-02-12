@@ -54,16 +54,13 @@ class UpdateScheduleActivity : AppCompatActivity() {
 
         var placeSelect : Int = 0
 
-        val adapter = ArrayAdapter.createFromResource(
-            this,
-            R.array.list,
-            android.R.layout.simple_spinner_item
-        )
+        val items = resources.getStringArray(R.array.list)
 
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        //アダプターにアイテム配列を設定
+        val Adapter = ArrayAdapter(this, R.layout.custom_spinner, items)
 
-        place.adapter = adapter
-        // OnItemSelectedListenerの実装
+
+        place.adapter = Adapter
         place.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             // 項目が選択された時に呼ばれる
             override fun onItemSelected(

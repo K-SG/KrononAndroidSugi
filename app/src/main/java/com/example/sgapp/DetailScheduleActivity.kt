@@ -173,7 +173,8 @@ class DetailScheduleActivity : AppCompatActivity() {
                 if (response.code() == 200) {
                     val response = response.body()
                     Toast.makeText(applicationContext, "削除に完了したよ", Toast.LENGTH_SHORT).show()
-                    finish()
+                    val intent = Intent(this@DetailScheduleActivity,MainButtomNavigationActivity::class.java)
+                    startActivity(intent)
                 } else {
                     val responseError = response.errorBody()
                     //GsonでKotlinクラスに型を変えてもらえる。

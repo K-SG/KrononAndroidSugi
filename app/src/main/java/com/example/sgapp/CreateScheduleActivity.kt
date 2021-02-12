@@ -3,12 +3,11 @@ package com.example.sgapp
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.*
+import android.widget.ArrayAdapter
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.retrofit2_kotlin.Retrofit2.KrononService
@@ -38,16 +37,13 @@ class CreateScheduleActivity : AppCompatActivity() {
         val endTime = findViewById<TextView>(R.id.new_end_time)
         val content = findViewById<EditText>(R.id.content)
         var placeSelect : Int = 0
+        val items = resources.getStringArray(R.array.list)
 
-        val adapter = ArrayAdapter.createFromResource(
-            this,
-            R.array.list,
-            android.R.layout.simple_spinner_item
-        )
+        //アダプターにアイテム配列を設定
+        val Adapter = ArrayAdapter(this, R.layout.custom_spinner, items)
 
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
-        place.adapter = adapter
+        place.adapter = Adapter
         // OnItemSelectedListenerの実装
         place.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             // 項目が選択された時に呼ばれる
@@ -74,6 +70,7 @@ class CreateScheduleActivity : AppCompatActivity() {
 
             }
         }
+
         val backButton = findViewById<ImageView>(R.id.back_button)
         backButton.setOnClickListener{
             finish()
@@ -124,7 +121,10 @@ class CreateScheduleActivity : AppCompatActivity() {
             ) {
                 if (response.code() == 200) {
                     Toast.makeText(applicationContext, "登録に完了したよ", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this@CreateScheduleActivity,MainButtomNavigationActivity::class.java)
+                    val intent = Intent(
+                        this@CreateScheduleActivity,
+                        MainButtomNavigationActivity::class.java
+                    )
                     startActivity(intent)
                 } else {
                     val responseError = response.errorBody()
@@ -138,7 +138,10 @@ class CreateScheduleActivity : AppCompatActivity() {
                         .setMessage(exceptionBody.message.toString())
                         .setPositiveButton("OK", { dialog, which ->
                             // TODO:Yesが押された時の挙動
-                            val intent = Intent(this@CreateScheduleActivity,MainButtomNavigationActivity::class.java)
+                            val intent = Intent(
+                                this@CreateScheduleActivity,
+                                MainButtomNavigationActivity::class.java
+                            )
                             startActivity(intent)
                         })
                         .show()
@@ -152,7 +155,10 @@ class CreateScheduleActivity : AppCompatActivity() {
                     .setMessage("ネットワークの接続が悪いです")
                     .setPositiveButton("OK", { dialog, which ->
                         // TODO:Yesが押された時の挙動
-                        val intent = Intent(this@CreateScheduleActivity,MainButtomNavigationActivity::class.java)
+                        val intent = Intent(
+                            this@CreateScheduleActivity,
+                            MainButtomNavigationActivity::class.java
+                        )
                         startActivity(intent)
                     })
                     .show()
